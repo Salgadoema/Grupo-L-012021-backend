@@ -3,13 +3,27 @@ plugins {
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'java'
 	id 'war'
+	id 'idea'
+	id 'eclipse'
 }
+eclipseJdt{
+	doLast{
+		ant.property(".settings/org.eclipse.core.resources.prefs"){
+			ant.entry("eclipse.preferences.version", "1" )
+			ant.entry("encoding/<project>", "utf-8")
+		}
+	}
+}
+compileJava.options.encoding='utf-8'
+compileTestJava.options.encoding='utf-8'
 
 group = 'ar.edu.unq.desapp.grupo-L-012021'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
 repositories {
+	mavenLocal()
+	jcenter()
 	mavenCentral()
 }
 
