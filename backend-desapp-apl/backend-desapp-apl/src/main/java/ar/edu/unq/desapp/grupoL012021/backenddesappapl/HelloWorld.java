@@ -12,9 +12,7 @@ public class HelloWorld {
 
     @RequestMapping("/")
     @ResponseBody
-    String hola() {
-        return "Hola mundo";
-    }
+    String hola() { return "Hola mundo"; }
 
     public static void main(String[] args) throws Exception {
         SpringApplication.run(HelloWorld.class, args);
