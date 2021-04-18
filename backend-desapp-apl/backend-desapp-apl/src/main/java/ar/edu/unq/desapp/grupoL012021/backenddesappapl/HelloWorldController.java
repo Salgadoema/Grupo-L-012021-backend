@@ -1,15 +1,21 @@
 package ar.edu.unq.desapp.grupoL012021.backenddesappapl;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Collections;
+import java.util.Map;
 
 @RestController
-@RequestMapping("/rest/auth")
+@RequestMapping("/")
 public class HelloWorldController {
 
+    //public Map res = Collections.singletonMap("res", "Hola Mundo");
+
+    @CrossOrigin(origins = "http://localhost:8080")
     @GetMapping("/hola")
+    @ResponseBody
     public String saludo(){
-        return "Hola mundo!";
+        //return res;
+        return "Hola Mundo!";
     }
 }

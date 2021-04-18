@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @EnableAutoConfiguration
 public class HelloWorld {
 
-    @RequestMapping("/")
-    @ResponseBody
+    //@RequestMapping("/")
+    //@ResponseBody
     String hola() { return "Hola mundo"; }
 
     public static void main(String[] args) throws Exception {
