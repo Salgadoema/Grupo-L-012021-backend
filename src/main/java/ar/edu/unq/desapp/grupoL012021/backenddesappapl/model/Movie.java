@@ -24,4 +24,12 @@ public class Movie {
         this.id = id;
         this.movieName = movieName;
     }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public String getMovieName() {
+        return movieName;
+    }
 }
