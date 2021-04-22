@@ -16,9 +16,15 @@ public class ActorWebService {
     @Autowired
     private ActorService actorService;
 
-    @GetMapping
+    @GetMapping("/api/actors")
     public List<Actor> allActors() {
         List<Actor> actors = actorService.findAll();
         return actors;
+    }
+
+    @GetMapping("/api/actors/byId/{id}")
+    public Actor actorById(String id) {
+        Actor foundActor = actorService.findById(id);
+        return foundActor;
     }
 }
