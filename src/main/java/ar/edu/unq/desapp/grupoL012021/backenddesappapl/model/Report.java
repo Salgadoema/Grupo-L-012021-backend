@@ -16,4 +16,14 @@ public class Report {
 
     @Column
     private String reporter;
+
+    public Report() {
+        super();
+    }
+
+    public Report(String id, String type, String reporter) {
+        this.id = id;
+        this.type = type;
+        this.reporter = reporter;
+    }
 }

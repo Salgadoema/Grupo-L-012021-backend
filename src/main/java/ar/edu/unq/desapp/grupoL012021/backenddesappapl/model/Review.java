@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -37,5 +38,23 @@ public abstract class Review {
 
     @OneToMany
     private List<Report> reports;
+
+    public Review() {
+        super();
+    }
+
+    public Review(String id, Double rating, String preview, String fullReview, Date dateOfPublish,
+                  String platformOrigin, String usernameOnPlatform, String language) {
+
+        this.id = id;
+        this.rating = rating;
+        this.preview = preview;
+        this.fullReview = fullReview;
+        this.dateOfPublish = dateOfPublish;
+        this.platformOrigin = platformOrigin;
+        this.usernameOnPlatform = usernameOnPlatform;
+        this.language = language;
+        this.reports = new ArrayList<Report>();
+    }
 
 }

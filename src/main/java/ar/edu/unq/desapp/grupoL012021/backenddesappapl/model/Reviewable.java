@@ -23,7 +23,7 @@ public abstract class Reviewable {
     private String originalTitle;
 
     @Column
-    private Date startYear;
+    private Integer startYear;
 
     @ElementCollection
     private List<String> genres;
@@ -38,8 +38,8 @@ public abstract class Reviewable {
         super();
     }
 
-    public Reviewable(String id, String titleType, String primaryTitle, String originalTitle, Date startYear,
-                      ArrayList<String> genres, ArrayList<Actor> actors, ArrayList<Review> reviews) {
+    public Reviewable(String id, String titleType, String primaryTitle, String originalTitle,
+                      Integer startYear, List<String> genres, List<Actor> actors, List<Review> reviews) {
 
         this.id = id;
         this.titleType = titleType;

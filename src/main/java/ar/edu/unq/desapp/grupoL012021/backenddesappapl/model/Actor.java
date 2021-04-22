@@ -14,4 +14,13 @@ public class Actor {
 
     @Column
     private String name;
+
+    public Actor() {
+        super();
+    }
+
+    public Actor(String id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 }
