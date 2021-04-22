@@ -1,8 +1,6 @@
 package ar.edu.unq.desapp.grupoL012021.backenddesappapl.model;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Entity

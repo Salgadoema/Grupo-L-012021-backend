@@ -2,7 +2,6 @@ package ar.edu.unq.desapp.grupoL012021.backenddesappapl.model;
 
 import javax.persistence.Entity;
 import java.util.ArrayList;
-import java.util.Date;
 
 @Entity
 public class Episode extends Reviewable {
