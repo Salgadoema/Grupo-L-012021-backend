@@ -1,35 +1,19 @@
 package ar.edu.unq.desapp.grupoL012021.backenddesappapl.model;
 
-import org.springframework.data.annotation.Id;
-
-import javax.persistence.Column;
 import javax.persistence.Entity;
+import java.util.ArrayList;
+import java.util.Date;
 
 @Entity
-public class Movie {
-    @Id
-    private Integer id;
-
-    @Column
-    private String movieName;
-
-
+public class Movie extends Reviewable {
 
     public Movie() {
         super();
     }
 
-    public Movie(Integer id, String movieName) {
-        super();
-        this.id = id;
-        this.movieName = movieName;
+    public Movie(String id, String moviePrimaryTitle, String originalTitle, Date releaseYear,
+                 ArrayList<String> genres, ArrayList<Actor> actors, ArrayList<Review> reviews) {
+        super(id, "Movie", moviePrimaryTitle, originalTitle, releaseYear, genres, actors, reviews);
     }
 
-    public Integer getId() {
-        return id;
-    }
-
-    public String getMovieName() {
-        return movieName;
-    }
 }

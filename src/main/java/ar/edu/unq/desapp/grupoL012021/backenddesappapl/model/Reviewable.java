@@ -1,6 +1,7 @@
 package ar.edu.unq.desapp.grupoL012021.backenddesappapl.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -33,4 +34,24 @@ public abstract class Reviewable {
     @OneToMany
     private List<Review> reviews;
 
+    public Reviewable() {
+        super();
+    }
+
+    public Reviewable(String id, String titleType, String primaryTitle, String originalTitle, Date startYear,
+                      ArrayList<String> genres, ArrayList<Actor> actors, ArrayList<Review> reviews) {
+
+        this.id = id;
+        this.titleType = titleType;
+        this.primaryTitle = primaryTitle;
+        this.originalTitle = originalTitle;
+        this.startYear = startYear;
+        this.genres = genres;
+        this.actors = actors;
+        this.reviews = reviews;
+    }
+
+    public String getTitle() {
+        return primaryTitle;
+    }
 }
