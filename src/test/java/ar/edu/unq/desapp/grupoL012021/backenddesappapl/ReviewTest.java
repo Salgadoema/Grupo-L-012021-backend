@@ -27,7 +27,7 @@ public class ReviewTest {
 
    // this.review=Mockito.mock(Review.class);
   //  this.review.setRating(2.0);
-       this.review = new PublicReview("R_1", 2.0, "THIS IS A REVIEW",
+       this.review = new PublicReview("R_1","Public Review", 2.0, "THIS IS A REVIEW",
                 "THIS IS A FULL REVIEW", new Date(14/5/2020),
                 "nefli", "nefliuser","esp",
                 "casa", true);
@@ -77,4 +77,102 @@ public class ReviewTest {
         assertEquals(3, movie.getRating());
     }
 
+    @Test
+    public void addAReviewWithId_R1_searchThisReviewAndAppear(){
+        assertEquals(review.getId(),movie.getReview("R_1").getId());
+    }
+
+    @Test
+    public void addAReviewWithPlatformOrigin_nefli_searchThisReviewAndAppear(){
+        assertEquals(review.getId(),movie.getReviewByPlatform("nefli").getId());
+    }
+
+    @Test
+    public void addAReviewWithSpoilertOn_True_searchThisReviewAndAppear(){
+        assertEquals(review.getId(),movie.getReviewByPlatform("nefli").getId());
+    }
+
+    @Test
+    public void add3Review_2ofNefliAnd1OfMamazon_SearchForNefliAndreturnAListwithThisElements(){
+        PublicReview publicReview = new PublicReview();
+        publicReview.setPlatform("nefli");
+        PremiumReview premiumReview = new PremiumReview();
+        premiumReview.setPlatform("nefli");
+        PublicReview publicReview2 = new PublicReview();
+        publicReview2.setPlatform("mamazon");
+
+        movie.addReview(publicReview);
+        movie.addReview(publicReview2);
+        movie.addReview(premiumReview);
+
+        assertEquals(3,movie.getReviewsByPlatform("nefli").size());
+    }
+
+    @Test
+    public void movieWitAnSpoilertReviewadd3Review_2withSpoilertAlertAnd1WithoutSA_SearchForSpoilertAndreturnAListwithThisElements3(){
+        PublicReview publicReview = new PublicReview();
+        publicReview.setContainSpoiler(true);
+        PremiumReview premiumReview = new PremiumReview();
+        premiumReview.setContainSpoiler(false);
+        PublicReview publicReview2 = new PublicReview();
+        publicReview2.setContainSpoiler(true);
+
+        movie.addReview(publicReview);
+        movie.addReview(publicReview2);
+        movie.addReview(premiumReview);
+
+        assertEquals(3,movie.getReviewsByContainSpoiler(true).size());
+    }
+    @Test
+    public void movieWitAnlenguajeESPadd3Review_2withLengEspAnd1WithLengENG_SearchForENGAndreturnAListwithThisElements1(){
+        PublicReview publicReview = new PublicReview();
+        publicReview.setLanguage("Esp");
+        PremiumReview premiumReview = new PremiumReview();
+        premiumReview.setLanguage("Esp");
+        PublicReview publicReview2 = new PublicReview();
+        publicReview2.setLanguage("Eng");
+
+        movie.addReview(publicReview);
+        movie.addReview(publicReview2);
+        movie.addReview(premiumReview);
+
+        assertEquals(1,movie.getReviewsByLanguage("Eng").size());
+    }
+
+    @Test
+    public void movieWitAnLocationArgentinaadd3Review_2withLocationArgentina_and1WithLocationUSA_SearchForUSAAndreturnAListwithThisElements1(){
+        PublicReview publicReview = new PublicReview();
+        publicReview.setgeoLocation("Argentina");
+        PremiumReview premiumReview = new PremiumReview();
+        PublicReview publicReview2 = new PublicReview();
+        publicReview2.setgeoLocation("USA");
+
+        movie.addReview(publicReview);
+        movie.addReview(publicReview2);
+        movie.addReview(premiumReview);
+
+        assertEquals(1,movie.getReviewsByGeoLocation("USA").size());
+    }
+
+    @Test
+    public void movieWith1publicReviewAdd2publicReviewAnd1PremiumReview_SearchforPublicReviewresponse3(){
+        PublicReview publicReview = new PublicReview();
+        PremiumReview premiumReview = new PremiumReview();
+        PublicReview publicReview2 = new PublicReview();
+
+        publicReview.setType("Public Review");
+        publicReview2.setType("Public Review");
+        premiumReview.setType("Premium Review");
+
+        movie.addReview(publicReview);
+        movie.addReview(publicReview2);
+        movie.addReview(premiumReview);
+
+        assertEquals(1,movie.getReviewsByType("Premium Review").size());
+    }
+
+ /*
+     Además que se pueda
+    ordenar por rating y/o fecha, y que el orden sea ascendente o descendente. Además,
+    los resultados deben estar paginados.*/
 }
