@@ -11,18 +11,16 @@ import java.util.List;
 
 @Entity
 public abstract class Review {
-  /*
 
-  spoiler alert (true/false)
-
-
-    */
     @Id
     @Column
     private String id;
 
     @Column
     private Double rating;
+
+    @Column
+    private String type;
 
     @Column
     private String preview;
@@ -42,6 +40,10 @@ public abstract class Review {
     @Column
     private String language;
 
+    @Column
+    private Boolean containsSpoiler;
+
+
 
     @OneToMany
     private List<Report> reports;
@@ -50,10 +52,11 @@ public abstract class Review {
         super();
     }
 
-    public Review(String id, Double rating, String preview, String fullReview, Date dateOfPublish,
-                  String platformOrigin, String usernameOnPlatform, String language) {
+    public Review(String id, String type,Double rating, String preview, String fullReview, Date dateOfPublish,
+                  String platformOrigin, String usernameOnPlatform, String language, Boolean containsSpoiler) {
 
         this.id = id;
+        this.type=type;
         this.rating = rating;
         this.preview = preview;
         this.fullReview = fullReview;
@@ -62,6 +65,8 @@ public abstract class Review {
         this.usernameOnPlatform = usernameOnPlatform;
         this.language = language;
         this.reports = new ArrayList<Report>();
+        this.containsSpoiler = containsSpoiler;
+
     }
 
     public void setRating(Double rating){
@@ -70,5 +75,44 @@ public abstract class Review {
 
     public Double getRating() {
         return this.rating;
+    }
+
+    public  String getId(){
+        return this.id;
+    }
+
+    public  String getPlatform(){
+        return this.platformOrigin;
+    }
+
+    public  void setPlatform(String platform){
+        this.platformOrigin=platform;
+    }
+
+    public  void setContainSpoiler(Boolean containsSpoiler){
+        this.containsSpoiler=containsSpoiler;
+    }
+
+    public boolean getContainSpoiler(){
+        return this.containsSpoiler;
+    }
+
+    public  void setLanguage(String language){
+        this.language=language;
+    }
+
+    public String getlanguage(){
+        return this.language;
+    }
+
+
+    public abstract String getlocation();
+
+    public String getType(){
+        return this.type;
+    }
+
+    public  void setType(String type){
+        this.type=type;
     }
 }

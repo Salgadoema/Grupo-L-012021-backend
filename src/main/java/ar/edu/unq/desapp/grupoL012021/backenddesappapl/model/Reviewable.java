@@ -1,6 +1,8 @@
 package ar.edu.unq.desapp.grupoL012021.backenddesappapl.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Entity
@@ -47,6 +49,7 @@ public abstract class Reviewable {
         this.genres = genres;
         this.actors = actors;
         this.reviews = reviews;
+
     }
 
     public String getTitle() {
@@ -62,4 +65,19 @@ public abstract class Reviewable {
     public abstract void addReview(Review Review);
 
     public abstract Double getRating();
+
+
+    public abstract Review getReview(String id);
+
+    public abstract Review getReviewByPlatform(String nefli);
+
+    public abstract ArrayList<Review> getReviewsByPlatform(String platform);
+
+    public abstract ArrayList<Review> getReviewsByContainSpoiler(boolean containsSpoiler);
+
+    public abstract ArrayList<Review> getReviewsByLanguage(String language);
+
+    public abstract ArrayList<Review> getReviewsByGeoLocation(String usa);
+
+    public abstract ArrayList<Review> getReviewsByType(String premium_review);
 }

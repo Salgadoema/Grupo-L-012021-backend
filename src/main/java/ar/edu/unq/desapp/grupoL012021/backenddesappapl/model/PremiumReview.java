@@ -10,10 +10,17 @@ public class PremiumReview extends Review {
         super();
     }
 
-    public PremiumReview(String id, Double rating, String preview, String fullReview, Date dateOfPublish,
+    @Override
+    public String getlocation() {
+        return null;
+    }
+
+
+
+    public PremiumReview(String id, String type, Double rating, String preview, String fullReview, Date dateOfPublish,
                          String platformOrigin, String usernameOnPlatform, String language,
                          String geolocation, Boolean containsSpoilers) {
 
-        super(id, rating, preview, fullReview, dateOfPublish, platformOrigin, usernameOnPlatform, language);
+        super(id, "Premium Review",rating, preview, fullReview, dateOfPublish, platformOrigin, usernameOnPlatform, language, containsSpoilers);
     }
 }
