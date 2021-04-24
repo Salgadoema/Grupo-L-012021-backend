@@ -14,5 +14,15 @@ public class Movie extends Reviewable {
                  ArrayList<String> genres, ArrayList<Actor> actors, ArrayList<Review> reviews) {
         super(id, "Movie", moviePrimaryTitle, originalTitle, releaseYear, genres, actors, reviews);
     }
+    public  void addReview(Review review){
+        reviews.add(review);
+    }
+
+    @Override
+    public Double getRating() {
+            return reviews.stream().mapToDouble(Review::getRating).sum()/reviews.size();
+    }
+
+
 
 }

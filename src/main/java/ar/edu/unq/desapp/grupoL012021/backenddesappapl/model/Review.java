@@ -8,9 +8,15 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+
 @Entity
 public abstract class Review {
+  /*
 
+  spoiler alert (true/false)
+
+
+    */
     @Id
     @Column
     private String id;
@@ -36,6 +42,7 @@ public abstract class Review {
     @Column
     private String language;
 
+
     @OneToMany
     private List<Report> reports;
 
@@ -57,4 +64,11 @@ public abstract class Review {
         this.reports = new ArrayList<Report>();
     }
 
+    public void setRating(Double rating){
+        this.rating=rating;
+    }
+
+    public Double getRating() {
+        return this.rating;
+    }
 }

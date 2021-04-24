@@ -30,7 +30,7 @@ public abstract class Reviewable {
     private List<Actor> actors;
 
     @OneToMany
-    private List<Review> reviews;
+    public List<Review> reviews;
 
     public Reviewable() {
         super();
@@ -52,4 +52,14 @@ public abstract class Reviewable {
     public String getTitle() {
         return primaryTitle;
     }
+
+
+    public String  getId(){
+        return this.id;
+    }
+
+
+    public abstract void addReview(Review Review);
+
+    public abstract Double getRating();
 }
