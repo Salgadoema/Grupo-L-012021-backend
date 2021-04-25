@@ -19,8 +19,9 @@ public class PremiumReview extends Review {
 
     public PremiumReview(String id, String type, Double rating, String preview, String fullReview, Date dateOfPublish,
                          String platformOrigin, String usernameOnPlatform, String language,
-                         String geolocation, Boolean containsSpoilers) {
+                         String geolocation, Boolean containsSpoilers, Integer like, Integer dislike) {
 
-        super(id, "Premium Review",rating, preview, fullReview, dateOfPublish, platformOrigin, usernameOnPlatform, language, containsSpoilers);
+        super(id, "Premium Review",rating, preview, fullReview, dateOfPublish,
+                platformOrigin, usernameOnPlatform, language, containsSpoilers,0,0);
     }
 }

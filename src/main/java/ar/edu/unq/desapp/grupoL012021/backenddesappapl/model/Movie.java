@@ -3,6 +3,7 @@ package ar.edu.unq.desapp.grupoL012021.backenddesappapl.model;
 import javax.persistence.Entity;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.stream.Collectors;
 
 @Entity
@@ -86,5 +87,28 @@ public class Movie extends Reviewable {
         return aReviews;
     }
 
+    @Override
+    public ArrayList<Review> getReviewsLikes() {
+        ArrayList<Review> aReviews = reviews.stream()
+                .filter(review -> review.getlike()>=1)
+                .collect(Collectors.toCollection(ArrayList::new));
+        return aReviews;
+    }
+
+    @Override
+    public ArrayList<Review> getReviewsDislikes() {
+        ArrayList<Review> aReviews = reviews.stream()
+                .filter(review -> review.getdislike()>=1)
+                .collect(Collectors.toCollection(ArrayList::new));
+        return aReviews;
+    }
+
+    @Override
+    public ArrayList<Review> getReviewsOrderByLikes() {
+        ArrayList<Review> aReviews = reviews.stream()
+                .sorted(Comparator.comparingInt(Review::getlike).reversed())
+                .collect(Collectors.toCollection(ArrayList::new));
+        return aReviews;
+    }
 
 }

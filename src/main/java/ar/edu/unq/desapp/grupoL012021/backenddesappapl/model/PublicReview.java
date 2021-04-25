@@ -19,10 +19,10 @@ public class PublicReview extends Review {
 
     public PublicReview(String id, String type, Double rating, String preview, String fullReview, Date dateOfPublish,
                         String platformOrigin, String usernameOnPlatform, String language,
-                        String geolocation, Boolean containsSpoilers) {
+                        String geolocation, Boolean containsSpoilers, Integer like, Integer dislike) {
 
         super(id, "Public Review", rating, preview, fullReview, dateOfPublish, platformOrigin,
-                usernameOnPlatform, language, containsSpoilers);
+                usernameOnPlatform, language, containsSpoilers,0,0);
 
         this.geolocation = geolocation;
         this.containsSpoilers = containsSpoilers;

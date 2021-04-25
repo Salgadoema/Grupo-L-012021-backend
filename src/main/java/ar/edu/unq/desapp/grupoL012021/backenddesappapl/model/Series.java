@@ -3,6 +3,7 @@ package ar.edu.unq.desapp.grupoL012021.backenddesappapl.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.stream.Collectors;
 
@@ -88,6 +89,28 @@ public class Series extends Reviewable {
     public ArrayList<Review> getReviewsByType(String type) {
         ArrayList<Review> aReviews = reviews.stream()
                 .filter(review -> review.getType()==type)
+                .collect(Collectors.toCollection(ArrayList::new));
+        return aReviews;
+    }
+    @Override
+    public ArrayList<Review> getReviewsLikes() {
+        ArrayList<Review> aReviews = reviews.stream()
+                .filter(review -> review.getlike()>=1)
+                .collect(Collectors.toCollection(ArrayList::new));
+        return aReviews;
+    }
+
+    @Override
+    public ArrayList<Review> getReviewsDislikes() {
+        ArrayList<Review> aReviews = reviews.stream()
+                .filter(review -> review.getdislike()>=1)
+                .collect(Collectors.toCollection(ArrayList::new));
+        return aReviews;
+    }
+    @Override
+    public ArrayList<Review> getReviewsOrderByLikes() {
+        ArrayList<Review> aReviews = reviews.stream()
+                .sorted(Comparator.comparingInt(Review::getlike).reversed())
                 .collect(Collectors.toCollection(ArrayList::new));
         return aReviews;
     }
