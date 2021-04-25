@@ -66,6 +66,7 @@ public abstract class Reviewable {
 
     public abstract Double getRating();
 
+    public abstract ArrayList<Review> getReviews();
 
     public abstract Review getReview(String id);
 
@@ -86,4 +87,8 @@ public abstract class Reviewable {
     public abstract ArrayList<Review> getReviewsDislikes();
 
     public abstract ArrayList<Review> getReviewsOrderByLikes();
+
+    public abstract void reportReview(String r_1);
+
+    public abstract boolean hasSomeReviewWithMoreStarThan(int reviewStar);
 }

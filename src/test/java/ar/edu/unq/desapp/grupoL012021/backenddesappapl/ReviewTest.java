@@ -27,6 +27,7 @@ public class ReviewTest {
 
    // this.review=Mockito.mock(Review.class);
   //  this.review.setRating(2.0);
+
        this.review = new PublicReview("R_1","Public Review", 2.0, "THIS IS A REVIEW",
                 "THIS IS A FULL REVIEW", new Date(14/5/2020),
                 "nefli", "nefliuser","esp",
@@ -221,8 +222,17 @@ public class ReviewTest {
 
 
     }
- /*
-     Además que se pueda
-    ordenar por rating y/o fecha, y que el orden sea ascendente o descendente. Además,
-    los resultados deben estar paginados.*/
+
+    @Test
+    public void addAReviewThenReportThisReviewDissapearForTheMovie(){
+        assertEquals(review,movie.getReview("R_1"));
+        assertEquals(1,movie.reviews.size());
+        movie.reportReview("R_1");
+
+        assertEquals(0,movie.reviews.size());
+    }
+
+
+
+
 }

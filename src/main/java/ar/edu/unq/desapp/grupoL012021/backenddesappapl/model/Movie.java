@@ -27,6 +27,11 @@ public class Movie extends Reviewable {
     }
 
     @Override
+    public ArrayList<Review> getReviews() {
+        return (ArrayList<Review>) this.reviews;
+    }
+
+    @Override
     public Review getReview(String id) {
 
         Review aReview = reviews.stream()
@@ -109,6 +114,21 @@ public class Movie extends Reviewable {
                 .sorted(Comparator.comparingInt(Review::getlike).reversed())
                 .collect(Collectors.toCollection(ArrayList::new));
         return aReviews;
+    }
+
+    @Override
+    public void reportReview(String idReview) {
+       if( reviews.contains(getReview(idReview))){
+           reviews.remove(getReview(idReview));
+       }
+    }
+
+    @Override
+    public boolean hasSomeReviewWithMoreStarThan(int reviewStar) {
+
+        return reviews.stream()
+                .anyMatch(review -> review.getRating()>=reviewStar);
+
     }
 
 }
