@@ -30,7 +30,7 @@ public class ReviewTest {
        this.review = new PublicReview("R_1","Public Review", 2.0, "THIS IS A REVIEW",
                 "THIS IS A FULL REVIEW", new Date(14/5/2020),
                 "nefli", "nefliuser","esp",
-                "casa", true);
+                "casa", true,0,0);
 
         reviews.add(review);
 
@@ -171,6 +171,56 @@ public class ReviewTest {
         assertEquals(1,movie.getReviewsByType("Premium Review").size());
     }
 
+    @Test
+    public void newReviewAdd_oneLikeAndAskifContainthisReviewSayTrue(){
+
+        PublicReview publicReview = new PublicReview();
+
+        publicReview.addLike();
+
+        movie.addReview(publicReview);
+
+        assertEquals(true,movie.getReviewsLikes().contains(publicReview));
+    }
+
+    @Test
+    public void newReviewAdd_oneDisLikeAndAskifContainthisReviewSayTrue(){
+
+        PublicReview publicReview = new PublicReview();
+
+        publicReview.addDislike();
+
+        movie.addReview(publicReview);
+
+        assertEquals(true,movie.getReviewsDislikes().contains(publicReview));
+    }
+
+    @Test
+    public void threeReviewsOnehas2LikeotherOneLikeAndOther1Dislike(){
+
+        PublicReview publicReview = new PublicReview();
+        PremiumReview premiumReview = new PremiumReview();
+        PublicReview publicReview2 = new PublicReview();
+
+        publicReview.addLike();
+        publicReview.addLike();
+        premiumReview.addLike();
+        publicReview2.addDislike();
+
+
+
+        movie.addReview(publicReview);
+        movie.addReview(publicReview2);
+        movie.addReview(premiumReview);
+
+        assertEquals(true,movie.getReviewsDislikes().contains(publicReview2));
+        assertEquals(publicReview,movie.getReviewsOrderByLikes().get(0));
+        assertEquals(premiumReview,movie.getReviewsOrderByLikes().get(1));
+        assertEquals(publicReview2,movie.getReviewsOrderByLikes().get(3));
+        assertEquals(publicReview2,movie.getReviewsOrderByLikes().get(3));
+
+
+    }
  /*
      Además que se pueda
     ordenar por rating y/o fecha, y que el orden sea ascendente o descendente. Además,

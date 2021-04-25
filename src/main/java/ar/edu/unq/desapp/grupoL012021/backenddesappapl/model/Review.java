@@ -43,7 +43,11 @@ public abstract class Review {
     @Column
     private Boolean containsSpoiler;
 
+    @Column
+   private int like;
 
+    @Column
+    private int dislike;
 
     @OneToMany
     private List<Report> reports;
@@ -53,7 +57,8 @@ public abstract class Review {
     }
 
     public Review(String id, String type,Double rating, String preview, String fullReview, Date dateOfPublish,
-                  String platformOrigin, String usernameOnPlatform, String language, Boolean containsSpoiler) {
+                  String platformOrigin, String usernameOnPlatform, String language, Boolean containsSpoiler,
+                  Integer like, Integer dislike) {
 
         this.id = id;
         this.type=type;
@@ -66,7 +71,8 @@ public abstract class Review {
         this.language = language;
         this.reports = new ArrayList<Report>();
         this.containsSpoiler = containsSpoiler;
-
+        this.like=0;
+        this.dislike=0;
     }
 
     public void setRating(Double rating){
@@ -115,4 +121,20 @@ public abstract class Review {
     public  void setType(String type){
         this.type=type;
     }
+
+    public  void addLike(){
+        this.like=like+1;
+    }
+    public  void addDislike(){
+        this.dislike=dislike+1;
+    }
+
+    public int getlike(){
+        return like;
+    }
+
+    public int getdislike(){
+        return dislike;
+    }
+
 }

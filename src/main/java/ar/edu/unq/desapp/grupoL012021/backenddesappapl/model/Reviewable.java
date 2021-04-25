@@ -80,4 +80,10 @@ public abstract class Reviewable {
     public abstract ArrayList<Review> getReviewsByGeoLocation(String usa);
 
     public abstract ArrayList<Review> getReviewsByType(String premium_review);
+
+    public abstract ArrayList<Review> getReviewsLikes();
+
+    public abstract ArrayList<Review> getReviewsDislikes();
+
+    public abstract ArrayList<Review> getReviewsOrderByLikes();
 }
