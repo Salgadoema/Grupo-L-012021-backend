@@ -24,7 +24,7 @@ Stack tecnologico
 [![Build Status](https://travis-ci.org/Salgadoema/Grupo-L-012021-backend.svg?branch=main)](https://travis-ci.org/Salgadoema/Grupo-L-012021-backend)
 
 - Heroku
-![Heroku](https://pyheroku-badge.herokuapp.com/?app=grupo-l-012021-backend&style=plastic)
+![Heroku](https://pyheroku-badge.herokuapp.com/?app=grupo-l-012021-backend/deploy/githubd&style=plastic)
 
 
 
