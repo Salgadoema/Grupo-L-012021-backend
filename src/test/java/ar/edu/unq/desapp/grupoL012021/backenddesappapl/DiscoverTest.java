@@ -29,12 +29,12 @@ public class DiscoverTest {
         this.review = new PublicReview("R_1","Public Review", 4.0, "THIS IS A REVIEW",
                 "THIS IS A FULL REVIEW", new Date(14/5/2020),
                 "nefli", "nefliuser","esp",
-                "casa", true,0,0);
+                "casa", true,0,0, Mockito.mock(Reviewable.class));
 
         this.review2 = new PublicReview("R_1","Public Review", 2.0, "THIS IS A REVIEW",
                 "THIS IS A FULL REVIEW", new Date(14/5/2020),
                 "nefli", "nefliuser","esp",
-                "casa", true,0,0);
+                "casa", true,0,0, Mockito.mock(Reviewable.class));
 
         this.movie2 = new Movie("pelicula_1",
                 "Die Hard",
