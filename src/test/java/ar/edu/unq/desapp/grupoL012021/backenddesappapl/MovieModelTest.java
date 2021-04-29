@@ -11,7 +11,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class MovieModelTest {
 
-    private Movie testMovie = new Movie();
+    private Movie testMovie = new Movie("pelicula_1", "Die Hard", "Die Hard",
+            1988, Mockito.mock(ArrayList.class), Mockito.mock(ArrayList.class),
+            Mockito.mock(ArrayList.class));
 
     @Test
     @DisplayName("Can get data from Movie model")
