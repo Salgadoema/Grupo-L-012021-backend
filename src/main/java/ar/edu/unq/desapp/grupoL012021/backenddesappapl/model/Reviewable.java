@@ -26,14 +26,14 @@ public abstract class Reviewable {
     @Column
     private Integer startYear;
 
-    @ElementCollection
-    private List<String> genres;
-
     @ManyToMany
     private List<Actor> actors;
 
     @OneToMany(mappedBy = "reviewable")
     public List<Review> reviews;
+
+    @ElementCollection
+    private List<String> genres;
 
     public Reviewable() {
         super();

@@ -1,9 +1,6 @@
 package ar.edu.unq.desapp.grupoL012021.backenddesappapl;
 
-import ar.edu.unq.desapp.grupoL012021.backenddesappapl.model.Movie;
-import ar.edu.unq.desapp.grupoL012021.backenddesappapl.model.PremiumReview;
-import ar.edu.unq.desapp.grupoL012021.backenddesappapl.model.PublicReview;
-import ar.edu.unq.desapp.grupoL012021.backenddesappapl.model.Review;
+import ar.edu.unq.desapp.grupoL012021.backenddesappapl.model.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -30,7 +27,7 @@ public class ReviewTest {
        this.review = new PublicReview("R_1","Public Review", 2.0, "THIS IS A REVIEW",
                 "THIS IS A FULL REVIEW", new Date(14/5/2020),
                 "nefli", "nefliuser","esp",
-                "casa", true,0,0);
+                "casa", true,0,0, Mockito.mock(Reviewable.class));
 
         reviews.add(review);
 

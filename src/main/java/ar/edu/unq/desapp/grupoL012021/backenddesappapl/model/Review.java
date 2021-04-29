@@ -41,16 +41,15 @@ public abstract class Review {
     private Boolean containsSpoiler;
 
     @Column
-    private int like;
+    private int likes;
 
     @Column
-    private int dislike;
+    private int dislikes;
 
     @OneToMany(mappedBy = "review")
     private List<Report> reports;
 
     @ManyToOne
-    @JoinColumn(name="reviewable_id")
     private Reviewable reviewable;
 
     public Review() {
@@ -72,8 +71,8 @@ public abstract class Review {
         this.language = language;
         this.reports = new ArrayList<Report>();
         this.containsSpoiler = containsSpoiler;
-        this.like=0;
-        this.dislike=0;
+        this.likes=0;
+        this.dislikes=0;
         this.reviewable=reviewable;
     }
 
@@ -125,18 +124,18 @@ public abstract class Review {
     }
 
     public  void addLike(){
-        this.like=like+1;
+        this.likes=likes+1;
     }
     public  void addDislike(){
-        this.dislike=dislike+1;
+        this.dislikes=dislikes+1;
     }
 
     public int getlike(){
-        return like;
+        return likes;
     }
 
     public int getdislike(){
-        return dislike;
+        return dislikes;
     }
 
     public Reviewable getReviewable() { return reviewable; }
