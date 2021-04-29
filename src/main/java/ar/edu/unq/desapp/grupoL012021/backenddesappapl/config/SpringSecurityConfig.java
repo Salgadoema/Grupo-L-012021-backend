@@ -26,6 +26,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
         http.cors(withDefaults());
         http.csrf().disable();
         http.authorizeRequests().anyRequest().anonymous();
+        http.headers().frameOptions().disable();
         // en futuro permitir solo loggeados
         //http.authorizeRequests().anyRequest().fullyAuthenticated().and().httpBasic();
     }
