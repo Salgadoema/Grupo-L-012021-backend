@@ -1,8 +1,6 @@
 package ar.edu.unq.desapp.grupoL012021.backenddesappapl.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Report {
@@ -17,13 +15,19 @@ public class Report {
     @Column
     private String reporter;
 
+    @ManyToOne
+    @JoinColumn(name="review_id")
+    private Review review;
+
+
     public Report() {
         super();
     }
 
-    public Report(String id, String type, String reporter) {
+    public Report(String id, String type, String reporter, Review review) {
         this.id = id;
         this.type = type;
         this.reporter = reporter;
+        this.review = review;
     }
 }

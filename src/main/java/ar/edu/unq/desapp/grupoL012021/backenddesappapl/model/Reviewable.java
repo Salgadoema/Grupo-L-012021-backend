@@ -32,7 +32,7 @@ public abstract class Reviewable {
     @ManyToMany
     private List<Actor> actors;
 
-    @OneToMany
+    @OneToMany(mappedBy = "reviewable")
     public List<Review> reviews;
 
     public Reviewable() {

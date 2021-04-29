@@ -1,9 +1,6 @@
 package ar.edu.unq.desapp.grupoL012021.backenddesappapl.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -44,13 +41,17 @@ public abstract class Review {
     private Boolean containsSpoiler;
 
     @Column
-   private int like;
+    private int like;
 
     @Column
     private int dislike;
 
-    @OneToMany
+    @OneToMany(mappedBy = "review")
     private List<Report> reports;
+
+    @ManyToOne
+    @JoinColumn(name="reviewable_id")
+    private Reviewable reviewable;
 
     public Review() {
         super();
@@ -58,7 +59,7 @@ public abstract class Review {
 
     public Review(String id, String type,Double rating, String preview, String fullReview, Date dateOfPublish,
                   String platformOrigin, String usernameOnPlatform, String language, Boolean containsSpoiler,
-                  Integer like, Integer dislike) {
+                  Integer like, Integer dislike, Reviewable reviewable) {
 
         this.id = id;
         this.type=type;
@@ -73,6 +74,7 @@ public abstract class Review {
         this.containsSpoiler = containsSpoiler;
         this.like=0;
         this.dislike=0;
+        this.reviewable=reviewable;
     }
 
     public void setRating(Double rating){
@@ -136,5 +138,7 @@ public abstract class Review {
     public int getdislike(){
         return dislike;
     }
+
+    public Reviewable getReviewable() { return reviewable; }
 
 }
