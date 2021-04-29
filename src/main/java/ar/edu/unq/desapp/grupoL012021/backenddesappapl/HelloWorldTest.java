@@ -19,7 +19,7 @@ public class HelloWorldTest {
     @CrossOrigin(origins = "http://localhost:8080")
     @GetMapping("/")
     @ResponseBody
-    public String saludo(){
+    public String saludo2(){
 
         return "Hola Mundo!";
     }
