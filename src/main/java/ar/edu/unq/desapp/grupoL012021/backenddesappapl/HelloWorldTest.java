@@ -15,4 +15,12 @@ public class HelloWorldTest {
 
         return "Hola Mundo!";
     }
+    
+    @CrossOrigin(origins = "http://localhost:8080")
+    @GetMapping("/")
+    @ResponseBody
+    public String saludo(){
+
+        return "Hola Mundo!";
+    }
 }
