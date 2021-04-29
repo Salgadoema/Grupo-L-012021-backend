@@ -2,21 +2,20 @@
 repo backend del Grupo-L-012021 de la materia desarrollo de aplicaciones
 
 Stack tecnologico
-
-Lenguaje: JAVA
-Framework de Desarrollo: SpringBoot
-Dependencias Framework:
-      Spring Boot Dev Tools
-      Spring Web
-      Spring Security
-      H2 Database
-      Spring Data JPA
-Hibernate
-Build Tool: Gradle
-IDE: Intellij Idea
-Analisis de codigo: Codacy
-Integracion continua: Travis CI
-PaaS: Heroku
+* Lenguaje: JAVA
+* Framework de Desarrollo: SpringBoot
+* Dependencias Framework:
+      * Spring Boot Dev Tools
+      * Spring Web
+      * Spring Security
+      * H2 Database
+      * Spring Data JPA
+* Hibernate
+* Build Tool: Gradle
+* IDE: Intellij Idea
+* Analisis de codigo: Codacy
+* Integracion continua: Travis CI
+* PaaS: Heroku
 
 
 
