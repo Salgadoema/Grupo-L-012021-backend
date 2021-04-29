@@ -2,7 +2,9 @@ package ar.edu.unq.desapp.grupoL012021.backenddesappapl.model;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity
 public abstract class Reviewable {
@@ -61,33 +63,118 @@ public abstract class Reviewable {
     }
 
 
-    public abstract void addReview(Review Review);
+    public void addReview(Review review) {
+        reviews.add(review);
+    }
 
-    public abstract Double getRating();
 
-    public abstract ArrayList<Review> getReviews();
+    public Double getRating() {
+        return reviews.stream().mapToDouble(Review::getRating).sum()/reviews.size();
+    }
 
-    public abstract Review getReview(String id);
 
-    public abstract Review getReviewByPlatform(String nefli);
+    public ArrayList<Review> getReviews() {
+        return (ArrayList<Review>) this.reviews;
+    }
 
-    public abstract ArrayList<Review> getReviewsByPlatform(String platform);
 
-    public abstract ArrayList<Review> getReviewsByContainSpoiler(boolean containsSpoiler);
+    public Review getReview(String id) {
 
-    public abstract ArrayList<Review> getReviewsByLanguage(String language);
+        Review aReview = reviews.stream()
+                .filter(review -> id.equals(review.getId()))
+                .findAny()
+                .orElse(null);
 
-    public abstract ArrayList<Review> getReviewsByGeoLocation(String usa);
+        return aReview;
+    }
 
-    public abstract ArrayList<Review> getReviewsByType(String premium_review);
 
-    public abstract ArrayList<Review> getReviewsLikes();
+    public Review getReviewByPlatform(String platform) {
+        Review aReview = reviews.stream()
+                .filter(review -> platform.equals(review.getPlatform()))
+                .findAny()
+                .orElse(null);
 
-    public abstract ArrayList<Review> getReviewsDislikes();
+        return aReview;
+    }
 
-    public abstract ArrayList<Review> getReviewsOrderByLikes();
 
-    public abstract void reportReview(String r_1);
+    public ArrayList<Review> getReviewsByPlatform(String platform) {
+        ArrayList<Review> aReviews = reviews.stream()
+                .filter(review -> review.getPlatform()==platform)
+                .collect(Collectors.toCollection(ArrayList::new));
+        return aReviews;
+    }
 
-    public abstract boolean hasSomeReviewWithMoreStarThan(int reviewStar);
+
+    public ArrayList<Review> getReviewsByContainSpoiler(boolean containSpoiler) {
+        ArrayList<Review> aReviews = reviews.stream()
+                .filter(review -> review.getContainSpoiler()==containSpoiler)
+                .collect(Collectors.toCollection(ArrayList::new));
+        return aReviews;
+    }
+
+
+    public ArrayList<Review> getReviewsByLanguage(String language) {
+        ArrayList<Review> aReviews = reviews.stream()
+                .filter(review -> review.getlanguage()==language)
+                .collect(Collectors.toCollection(ArrayList::new));
+        return aReviews;
+    }
+
+
+    public ArrayList<Review> getReviewsByGeoLocation(String location) {
+        ArrayList<Review> aReviews = reviews.stream()
+                .filter(review -> review.getlocation()==location)
+                .collect(Collectors.toCollection(ArrayList::new));
+        return aReviews;
+    }
+
+
+    public ArrayList<Review> getReviewsByType(String type) {
+        ArrayList<Review> aReviews = reviews.stream()
+                .filter(review -> review.getType()==type)
+                .collect(Collectors.toCollection(ArrayList::new));
+        return aReviews;
+    }
+
+
+    public ArrayList<Review> getReviewsLikes() {
+        ArrayList<Review> aReviews = reviews.stream()
+                .filter(review -> review.getlike()>=1)
+                .collect(Collectors.toCollection(ArrayList::new));
+        return aReviews;
+    }
+
+
+    public ArrayList<Review> getReviewsDislikes() {
+        ArrayList<Review> aReviews = reviews.stream()
+                .filter(review -> review.getdislike()>=1)
+                .collect(Collectors.toCollection(ArrayList::new));
+        return aReviews;
+    }
+
+
+    public ArrayList<Review> getReviewsOrderByLikes() {
+        ArrayList<Review> aReviews = reviews.stream()
+                .sorted(Comparator.comparingInt(Review::getlike).reversed())
+                .collect(Collectors.toCollection(ArrayList::new));
+        return aReviews;
+    }
+
+
+    public void reportReview(String idReview) {
+        if( reviews.contains(getReview(idReview))){
+            reviews.remove(getReview(idReview));
+        }
+    }
+
+
+    public boolean hasSomeReviewWithMoreStarThan(int reviewStar) {
+
+        return reviews.stream()
+                .anyMatch(review -> review.getRating()>=reviewStar);
+
+    }
+
 }
