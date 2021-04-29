@@ -2,7 +2,6 @@ package ar.edu.unq.desapp.grupoL012021.backenddesappapl.model;
 
 import javax.persistence.Entity;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Comparator;
 import java.util.stream.Collectors;
 
