@@ -7,7 +7,6 @@ import javax.persistence.Id;
 @Entity
 public class Actor {
 
-    //nconst
     @Id
     @Column
     private String id;

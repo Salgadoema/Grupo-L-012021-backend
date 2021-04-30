@@ -7,9 +7,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name="content_type", discriminatorType = DiscriminatorType.STRING)
 public abstract class Reviewable {
 
-    //tconst in imdb
     @Id
     @Column
     private String id;
