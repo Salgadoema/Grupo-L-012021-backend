@@ -25,7 +25,7 @@ public class DiscoverTest {
 
     @BeforeEach
     public void setUp() {
-        this.discover= new Discover ("D_1",reviewables);
+        this.discover= new Discover (1,reviewables);
         this.review = new PublicReview(1,"Public Review", 4.0, "THIS IS A REVIEW",
                 "THIS IS A FULL REVIEW", new Date(14/5/2020),
                 "nefli", "nefliuser","esp",
@@ -36,7 +36,7 @@ public class DiscoverTest {
                 "nefli", "nefliuser","esp",
                 "casa", true,0,0, Mockito.mock(Reviewable.class));
 
-        this.movie2 = new Movie("pelicula_1",
+        this.movie2 = new Movie(2,
                 "Die Hard",
                 "Die Hard",
                 1988,
@@ -46,7 +46,7 @@ public class DiscoverTest {
 
         reviews.add(review);
 
-        this.movie = new Movie("pelicula_1",
+        this.movie = new Movie(1,
                  "Die Hard",
                  "Die Hard",
                  1988,

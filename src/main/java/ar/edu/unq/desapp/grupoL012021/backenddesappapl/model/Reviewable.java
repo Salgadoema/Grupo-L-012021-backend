@@ -80,10 +80,10 @@ public abstract class Reviewable {
     }
 
 
-    public Review getReview(String id) {
+    public Review getReview(int id) {
 
         Review aReview = reviews.stream()
-                .filter(review -> id.equals(review.getId()))
+                .filter(review -> id == review.getId())
                 .findAny()
                 .orElse(null);
 
@@ -165,14 +165,14 @@ public abstract class Reviewable {
     }
 
 
-    public void reportReview(String idReview) {
+    public void reportReview(Integer idReview) {
         if( reviews.contains(getReview(idReview))){
             reviews.remove(getReview(idReview));
         }
     }
 
 
-    public boolean hasSomeReviewWithMoreStarThan(int reviewStar) {
+    public boolean hasSomeReviewWithMoreStarThan(Integer reviewStar) {
 
         return reviews.stream()
                 .anyMatch(review -> review.getRating()>=reviewStar);

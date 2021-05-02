@@ -1,9 +1,6 @@
 package ar.edu.unq.desapp.grupoL012021.backenddesappapl.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -12,8 +9,9 @@ import java.util.stream.Collectors;
 public class Discover {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
-    private String id;
+    private Integer id;
 
 
     @OneToMany
@@ -24,7 +22,7 @@ public class Discover {
         super();
     }
 
-    public Discover(String id, List<Reviewable> reviewables) {
+    public Discover(Integer id, List<Reviewable> reviewables) {
         this.id = id;
         this.reviewables = reviewables;
     }

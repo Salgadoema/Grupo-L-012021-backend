@@ -31,7 +31,7 @@ public class ReviewTest {
 
         reviews.add(review);
 
-        this.movie = new Movie("pelicula_1",
+        this.movie = new Movie(1,
                 "Die Hard",
                 "Die Hard",
                 1988,
@@ -42,7 +42,7 @@ public class ReviewTest {
 
     @Test
     public void MovieHasID_pelicula_1() {
-        assertEquals("pelicula_1", movie.getId());
+        assertEquals(1, movie.getId());
     }
 
 
@@ -76,7 +76,7 @@ public class ReviewTest {
 
     @Test
     public void addAReviewWithId_R1_searchThisReviewAndAppear(){
-        assertEquals(review.getId(),movie.getReview("R_1").getId());
+        assertEquals(review.getId(),movie.getReview(1).getId());
     }
 
     @Test
@@ -221,9 +221,9 @@ public class ReviewTest {
 
     @Test
     public void addAReviewThenReportThisReviewDissapearForTheMovie(){
-        assertEquals(review,movie.getReview("R_1"));
+        assertEquals(review,movie.getReview(1));
         assertEquals(1,movie.reviews.size());
-        movie.reportReview("R_1");
+        movie.reportReview(1);
 
         assertEquals(0,movie.reviews.size());
     }
