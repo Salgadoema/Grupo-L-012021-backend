@@ -5,7 +5,7 @@ import javax.persistence.Entity;
 import java.util.ArrayList;
 
 @Entity
-@DiscriminatorValue("movie")
+@DiscriminatorValue("Movie")
 public class Movie extends Reviewable {
 
     public Movie() {
@@ -13,7 +13,7 @@ public class Movie extends Reviewable {
     }
 
     public Movie(String id, String moviePrimaryTitle, String originalTitle, Integer releaseYear,
-                 ArrayList<String> genres, ArrayList<Actor> actors, ArrayList<Review> reviews) {
+                 ArrayList<Genre> genres, ArrayList<Actor> actors, ArrayList<Review> reviews) {
         super(id, "Movie", moviePrimaryTitle, originalTitle, releaseYear, genres, actors, reviews);
     }
 

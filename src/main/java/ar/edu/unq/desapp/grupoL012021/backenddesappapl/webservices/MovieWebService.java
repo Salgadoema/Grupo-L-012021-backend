@@ -19,6 +19,11 @@ public class MovieWebService  {
     @Autowired
     private MovieService movieService;
 
+    @PostMapping("/api/movies/save")
+    public void addMovie(@RequestBody Movie movie) {
+        movieService.save(movie);
+    }
+
     @GetMapping("/api/movies")
     public List<Movie> allMovie() {
         List<Movie> list = movieService.findAll();;

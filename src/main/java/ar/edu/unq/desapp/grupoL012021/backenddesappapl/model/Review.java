@@ -13,12 +13,12 @@ public abstract class Review {
 
     @Id
     @Column
-    private String id;
+    private Integer id;
 
     @Column
     private Double rating;
 
-    @Column
+    @Column(name="review_type", insertable = false, updatable = false)
     private String type;
 
     @Column
@@ -58,7 +58,7 @@ public abstract class Review {
         super();
     }
 
-    public Review(String id, String type,Double rating, String preview, String fullReview, Date dateOfPublish,
+    public Review(Integer id, String type,Double rating, String preview, String fullReview, Date dateOfPublish,
                   String platformOrigin, String usernameOnPlatform, String language, Boolean containsSpoiler,
                   Integer like, Integer dislike, Reviewable reviewable) {
 
@@ -86,7 +86,7 @@ public abstract class Review {
         return this.rating;
     }
 
-    public  String getId(){
+    public  Integer getId(){
         return this.id;
     }
 
@@ -117,13 +117,9 @@ public abstract class Review {
 
     public abstract String getlocation();
 
-    public String getType(){
-        return this.type;
-    }
+    public String getType(){ return this.type; }
 
-    public  void setType(String type){
-        this.type=type;
-    }
+    public  void setType(String type){ this.type=type; }
 
     public  void addLike(){
         this.likes=likes+1;

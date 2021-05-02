@@ -5,22 +5,20 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class Actor {
+public class Genre {
 
     @Id
     @Column
     private Integer id;
 
     @Column
-    private String name;
+    private String genre;
 
-    public Actor() {
-        super();
-    }
+    public Genre() { super(); }
 
-    public Actor(Integer id, String name) {
+    public Genre(Integer id, String genre) {
         this.id = id;
-        this.name = name;
+        this.genre = genre;
     }
 
     public Integer getId() {
@@ -31,11 +29,11 @@ public class Actor {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getGenre() {
+        return genre;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setGenre(String genre) {
+        this.genre = genre;
     }
 }

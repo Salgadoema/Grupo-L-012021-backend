@@ -8,15 +8,15 @@ import java.util.stream.Collectors;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name="content_type", discriminatorType = DiscriminatorType.STRING)
+@DiscriminatorColumn(name="title_type", discriminatorType = DiscriminatorType.STRING)
 public abstract class Reviewable {
 
     @Id
     @Column
     private String id;
 
-    @Column
-    private String titleType;
+    @Column(name="review_type", insertable = false, updatable = false)
+    private String reviewableType;
 
     @Column
     private String primaryTitle;
@@ -33,18 +33,18 @@ public abstract class Reviewable {
     @OneToMany(mappedBy = "reviewable")
     public List<Review> reviews;
 
-    @ElementCollection
-    private List<String> genres;
+    @ManyToMany
+    private List<Genre> genres;
 
     public Reviewable() {
         super();
     }
 
-    public Reviewable(String id, String titleType, String primaryTitle, String originalTitle,
-                      Integer startYear, List<String> genres, List<Actor> actors, List<Review> reviews) {
+    public Reviewable(String id, String reviewableType, String primaryTitle, String originalTitle,
+                      Integer startYear, List<Genre> genres, List<Actor> actors, List<Review> reviews) {
 
         this.id = id;
-        this.titleType = titleType;
+        this.reviewableType = reviewableType;
         this.primaryTitle = primaryTitle;
         this.originalTitle = originalTitle;
         this.startYear = startYear;

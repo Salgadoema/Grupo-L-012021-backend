@@ -1,7 +1,6 @@
 package ar.edu.unq.desapp.grupoL012021.backenddesappapl.persistence;
 
-
-import ar.edu.unq.desapp.grupoL012021.backenddesappapl.model.Actor;
+import ar.edu.unq.desapp.grupoL012021.backenddesappapl.model.Genre;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
@@ -11,10 +10,10 @@ import java.util.Optional;
 
 @Configuration
 @Repository
-public interface ActorPersistence extends CrudRepository<Actor, String> {
+public interface GenrePersistence extends CrudRepository<Genre, String> {
 
-    Optional<Actor> findById(Integer id);
+    Optional<Genre> findById(String id);
 
-    List<Actor> findAll();
+    List<Genre> findAll();
 
 }

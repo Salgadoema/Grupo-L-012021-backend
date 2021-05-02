@@ -17,14 +17,12 @@ public class PublicReview extends Review {
 
     public PublicReview() { super(); }
 
-
-
-    public PublicReview(String id, String type, Double rating, String preview, String fullReview, Date dateOfPublish,
+    public PublicReview(Integer id, String type, Double rating, String preview, String fullReview, Date dateOfPublish,
                         String platformOrigin, String usernameOnPlatform, String language,
                         String geolocation, Boolean containsSpoilers, Integer like, Integer dislike,
                         Reviewable reviewable) {
 
-        super(id, "Public Review", rating, preview, fullReview, dateOfPublish, platformOrigin,
+        super(id, "Public", rating, preview, fullReview, dateOfPublish, platformOrigin,
                 usernameOnPlatform, language, containsSpoilers,0,0, reviewable);
 
         this.geolocation = geolocation;
@@ -35,7 +33,16 @@ public class PublicReview extends Review {
     public void setgeoLocation(String geoLocation) {
         this.geolocation=geoLocation;
     }
+
     public String getlocation(){
         return this.geolocation;
+    }
+
+    public Boolean getContainsSpoilers() {
+        return containsSpoilers;
+    }
+
+    public void setContainsSpoilers(Boolean containsSpoilers) {
+        this.containsSpoilers = containsSpoilers;
     }
 }

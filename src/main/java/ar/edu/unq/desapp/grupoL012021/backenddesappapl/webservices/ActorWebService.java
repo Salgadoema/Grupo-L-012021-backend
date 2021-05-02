@@ -4,27 +4,41 @@ import ar.edu.unq.desapp.grupoL012021.backenddesappapl.model.Actor;
 import ar.edu.unq.desapp.grupoL012021.backenddesappapl.services.ActorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 @RestController
+@RequestMapping("/api/actors")
 @EnableAutoConfiguration
 public class ActorWebService {
 
     @Autowired
     private ActorService actorService;
 
-    @GetMapping("/api/actors")
-    public List<Actor> allActors() {
-        List<Actor> actors = actorService.findAll();
-        return actors;
+    @GetMapping
+    public ResponseEntity<List<Actor>> allActors() {
+        List<Actor> foundActors = actorService.findAll();
+        if (foundActors == null) {
+            return ResponseEntity.notFound().build();
+        }
+        else {
+            return ResponseEntity.ok(foundActors);
+        }
     }
 
-    @GetMapping("/api/actors/byId/{id}")
-    public Actor actorById(String id) {
+    @GetMapping("/byId/{id}")
+    public ResponseEntity<Actor> actorById(@PathVariable("id") Integer id) {
         Actor foundActor = actorService.findById(id);
-        return foundActor;
+        if (foundActor == null) {
+            return ResponseEntity.notFound().build();
+        }
+        else {
+            return ResponseEntity.ok(foundActor);
+        }
     }
 }
