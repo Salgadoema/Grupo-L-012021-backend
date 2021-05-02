@@ -15,7 +15,7 @@ public class Episode extends Reviewable {
 
     public Episode() { super(); }
 
-    public Episode(String id, String titleType, String episodePrimaryTitle, String originalTitle,
+    public Episode(Integer id, String titleType, String episodePrimaryTitle, String originalTitle,
                    Integer releaseYear, List<Genre> genres, List<Actor> actors, List<Review> reviews,
                    Integer season) {
         super(id, "Episode", episodePrimaryTitle, originalTitle, releaseYear, genres, actors, reviews);

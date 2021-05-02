@@ -12,6 +12,7 @@ import java.util.List;
 public abstract class Review {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private Integer id;
 

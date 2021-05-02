@@ -12,8 +12,9 @@ import java.util.stream.Collectors;
 public abstract class Reviewable {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
-    private String id;
+    private Integer id;
 
     @Column(name="review_type", insertable = false, updatable = false)
     private String reviewableType;
@@ -40,7 +41,7 @@ public abstract class Reviewable {
         super();
     }
 
-    public Reviewable(String id, String reviewableType, String primaryTitle, String originalTitle,
+    public Reviewable(Integer id, String reviewableType, String primaryTitle, String originalTitle,
                       Integer startYear, List<Genre> genres, List<Actor> actors, List<Review> reviews) {
 
         this.id = id;
@@ -59,7 +60,7 @@ public abstract class Reviewable {
     }
 
 
-    public String  getId(){
+    public Integer  getId(){
         return this.id;
     }
 

@@ -12,7 +12,7 @@ public class Movie extends Reviewable {
         super();
     }
 
-    public Movie(String id, String moviePrimaryTitle, String originalTitle, Integer releaseYear,
+    public Movie(Integer id, String moviePrimaryTitle, String originalTitle, Integer releaseYear,
                  ArrayList<Genre> genres, ArrayList<Actor> actors, ArrayList<Review> reviews) {
         super(id, "Movie", moviePrimaryTitle, originalTitle, releaseYear, genres, actors, reviews);
     }

@@ -1,13 +1,12 @@
 package ar.edu.unq.desapp.grupoL012021.backenddesappapl.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Actor {
 
     @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column
     private Integer id;
 
