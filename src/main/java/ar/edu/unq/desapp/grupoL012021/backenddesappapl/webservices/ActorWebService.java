@@ -39,4 +39,9 @@ public class ActorWebService {
         }
     }
 
+    @PostMapping("")
+    public Actor create(@RequestBody Actor actor) {
+        return actorService.save(actor);
+    }
+
 }
