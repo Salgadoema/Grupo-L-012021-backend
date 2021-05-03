@@ -2,6 +2,9 @@ package ar.edu.unq.desapp.grupoL012021.backenddesappapl.webservices;
 
 
 import ar.edu.unq.desapp.grupoL012021.backenddesappapl.model.Movie;
+import ar.edu.unq.desapp.grupoL012021.backenddesappapl.model.PremiumReview;
+import ar.edu.unq.desapp.grupoL012021.backenddesappapl.model.PublicReview;
+import ar.edu.unq.desapp.grupoL012021.backenddesappapl.model.Review;
 import ar.edu.unq.desapp.grupoL012021.backenddesappapl.services.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -39,6 +42,27 @@ public class MovieWebService  {
         else {
             return ResponseEntity.ok(movie);
         }
+    }
+
+    @PutMapping("api/movies/addreview/{id}")
+    public ResponseEntity<Movie> addReview(@PathVariable("id") Integer id, @RequestBody PublicReview review) {
+        Movie movie = movieService.findByID(id);
+        if(movie == null) {
+            return ResponseEntity.notFound().build();
+        }
+        else {
+            PublicReview reviewToAdd = this.process(review, movie);
+            movie.addReview(reviewToAdd);
+            return ResponseEntity.ok(movie);
+        }
+    }
+
+    private PublicReview process(PublicReview review, Movie movie) {
+            PublicReview publicReview = new PublicReview(review.getId(),
+                    review.getRating(), review.getPreview(), review.getFullReview(), review.getDateOfPublish(),
+                    review.getPlatform(), review.getUsernameOnPlatform(), review.getlanguage(),
+                    review.getlocation(), review.getContainSpoiler(), 0, 0, movie);
+            return publicReview;
     }
 
     @RequestMapping(value = "/api/version", method = RequestMethod.GET)

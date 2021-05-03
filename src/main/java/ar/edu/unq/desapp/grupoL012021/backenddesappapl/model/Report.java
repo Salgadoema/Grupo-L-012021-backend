@@ -8,7 +8,7 @@ public class Report {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
-    private String id;
+    private Integer id;
 
     @Column
     private String type;
@@ -25,18 +25,18 @@ public class Report {
         super();
     }
 
-    public Report(String id, String type, String reporter, Review review) {
+    public Report(Integer id, String type, String reporter, Review review) {
         this.id = id;
         this.type = type;
         this.reporter = reporter;
         this.review = review;
     }
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

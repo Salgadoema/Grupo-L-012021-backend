@@ -24,7 +24,7 @@ public class ReviewTest {
    // this.review=Mockito.mock(Review.class);
   //  this.review.setRating(2.0);
 
-       this.review = new PublicReview(1,"Public Review", 2.0, "THIS IS A REVIEW",
+       this.review = new PublicReview(1,2.0, "THIS IS A REVIEW",
                 "THIS IS A FULL REVIEW", new Date(14/5/2020),
                 "nefli", "nefliuser","esp",
                 "casa", true,0,0, Mockito.mock(Reviewable.class));

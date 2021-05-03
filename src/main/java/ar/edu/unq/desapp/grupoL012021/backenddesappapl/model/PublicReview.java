@@ -17,7 +17,7 @@ public class PublicReview extends Review {
 
     public PublicReview() { super(); }
 
-    public PublicReview(Integer id, String type, Double rating, String preview, String fullReview, Date dateOfPublish,
+    public PublicReview(Integer id, Double rating, String preview, String fullReview, Date dateOfPublish,
                         String platformOrigin, String usernameOnPlatform, String language,
                         String geolocation, Boolean containsSpoilers, Integer likes, Integer dislikes,
                         Reviewable reviewable) {

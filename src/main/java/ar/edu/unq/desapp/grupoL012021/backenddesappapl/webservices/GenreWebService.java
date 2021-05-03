@@ -24,6 +24,4 @@ public class GenreWebService {
 
     @PostMapping
     public Genre save(@RequestBody Genre genre) { return genreService.save(genre); }
-
-    //@GetMapping("/byId/{id}")
 }

@@ -21,9 +21,6 @@ public interface PublicReviewPersistence extends CrudRepository<PublicReview, In
     @Query(value = "select * from Review where reviewable_id = :reviewableid", nativeQuery = true)
     List<PublicReview> findByReviewable(@Param("reviewableid") Integer reviewableId);
 
-    //@Query(value = "update Review r set r.likes = r.likes + 1 where r.id = :id")
-    //void addLike(@Param("id") Integer id);
-    //
 
 
 }
