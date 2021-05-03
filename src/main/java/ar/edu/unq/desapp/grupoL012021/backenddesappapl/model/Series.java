@@ -16,7 +16,7 @@ public class Series extends Reviewable {
         super();
     }
 
-    public Series(Integer id, String titleType, String seriesPrimaryTitle, String originalTitle,
+    public Series(Integer    id, String titleType, String seriesPrimaryTitle, String originalTitle,
                   Integer startYear, List<Genre> genres, List<Actor> actors, List<Review> reviews,
                   Integer endYear) {
         super(id, "Series", seriesPrimaryTitle, originalTitle, startYear, genres, actors, reviews);

@@ -10,10 +10,9 @@ import java.util.Optional;
 
 @Configuration
 @Repository
-public interface EpisodePersistence extends CrudRepository<Episode, String> {
+public interface EpisodePersistence extends CrudRepository<Episode, Integer> {
 
-    Optional<Episode> findById(String id);
+    Optional<Episode> findById(Integer id);
 
     List<Episode> findAll();
-
 }

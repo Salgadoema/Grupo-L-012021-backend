@@ -17,7 +17,7 @@ public class GenreService {
     @Transactional
     public Genre save(Genre model) { return this.repository.save(model); }
 
-    public Genre findById(String id) { return this.repository.findById(id).get(); }
+    public Genre findById(Integer id) { return this.repository.findById(id).get(); }
 
     public List<Genre> findAll() { return this.repository.findAll(); }
 }

@@ -17,7 +17,7 @@ public class EpisodeService {
     @Transactional
     public Episode save(Episode model) { return this.repository.save(model); }
 
-    public Episode findById(String id) { return this.repository.findById(id).get(); }
+    public Episode findById(Integer id) { return this.repository.findById(id).get(); }
 
     public List<Episode> findAll() { return this.repository.findAll(); }
 }

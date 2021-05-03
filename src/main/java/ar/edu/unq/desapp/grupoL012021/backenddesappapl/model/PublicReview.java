@@ -19,7 +19,7 @@ public class PublicReview extends Review {
 
     public PublicReview(Integer id, String type, Double rating, String preview, String fullReview, Date dateOfPublish,
                         String platformOrigin, String usernameOnPlatform, String language,
-                        String geolocation, Boolean containsSpoilers, Integer like, Integer dislike,
+                        String geolocation, Boolean containsSpoilers, Integer likes, Integer dislikes,
                         Reviewable reviewable) {
 
         super(id, "Public", rating, preview, fullReview, dateOfPublish, platformOrigin,
@@ -30,13 +30,13 @@ public class PublicReview extends Review {
     }
 
 
-    public void setgeoLocation(String geoLocation) {
+    public void setGeolocation(String geoLocation) {
         this.geolocation=geoLocation;
     }
 
-    public String getlocation(){
-        return this.geolocation;
-    }
+    public String getGeolocation() { return this.geolocation; }
+
+    public String getlocation() { return this.getGeolocation(); }
 
     public Boolean getContainsSpoilers() {
         return containsSpoilers;

@@ -11,7 +11,7 @@ import java.util.Optional;
 
 @Configuration
 @Repository
-public interface ActorPersistence extends CrudRepository<Actor, String> {
+public interface ActorPersistence extends CrudRepository<Actor, Integer> {
 
     Optional<Actor> findById(Integer id);
 

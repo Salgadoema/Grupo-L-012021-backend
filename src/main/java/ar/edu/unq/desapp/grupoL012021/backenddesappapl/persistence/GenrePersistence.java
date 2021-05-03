@@ -10,9 +10,9 @@ import java.util.Optional;
 
 @Configuration
 @Repository
-public interface GenrePersistence extends CrudRepository<Genre, String> {
+public interface GenrePersistence extends CrudRepository<Genre, Integer> {
 
-    Optional<Genre> findById(String id);
+    Optional<Genre> findById(Integer id);
 
     List<Genre> findAll();
 

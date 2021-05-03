@@ -1,5 +1,8 @@
 package ar.edu.unq.desapp.grupoL012021.backenddesappapl.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import org.hibernate.annotations.DynamicUpdate;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
@@ -52,6 +55,7 @@ public abstract class Review {
     @OneToMany(mappedBy = "review")
     private List<Report> reports;
 
+    @JsonBackReference
     @ManyToOne
     private Reviewable reviewable;
 
@@ -91,6 +95,8 @@ public abstract class Review {
         return this.id;
     }
 
+    public void setId(Integer id) { this.id = id; }
+
     public  String getPlatform(){
         return this.platformOrigin;
     }
@@ -115,7 +121,6 @@ public abstract class Review {
         return this.language;
     }
 
-
     public abstract String getlocation();
 
     public String getType(){ return this.type; }
@@ -125,18 +130,71 @@ public abstract class Review {
     public  void addLike(){
         this.likes=likes+1;
     }
+
     public  void addDislike(){
         this.dislikes=dislikes+1;
     }
 
-    public int getlike(){
+    public int getLikes(){
         return likes;
     }
 
-    public int getdislike(){
+    public void setLikes(int likes) { this.likes = likes;}
+
+    public int getDislikes(){
         return dislikes;
     }
 
+    public void setDislikes() { this.dislikes = dislikes; }
+
     public Reviewable getReviewable() { return reviewable; }
+
+    public void setReviewable(Reviewable reviewable) {
+        this.reviewable = reviewable;
+    }
+
+    public String getFullReview() {
+        return fullReview;
+    }
+
+    public void setFullReview(String fullReview) {
+        this.fullReview = fullReview;
+    }
+
+    public String getPreview() {
+        return preview;
+    }
+
+    public void setPreview(String preview) {
+        this.preview = preview;
+    }
+
+    public Date getDateOfPublish() {
+        return dateOfPublish;
+    }
+
+    public void setDateOfPublish(Date dateOfPublish) {
+        this.dateOfPublish = dateOfPublish;
+    }
+
+    public String getPlatformOrigin() {
+        return platformOrigin;
+    }
+
+    public void setPlatformOrigin(String platformOrigin) {
+        this.platformOrigin = platformOrigin;
+    }
+
+    public String getUsernameOnPlatform() {
+        return usernameOnPlatform;
+    }
+
+    public void setUsernameOnPlatform(String usernameOnPlatform) {
+        this.usernameOnPlatform = usernameOnPlatform;
+    }
+
+    public void setDislikes(int dislikes) {
+        this.dislikes = dislikes;
+    }
 
 }

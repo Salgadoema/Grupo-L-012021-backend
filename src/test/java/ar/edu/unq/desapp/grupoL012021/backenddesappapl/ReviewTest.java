@@ -139,10 +139,10 @@ public class ReviewTest {
     @Test
     public void movieWitAnLocationArgentinaadd3Review_2withLocationArgentina_and1WithLocationUSA_SearchForUSAAndreturnAListwithThisElements1(){
         PublicReview publicReview = new PublicReview();
-        publicReview.setgeoLocation("Argentina");
+        publicReview.setGeolocation("Argentina");
         PremiumReview premiumReview = new PremiumReview();
         PublicReview publicReview2 = new PublicReview();
-        publicReview2.setgeoLocation("USA");
+        publicReview2.setGeolocation("USA");
 
         movie.addReview(publicReview);
         movie.addReview(publicReview2);

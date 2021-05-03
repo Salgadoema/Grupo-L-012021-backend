@@ -18,6 +18,6 @@ public class MovieModelTest {
     @Test
     @DisplayName("Can get data from Movie model")
     public void testNew() {
-        assertEquals("Die Hard", testMovie.getTitle());
+        assertEquals("Die Hard", testMovie.getPrimaryTitle());
     }
 }

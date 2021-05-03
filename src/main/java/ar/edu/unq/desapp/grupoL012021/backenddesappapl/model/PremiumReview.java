@@ -12,13 +12,6 @@ public class PremiumReview extends Review {
         super();
     }
 
-    @Override
-    public String getlocation() {
-        return null;
-    }
-
-
-
     public PremiumReview(Integer id, String type, Double rating, String preview, String fullReview, Date dateOfPublish,
                          String platformOrigin, String usernameOnPlatform, String language,
                          String geolocation, Boolean containsSpoilers, Integer like, Integer dislike,
@@ -26,5 +19,10 @@ public class PremiumReview extends Review {
 
         super(id, "Premium",rating, preview, fullReview, dateOfPublish,
                 platformOrigin, usernameOnPlatform, language, containsSpoilers,0,0, reviewable);
+    }
+
+    @Override
+    public String getlocation() {
+        return null;
     }
 }

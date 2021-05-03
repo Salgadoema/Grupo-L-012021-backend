@@ -30,6 +30,17 @@ public class MovieWebService  {
         return list;
     }
 
+    @GetMapping("/api/movies/byId/{id}")
+    public ResponseEntity<Movie> movieById(@PathVariable("id") Integer id) {
+        Movie movie = movieService.findByID(id);
+        if(movie == null) {
+            return ResponseEntity.notFound().build();
+        }
+        else {
+            return ResponseEntity.ok(movie);
+        }
+    }
+
     @RequestMapping(value = "/api/version", method = RequestMethod.GET)
     @ResponseBody
     public ResponseEntity<?> getVersion() {

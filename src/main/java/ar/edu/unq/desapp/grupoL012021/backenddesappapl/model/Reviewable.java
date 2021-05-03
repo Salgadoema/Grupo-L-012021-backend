@@ -1,5 +1,7 @@
 package ar.edu.unq.desapp.grupoL012021.backenddesappapl.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -31,6 +33,7 @@ public abstract class Reviewable {
     @ManyToMany
     private List<Actor> actors;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "reviewable")
     public List<Review> reviews;
 
@@ -55,28 +58,57 @@ public abstract class Reviewable {
 
     }
 
-    public String getTitle() {
+    public String getPrimaryTitle() {
         return primaryTitle;
     }
 
+    public void setPrimaryTitle(String title) { this.primaryTitle = title; }
 
     public Integer  getId(){
         return this.id;
     }
 
+    public void setId() { this.id = id; }
 
-    public void addReview(Review review) {
-        reviews.add(review);
+    public String getOriginalTitle() { return this.originalTitle; }
+
+    public void setOriginalTitle(String originalTitle) { this.originalTitle = originalTitle; }
+
+    public String getReviewableType() { return this.reviewableType; }
+
+    public void setReviewableType() { this.reviewableType = reviewableType;}
+
+    public Integer getStartYear() { return this.startYear; }
+
+    public void setStartYear() { this.startYear = startYear; }
+
+    public List<Actor> getActors() { return this.actors; }
+
+    public void setActors(List<Actor> actors) { this.actors = actors; }
+
+    public void addActor(Actor actor) { this.actors.add(actor); }
+
+    public List<Genre> getGenres() { return this.genres; }
+
+    public void setGenres(List<Genre> genres) { this.genres = genres; }
+
+    public void addGenre(Genre genre) { this.genres.add(genre); }
+
+    public void setReviews(List<Review> reviews) { this.reviews = reviews; }
+
+    public void addReview(Review review) { reviews.add(review); }
+
+    public void setReviewableType(String reviewableType) {
+        this.reviewableType = reviewableType;
     }
-
 
     public Double getRating() {
         return reviews.stream().mapToDouble(Review::getRating).sum()/reviews.size();
     }
 
 
-    public ArrayList<Review> getReviews() {
-        return (ArrayList<Review>) this.reviews;
+    public List<Review> getReviews() {
+        return this.reviews;
     }
 
 
@@ -143,7 +175,7 @@ public abstract class Reviewable {
 
     public ArrayList<Review> getReviewsLikes() {
         ArrayList<Review> aReviews = reviews.stream()
-                .filter(review -> review.getlike()>=1)
+                .filter(review -> review.getLikes()>=1)
                 .collect(Collectors.toCollection(ArrayList::new));
         return aReviews;
     }
@@ -151,7 +183,7 @@ public abstract class Reviewable {
 
     public ArrayList<Review> getReviewsDislikes() {
         ArrayList<Review> aReviews = reviews.stream()
-                .filter(review -> review.getdislike()>=1)
+                .filter(review -> review.getDislikes()>=1)
                 .collect(Collectors.toCollection(ArrayList::new));
         return aReviews;
     }
@@ -159,7 +191,7 @@ public abstract class Reviewable {
 
     public ArrayList<Review> getReviewsOrderByLikes() {
         ArrayList<Review> aReviews = reviews.stream()
-                .sorted(Comparator.comparingInt(Review::getlike).reversed())
+                .sorted(Comparator.comparingInt(Review::getLikes).reversed())
                 .collect(Collectors.toCollection(ArrayList::new));
         return aReviews;
     }
