@@ -5,7 +5,7 @@ import javax.persistence.Entity;
 import java.util.Date;
 
 @Entity
-@DiscriminatorValue("premium")
+@DiscriminatorValue("Premium")
 public class PremiumReview extends Review {
 
     public PremiumReview() {

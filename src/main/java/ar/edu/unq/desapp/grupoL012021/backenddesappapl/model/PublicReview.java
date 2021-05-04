@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 import java.util.Date;
 
 @Entity
-@DiscriminatorValue("public")
+@DiscriminatorValue("Public")
 public class PublicReview extends Review {
 
     @Column

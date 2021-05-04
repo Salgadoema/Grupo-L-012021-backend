@@ -12,7 +12,7 @@ INSERT INTO review (review_type, preview, full_review, rating, date_of_publish, 
      'castellano', 0, 0, 0, 1),
     ('Public', 'this is a public preview', 'this is a public review', 5, '2020-6-15', 'amazo', 'juanito22',
      'castellano', 0, 0, 0, 1),
-('Public', 'this is a public preview', 'this is a public review', 5, '2020-6-15', 'amazo', 'juanito22',
+('Premium', 'this is a public preview', 'this is a public review', 5, '2020-6-15', 'amazo', 'juanito22',
     'castellano', 0, 0, 0, 2);
 
 

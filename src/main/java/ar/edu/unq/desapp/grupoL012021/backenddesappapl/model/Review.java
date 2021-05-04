@@ -1,7 +1,7 @@
 package ar.edu.unq.desapp.grupoL012021.backenddesappapl.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import org.hibernate.annotations.DynamicUpdate;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -44,6 +44,7 @@ public abstract class Review {
     private String language;
 
     @Column
+    @JsonIgnore
     private Boolean containsSpoiler;
 
     @Column
@@ -56,7 +57,8 @@ public abstract class Review {
     private List<Report> reports;
 
     @JsonBackReference
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "reviewable_id", nullable = false)
     private Reviewable reviewable;
 
     public Review() {
@@ -105,11 +107,11 @@ public abstract class Review {
         this.platformOrigin=platform;
     }
 
-    public  void setContainSpoiler(Boolean containsSpoiler){
+    public  void setContainsSpoiler(Boolean containsSpoiler){
         this.containsSpoiler=containsSpoiler;
     }
 
-    public boolean getContainSpoiler(){
+    public boolean getContainsSpoiler(){
         return this.containsSpoiler;
     }
 

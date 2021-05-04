@@ -34,7 +34,7 @@ public abstract class Reviewable {
     private List<Actor> actors;
 
     @JsonManagedReference
-    @OneToMany(mappedBy = "reviewable")
+    @OneToMany(mappedBy = "reviewable", fetch = FetchType.LAZY)
     public List<Review> reviews;
 
     @ManyToMany
@@ -143,7 +143,7 @@ public abstract class Reviewable {
 
     public ArrayList<Review> getReviewsByContainSpoiler(boolean containSpoiler) {
         ArrayList<Review> aReviews = reviews.stream()
-                .filter(review -> review.getContainSpoiler()==containSpoiler)
+                .filter(review -> review.getContainsSpoiler()==containSpoiler)
                 .collect(Collectors.toCollection(ArrayList::new));
         return aReviews;
     }

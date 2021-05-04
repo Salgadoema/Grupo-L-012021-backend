@@ -2,10 +2,10 @@ package ar.edu.unq.desapp.grupoL012021.backenddesappapl.webservices;
 
 
 import ar.edu.unq.desapp.grupoL012021.backenddesappapl.model.Movie;
-import ar.edu.unq.desapp.grupoL012021.backenddesappapl.model.PremiumReview;
 import ar.edu.unq.desapp.grupoL012021.backenddesappapl.model.PublicReview;
-import ar.edu.unq.desapp.grupoL012021.backenddesappapl.model.Review;
 import ar.edu.unq.desapp.grupoL012021.backenddesappapl.services.MovieService;
+import ar.edu.unq.desapp.grupoL012021.backenddesappapl.services.PublicReviewService;
+import ar.edu.unq.desapp.grupoL012021.backenddesappapl.webservices.dto.ReviewDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +21,8 @@ public class MovieWebService  {
 
     @Autowired
     private MovieService movieService;
+    @Autowired
+    private PublicReviewService reviewService;
 
     @PostMapping("/api/movies/save")
     public void addMovie(@RequestBody Movie movie) {
@@ -44,25 +46,19 @@ public class MovieWebService  {
         }
     }
 
-    @PutMapping("api/movies/addreview/{id}")
-    public ResponseEntity<Movie> addReview(@PathVariable("id") Integer id, @RequestBody PublicReview review) {
+    @PutMapping("api/movies/addreview/public/{id}")
+    public ResponseEntity<Movie> addReview(@PathVariable("id") Integer id, @RequestBody ReviewDTO review) {
         Movie movie = movieService.findByID(id);
         if(movie == null) {
             return ResponseEntity.notFound().build();
         }
         else {
-            PublicReview reviewToAdd = this.process(review, movie);
+            PublicReview reviewToAdd = review.modelPublic(movie);
             movie.addReview(reviewToAdd);
+            movieService.save(movie);
+            reviewService.save(reviewToAdd);
             return ResponseEntity.ok(movie);
         }
-    }
-
-    private PublicReview process(PublicReview review, Movie movie) {
-            PublicReview publicReview = new PublicReview(review.getId(),
-                    review.getRating(), review.getPreview(), review.getFullReview(), review.getDateOfPublish(),
-                    review.getPlatform(), review.getUsernameOnPlatform(), review.getlanguage(),
-                    review.getlocation(), review.getContainSpoiler(), 0, 0, movie);
-            return publicReview;
     }
 
     @RequestMapping(value = "/api/version", method = RequestMethod.GET)
