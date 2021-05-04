@@ -1,5 +1,7 @@
 package ar.edu.unq.desapp.grupoL012021.backenddesappapl.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -7,15 +9,17 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name="title_type", discriminatorType = DiscriminatorType.STRING)
 public abstract class Reviewable {
 
-    //tconst in imdb
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
-    private String id;
+    private Integer id;
 
-    @Column
-    private String titleType;
+    @Column(name="review_type", insertable = false, updatable = false)
+    private String reviewableType;
 
     @Column
     private String primaryTitle;
@@ -29,21 +33,22 @@ public abstract class Reviewable {
     @ManyToMany
     private List<Actor> actors;
 
-    @OneToMany(mappedBy = "reviewable")
+    @JsonManagedReference
+    @OneToMany(mappedBy = "reviewable", fetch = FetchType.LAZY)
     public List<Review> reviews;
 
-    @ElementCollection
-    private List<String> genres;
+    @ManyToMany
+    private List<Genre> genres;
 
     public Reviewable() {
         super();
     }
 
-    public Reviewable(String id, String titleType, String primaryTitle, String originalTitle,
-                      Integer startYear, List<String> genres, List<Actor> actors, List<Review> reviews) {
+    public Reviewable(Integer id, String reviewableType, String primaryTitle, String originalTitle,
+                      Integer startYear, List<Genre> genres, List<Actor> actors, List<Review> reviews) {
 
         this.id = id;
-        this.titleType = titleType;
+        this.reviewableType = reviewableType;
         this.primaryTitle = primaryTitle;
         this.originalTitle = originalTitle;
         this.startYear = startYear;
@@ -53,35 +58,64 @@ public abstract class Reviewable {
 
     }
 
-    public String getTitle() {
+    public String getPrimaryTitle() {
         return primaryTitle;
     }
 
+    public void setPrimaryTitle(String title) { this.primaryTitle = title; }
 
-    public String  getId(){
+    public Integer  getId(){
         return this.id;
     }
 
+    public void setId() { this.id = id; }
 
-    public void addReview(Review review) {
-        reviews.add(review);
+    public String getOriginalTitle() { return this.originalTitle; }
+
+    public void setOriginalTitle(String originalTitle) { this.originalTitle = originalTitle; }
+
+    public String getReviewableType() { return this.reviewableType; }
+
+    public void setReviewableType() { this.reviewableType = reviewableType;}
+
+    public Integer getStartYear() { return this.startYear; }
+
+    public void setStartYear() { this.startYear = startYear; }
+
+    public List<Actor> getActors() { return this.actors; }
+
+    public void setActors(List<Actor> actors) { this.actors = actors; }
+
+    public void addActor(Actor actor) { this.actors.add(actor); }
+
+    public List<Genre> getGenres() { return this.genres; }
+
+    public void setGenres(List<Genre> genres) { this.genres = genres; }
+
+    public void addGenre(Genre genre) { this.genres.add(genre); }
+
+    public void setReviews(List<Review> reviews) { this.reviews = reviews; }
+
+    public void addReview(Review review) { reviews.add(review); }
+
+    public void setReviewableType(String reviewableType) {
+        this.reviewableType = reviewableType;
     }
-
 
     public Double getRating() {
         return reviews.stream().mapToDouble(Review::getRating).sum()/reviews.size();
     }
 
 
-    public ArrayList<Review> getReviews() {
-        return (ArrayList<Review>) this.reviews;
+    public List<Review> getReviews() {
+        return this.reviews;
     }
 
 
-    public Review getReview(String id) {
+    public Review getReview(int id) {
 
         Review aReview = reviews.stream()
-                .filter(review -> id.equals(review.getId()))
+                .filter(review -> id == review.getId())
                 .findAny()
                 .orElse(null);
 
@@ -109,7 +143,7 @@ public abstract class Reviewable {
 
     public ArrayList<Review> getReviewsByContainSpoiler(boolean containSpoiler) {
         ArrayList<Review> aReviews = reviews.stream()
-                .filter(review -> review.getContainSpoiler()==containSpoiler)
+                .filter(review -> review.getContainsSpoiler()==containSpoiler)
                 .collect(Collectors.toCollection(ArrayList::new));
         return aReviews;
     }
@@ -141,7 +175,7 @@ public abstract class Reviewable {
 
     public ArrayList<Review> getReviewsLikes() {
         ArrayList<Review> aReviews = reviews.stream()
-                .filter(review -> review.getlike()>=1)
+                .filter(review -> review.getLikes()>=1)
                 .collect(Collectors.toCollection(ArrayList::new));
         return aReviews;
     }
@@ -149,7 +183,7 @@ public abstract class Reviewable {
 
     public ArrayList<Review> getReviewsDislikes() {
         ArrayList<Review> aReviews = reviews.stream()
-                .filter(review -> review.getdislike()>=1)
+                .filter(review -> review.getDislikes()>=1)
                 .collect(Collectors.toCollection(ArrayList::new));
         return aReviews;
     }
@@ -157,20 +191,20 @@ public abstract class Reviewable {
 
     public ArrayList<Review> getReviewsOrderByLikes() {
         ArrayList<Review> aReviews = reviews.stream()
-                .sorted(Comparator.comparingInt(Review::getlike).reversed())
+                .sorted(Comparator.comparingInt(Review::getLikes).reversed())
                 .collect(Collectors.toCollection(ArrayList::new));
         return aReviews;
     }
 
 
-    public void reportReview(String idReview) {
+    public void reportReview(Integer idReview) {
         if( reviews.contains(getReview(idReview))){
             reviews.remove(getReview(idReview));
         }
     }
 
 
-    public boolean hasSomeReviewWithMoreStarThan(int reviewStar) {
+    public boolean hasSomeReviewWithMoreStarThan(Integer reviewStar) {
 
         return reviews.stream()
                 .anyMatch(review -> review.getRating()>=reviewStar);

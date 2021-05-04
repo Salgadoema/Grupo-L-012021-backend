@@ -4,8 +4,8 @@ import ar.edu.unq.desapp.grupoL012021.backenddesappapl.model.PublicReview;
 import ar.edu.unq.desapp.grupoL012021.backenddesappapl.services.PublicReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -17,8 +17,54 @@ public class PublicReviewWebService {
     private PublicReviewService publicReviewService;
 
     @GetMapping("/api/publicReviews")
-    public List<PublicReview> allPublicReviews() {
+    public ResponseEntity<List<PublicReview>> allPublicReviews() {
         List<PublicReview> publicReviews = publicReviewService.findAll();
-        return publicReviews;
+        if(publicReviews == null) {
+            return ResponseEntity.notFound().build();
+        }
+        else {
+            return ResponseEntity.ok(publicReviews);
+        }
     }
+
+    @GetMapping("/api/publicReviews/byId/{id}")
+    public ResponseEntity<PublicReview> publicReview(@PathVariable("id") Integer id) {
+        PublicReview publicReview = publicReviewService.findById(id);
+        if(publicReview == null) {
+            return ResponseEntity.notFound().build();
+        }
+        else {
+            return ResponseEntity.ok(publicReview);
+        }
+    }
+
+
+    @GetMapping("/api/publicReviews/from/{id}")
+    @ResponseBody
+    public ResponseEntity<List<PublicReview>> reviewsFrom(@PathVariable("id") Integer id) {
+        List<PublicReview> publicReviews = publicReviewService.findByReviewable(id);
+        if(publicReviews == null) {
+            return ResponseEntity.notFound().build();
+        }
+        else {
+            return ResponseEntity.ok(publicReviews);
+        }
+    }
+
+    @PutMapping("/api/publicReviews/addLike/{id}")
+    public ResponseEntity<PublicReview> addLike(@PathVariable("id") Integer id) {
+        PublicReview review = publicReviewService.findById(id);
+        if(review == null) {
+            return ResponseEntity.notFound().build();
+        }
+        else {
+            review.addLike();
+            final PublicReview updatedReview = publicReviewService.save(review);
+            return ResponseEntity.ok(updatedReview);
+        }
+    }
+
+    @PostMapping("/api/publicReviews")
+    public PublicReview save(@RequestBody PublicReview review) { return publicReviewService.save(review);}
+
 }

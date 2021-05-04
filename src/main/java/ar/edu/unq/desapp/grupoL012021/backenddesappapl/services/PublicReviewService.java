@@ -17,7 +17,10 @@ public class PublicReviewService {
     @Transactional
     public PublicReview save(PublicReview model) { return this.repository.save(model); }
 
-    public PublicReview findById(String id) { return this.repository.findById(id).get(); }
+    public PublicReview findById(Integer id) { return this.repository.findById(id).get(); }
 
     public List<PublicReview> findAll() { return this.repository.findAll(); }
+
+    public List<PublicReview> findByReviewable(Integer id) { return this.repository.findByReviewable(id); }
+
 }

@@ -1,5 +1,8 @@
 package ar.edu.unq.desapp.grupoL012021.backenddesappapl.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
@@ -7,16 +10,19 @@ import java.util.List;
 
 
 @Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name="review_type", discriminatorType = DiscriminatorType.STRING)
 public abstract class Review {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
-    private String id;
+    private Integer id;
 
     @Column
     private Double rating;
 
-    @Column
+    @Column(name="review_type", insertable = false, updatable = false)
     private String type;
 
     @Column
@@ -38,6 +44,7 @@ public abstract class Review {
     private String language;
 
     @Column
+    @JsonIgnore
     private Boolean containsSpoiler;
 
     @Column
@@ -49,14 +56,16 @@ public abstract class Review {
     @OneToMany(mappedBy = "review")
     private List<Report> reports;
 
-    @ManyToOne
+    @JsonBackReference
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "reviewable_id", nullable = false)
     private Reviewable reviewable;
 
     public Review() {
         super();
     }
 
-    public Review(String id, String type,Double rating, String preview, String fullReview, Date dateOfPublish,
+    public Review(Integer id, String type,Double rating, String preview, String fullReview, Date dateOfPublish,
                   String platformOrigin, String usernameOnPlatform, String language, Boolean containsSpoiler,
                   Integer like, Integer dislike, Reviewable reviewable) {
 
@@ -84,9 +93,11 @@ public abstract class Review {
         return this.rating;
     }
 
-    public  String getId(){
+    public  Integer getId(){
         return this.id;
     }
+
+    public void setId(Integer id) { this.id = id; }
 
     public  String getPlatform(){
         return this.platformOrigin;
@@ -96,11 +107,11 @@ public abstract class Review {
         this.platformOrigin=platform;
     }
 
-    public  void setContainSpoiler(Boolean containsSpoiler){
+    public  void setContainsSpoiler(Boolean containsSpoiler){
         this.containsSpoiler=containsSpoiler;
     }
 
-    public boolean getContainSpoiler(){
+    public boolean getContainsSpoiler(){
         return this.containsSpoiler;
     }
 
@@ -112,32 +123,80 @@ public abstract class Review {
         return this.language;
     }
 
-
     public abstract String getlocation();
 
-    public String getType(){
-        return this.type;
-    }
+    public String getType(){ return this.type; }
 
-    public  void setType(String type){
-        this.type=type;
-    }
+    public  void setType(String type){ this.type=type; }
 
     public  void addLike(){
         this.likes=likes+1;
     }
+
     public  void addDislike(){
         this.dislikes=dislikes+1;
     }
 
-    public int getlike(){
+    public int getLikes(){
         return likes;
     }
 
-    public int getdislike(){
+    public void setLikes(int likes) { this.likes = likes;}
+
+    public int getDislikes(){
         return dislikes;
     }
 
+    public void setDislikes() { this.dislikes = dislikes; }
+
     public Reviewable getReviewable() { return reviewable; }
+
+    public void setReviewable(Reviewable reviewable) {
+        this.reviewable = reviewable;
+    }
+
+    public String getFullReview() {
+        return fullReview;
+    }
+
+    public void setFullReview(String fullReview) {
+        this.fullReview = fullReview;
+    }
+
+    public String getPreview() {
+        return preview;
+    }
+
+    public void setPreview(String preview) {
+        this.preview = preview;
+    }
+
+    public Date getDateOfPublish() {
+        return dateOfPublish;
+    }
+
+    public void setDateOfPublish(Date dateOfPublish) {
+        this.dateOfPublish = dateOfPublish;
+    }
+
+    public String getPlatformOrigin() {
+        return platformOrigin;
+    }
+
+    public void setPlatformOrigin(String platformOrigin) {
+        this.platformOrigin = platformOrigin;
+    }
+
+    public String getUsernameOnPlatform() {
+        return usernameOnPlatform;
+    }
+
+    public void setUsernameOnPlatform(String usernameOnPlatform) {
+        this.usernameOnPlatform = usernameOnPlatform;
+    }
+
+    public void setDislikes(int dislikes) {
+        this.dislikes = dislikes;
+    }
 
 }
