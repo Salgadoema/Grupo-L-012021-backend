@@ -1,0 +1,24 @@
+
+Re-Seña!
+
+---------------------------------------------------------------------
+TAG Entrega 1.1.0
+---------------------------------------------------------------------
+====================================================
+NEW FEATURES :
+* Add a review
+* Like to a Review
+* Dislike to a Review
+* Search Review from a Movie
+---------------------------------------------------------------------
+NOTES:
+* You can only like / dislike a public review, not a premium review
+---------------------------------------------------------------------
+KNOWN ISSUES:
+* You can only add/search a review to/from a Movie, not to/from Serie or Episode.
+
+================================================================================
+
+Enjoy it!!
+
+Grupo-L-012021-backend
