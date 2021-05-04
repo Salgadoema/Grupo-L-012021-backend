@@ -63,6 +63,18 @@ public class PublicReviewWebService {
             return ResponseEntity.ok(updatedReview);
         }
     }
+    @PutMapping("/api/publicReviews/addDisLike/{id}")
+    public ResponseEntity<PublicReview> addDisLike(@PathVariable("id") Integer id) {
+        PublicReview review = publicReviewService.findById(id);
+        if(review == null) {
+            return ResponseEntity.notFound().build();
+        }
+        else {
+            review.addDislike();
+            final PublicReview updatedReview = publicReviewService.save(review);
+            return ResponseEntity.ok(updatedReview);
+        }
+    }
 
     @PostMapping("/api/publicReviews")
     public PublicReview save(@RequestBody PublicReview review) { return publicReviewService.save(review);}
