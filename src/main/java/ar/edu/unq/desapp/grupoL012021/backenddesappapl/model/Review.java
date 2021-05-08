@@ -130,10 +130,12 @@ public abstract class Review {
     public  void setType(String type){ this.type=type; }
 
     public  void addLike(){
+
         this.likes=likes+1;
     }
 
     public  void addDislike(){
+
         this.dislikes=dislikes+1;
     }
 

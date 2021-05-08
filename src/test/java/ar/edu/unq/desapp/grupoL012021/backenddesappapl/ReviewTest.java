@@ -21,9 +21,6 @@ public class ReviewTest {
     public void setUp() {
 
 
-   // this.review=Mockito.mock(Review.class);
-  //  this.review.setRating(2.0);
-
        this.review = new PublicReview(1,2.0, "THIS IS A REVIEW",
                 "THIS IS A FULL REVIEW", new Date(14/5/2020),
                 "nefli", "nefliuser","esp",
@@ -105,21 +102,7 @@ public class ReviewTest {
         assertEquals(3,movie.getReviewsByPlatform("nefli").size());
     }
 
-/*    @Test
-    public void movieWitAnSpoilertReviewadd3Review_2withSpoilertAlertAnd1WithoutSA_SearchForSpoilertAndreturnAListwithThisElements3(){
-        PublicReview publicReview = new PublicReview();
-        publicReview.setContainsSpoilers(true);
-        PremiumReview premiumReview = new PremiumReview();
-        premiumReview.setContainsSpoiler(false);
-        PublicReview publicReview2 = new PublicReview();
-        publicReview2.setContainsSpoiler(true);
 
-        movie.addReview(publicReview);
-        movie.addReview(publicReview2);
-        movie.addReview(premiumReview);
-
-        assertEquals(3,movie.getReviewsByContainSpoiler(true).size());
-    }*/
     @Test
     public void movieWitAnlenguajeESPadd3Review_2withLengEspAnd1WithLengENG_SearchForENGAndreturnAListwithThisElements1(){
         PublicReview publicReview = new PublicReview();
