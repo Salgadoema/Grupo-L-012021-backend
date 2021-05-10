@@ -16,9 +16,9 @@ public class Episode extends Content {
     public Episode() { super(); }
 
     public Episode(Integer id, String titleType, String episodePrimaryTitle, String originalTitle,
-                   Integer releaseYear, List<Genre> genres, List<CrewMember> actors, List<Review> reviews,
+                   Integer releaseYear, List<Genre> genres, List<CrewMember> crew, List<Review> reviews,
                    Integer season) {
-        super(id, "Episode", episodePrimaryTitle, originalTitle, releaseYear, genres, actors, reviews);
+        super(id, "Episode", episodePrimaryTitle, originalTitle, releaseYear, genres, crew, reviews);
 
         this.season = season;
     }
