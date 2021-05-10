@@ -17,7 +17,7 @@ public class DiscoverTest {
     private Review review;
     private Review review2;
     private Discover discover;
-    private ArrayList<Reviewable> reviewables= new ArrayList<>();
+    private ArrayList<Content> contents = new ArrayList<>();
     private Movie movie2;
     private PublicReview publicReview;
     private PremiumReview premiumReview;
@@ -25,16 +25,16 @@ public class DiscoverTest {
 
     @BeforeEach
     public void setUp() {
-        this.discover= new Discover (1,reviewables);
+        this.discover= new Discover (1, contents);
         this.review = new PublicReview(1, 4.0, "THIS IS A REVIEW",
                 "THIS IS A FULL REVIEW", new Date(14/5/2020),
                 "nefli", "nefliuser","esp",
-                "casa", true,0,0, Mockito.mock(Reviewable.class));
+                "casa", true,0,0, Mockito.mock(Content.class));
 
         this.review2 = new PublicReview(1, 2.0, "THIS IS A REVIEW",
                 "THIS IS A FULL REVIEW", new Date(14/5/2020),
                 "nefli", "nefliuser","esp",
-                "casa", true,0,0, Mockito.mock(Reviewable.class));
+                "casa", true,0,0, Mockito.mock(Content.class));
 
         this.movie2 = new Movie(2,
                 "Die Hard",

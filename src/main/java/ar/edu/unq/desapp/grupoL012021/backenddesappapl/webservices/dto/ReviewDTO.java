@@ -63,7 +63,7 @@ public class ReviewDTO {
         model.setPlatform(platform);
         model.setLanguage(language);
         model.setContainsSpoilers(containsSpoilers);
-        model.setReviewable(movie);
+        model.setContent(movie);
 
         return model;
     }

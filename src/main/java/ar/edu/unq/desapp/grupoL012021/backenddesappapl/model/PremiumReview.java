@@ -15,10 +15,10 @@ public class PremiumReview extends Review {
     public PremiumReview(Integer id, String type, Double rating, String preview, String fullReview, Date dateOfPublish,
                          String platformOrigin, String usernameOnPlatform, String language,
                          String geolocation, Boolean containsSpoilers, Integer like, Integer dislike,
-                         Reviewable reviewable) {
+                         Content content) {
 
         super(id, "Premium",rating, preview, fullReview, dateOfPublish,
-                platformOrigin, usernameOnPlatform, language, containsSpoilers,0,0, reviewable);
+                platformOrigin, usernameOnPlatform, language, containsSpoilers,0,0, content);
     }
 
     @Override

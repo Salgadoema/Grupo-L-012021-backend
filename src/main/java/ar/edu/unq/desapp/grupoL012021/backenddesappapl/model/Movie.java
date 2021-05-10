@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 @Entity
 @DiscriminatorValue("Movie")
-public class Movie extends Reviewable {
+public class Movie extends Content {
 
     public Movie() {
         super();

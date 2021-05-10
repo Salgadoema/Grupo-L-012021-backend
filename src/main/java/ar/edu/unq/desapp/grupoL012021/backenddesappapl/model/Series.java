@@ -7,7 +7,7 @@ import java.util.List;
 
 @Entity
 @DiscriminatorValue("Series")
-public class Series extends Reviewable {
+public class Series extends Content {
 
     @Column
     private Integer endYear;

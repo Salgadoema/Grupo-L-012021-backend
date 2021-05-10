@@ -11,15 +11,15 @@ import java.util.stream.Collectors;
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="title_type", discriminatorType = DiscriminatorType.STRING)
-public abstract class Reviewable {
+public abstract class Content {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private Integer id;
 
-    @Column(name="review_type", insertable = false, updatable = false)
-    private String reviewableType;
+    @Column(name="title_type", insertable = false, updatable = false)
+    private String contentType;
 
     @Column
     private String primaryTitle;
@@ -34,21 +34,21 @@ public abstract class Reviewable {
     private List<Actor> actors;
 
     @JsonManagedReference
-    @OneToMany(mappedBy = "reviewable", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "content", fetch = FetchType.LAZY)
     public List<Review> reviews;
 
     @ManyToMany
     private List<Genre> genres;
 
-    public Reviewable() {
+    public Content() {
         super();
     }
 
-    public Reviewable(Integer id, String reviewableType, String primaryTitle, String originalTitle,
-                      Integer startYear, List<Genre> genres, List<Actor> actors, List<Review> reviews) {
+    public Content(Integer id, String contentType, String primaryTitle, String originalTitle,
+                   Integer startYear, List<Genre> genres, List<Actor> actors, List<Review> reviews) {
 
         this.id = id;
-        this.reviewableType = reviewableType;
+        this.contentType = contentType;
         this.primaryTitle = primaryTitle;
         this.originalTitle = originalTitle;
         this.startYear = startYear;
@@ -74,9 +74,9 @@ public abstract class Reviewable {
 
     public void setOriginalTitle(String originalTitle) { this.originalTitle = originalTitle; }
 
-    public String getReviewableType() { return this.reviewableType; }
+    public String getContentType() { return this.contentType; }
 
-    public void setReviewableType() { this.reviewableType = reviewableType;}
+    public void setContentType() { this.contentType = contentType;}
 
     public Integer getStartYear() { return this.startYear; }
 
@@ -98,8 +98,8 @@ public abstract class Reviewable {
 
     public void addReview(Review review) { reviews.add(review); }
 
-    public void setReviewableType(String reviewableType) {
-        this.reviewableType = reviewableType;
+    public void setContentType(String ContentType) {
+        this.contentType = contentType;
     }
 
     public Double getRating() {

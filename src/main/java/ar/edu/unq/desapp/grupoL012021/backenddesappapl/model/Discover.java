@@ -15,31 +15,31 @@ public class Discover {
 
 
     @OneToMany
-    public List<Reviewable> reviewables;
+    public List<Content> contents;
 
 
     public Discover() {
         super();
     }
 
-    public Discover(Integer id, List<Reviewable> reviewables) {
+    public Discover(Integer id, List<Content> contents) {
         this.id = id;
-        this.reviewables = reviewables;
+        this.contents = contents;
     }
 
-    public void addMovie(Reviewable movie) {
-        this.reviewables.add(movie);
+    public void addMovie(Content movie) {
+        this.contents.add(movie);
     }
 
-    public ArrayList<Reviewable> searchMoviesByReviewStar(int reviewStar) {
+    public ArrayList<Content> searchMoviesByReviewStar(int reviewStar) {
 
 
-           ArrayList<Reviewable> reviewablesList= reviewables.stream()
-                .filter(reviewable -> reviewable.hasSomeReviewWithMoreStarThan(reviewStar))
+           ArrayList<Content> contentList= contents.stream()
+                .filter(content -> content.hasSomeReviewWithMoreStarThan(reviewStar))
                    .collect(Collectors.toCollection(ArrayList::new));
 
 
 
-        return reviewablesList;
+        return contentList;
     }
 }

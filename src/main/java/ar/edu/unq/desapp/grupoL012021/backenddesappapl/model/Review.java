@@ -58,8 +58,8 @@ public abstract class Review {
 
     @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "reviewable_id", nullable = false)
-    private Reviewable reviewable;
+    @JoinColumn(name = "content_id", nullable = false)
+    private Content content;
 
     public Review() {
         super();
@@ -67,7 +67,7 @@ public abstract class Review {
 
     public Review(Integer id, String type,Double rating, String preview, String fullReview, Date dateOfPublish,
                   String platformOrigin, String usernameOnPlatform, String language, Boolean containsSpoiler,
-                  Integer like, Integer dislike, Reviewable reviewable) {
+                  Integer like, Integer dislike, Content content) {
 
         this.id = id;
         this.type=type;
@@ -82,7 +82,7 @@ public abstract class Review {
         this.containsSpoiler = containsSpoiler;
         this.likes=0;
         this.dislikes=0;
-        this.reviewable=reviewable;
+        this.content = content;
     }
 
     public void setRating(Double rating){
@@ -149,10 +149,10 @@ public abstract class Review {
 
     public void setDislikes() { this.dislikes = dislikes; }
 
-    public Reviewable getReviewable() { return reviewable; }
+    public Content getContent() { return content; }
 
-    public void setReviewable(Reviewable reviewable) {
-        this.reviewable = reviewable;
+    public void setContent(Content content) {
+        this.content = content;
     }
 
     public String getFullReview() {

@@ -8,7 +8,7 @@ import java.util.List;
 
 @Entity
 @DiscriminatorValue("Episode")
-public class Episode extends Reviewable {
+public class Episode extends Content {
 
     @Column
     private Integer season;
