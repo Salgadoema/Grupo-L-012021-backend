@@ -35,4 +35,20 @@ jacoco {
 }
 test {
 	useJUnitPlatform()
+	finalizedBy jacocoTestReport
+}
+jacocoTestReport {
+	dependsOn test // tests are required to run before generating the report
+
+	reports {
+		xml.enabled true
+		csv.enabled false
+		html.destination layout.buildDirectory.dir('jacocoHtml').get().asFile
+	}
+
+	afterEvaluate {
+		classDirectories.setFrom(classDirectories.files.collect {
+			fileTree(dir: it, includes: ['ar/edu/unq/desapp/grupoL012021/backenddesappapl/model/**'])
+		})
+	}
 }
