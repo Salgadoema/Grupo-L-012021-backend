@@ -31,7 +31,7 @@ public abstract class Content {
     private Integer startYear;
 
     @ManyToMany
-    private List<Actor> actors;
+    private List<CrewMember> crewMembers;
 
     @JsonManagedReference
     @OneToMany(mappedBy = "content", fetch = FetchType.LAZY)
@@ -45,7 +45,7 @@ public abstract class Content {
     }
 
     public Content(Integer id, String contentType, String primaryTitle, String originalTitle,
-                   Integer startYear, List<Genre> genres, List<Actor> actors, List<Review> reviews) {
+                   Integer startYear, List<Genre> genres, List<CrewMember> crewMembers, List<Review> reviews) {
 
         this.id = id;
         this.contentType = contentType;
@@ -53,7 +53,7 @@ public abstract class Content {
         this.originalTitle = originalTitle;
         this.startYear = startYear;
         this.genres = genres;
-        this.actors = actors;
+        this.crewMembers = crewMembers;
         this.reviews = reviews;
 
     }
@@ -82,11 +82,11 @@ public abstract class Content {
 
     public void setStartYear() { this.startYear = startYear; }
 
-    public List<Actor> getActors() { return this.actors; }
+    public List<CrewMember> getCrewMembers() { return this.crewMembers; }
 
-    public void setActors(List<Actor> actors) { this.actors = actors; }
+    public void setCrewMembers(List<CrewMember> crewMembers) { this.crewMembers = crewMembers; }
 
-    public void addActor(Actor actor) { this.actors.add(actor); }
+    public void addCrewMember(CrewMember crewMember) { this.crewMembers.add(crewMember); }
 
     public List<Genre> getGenres() { return this.genres; }
 

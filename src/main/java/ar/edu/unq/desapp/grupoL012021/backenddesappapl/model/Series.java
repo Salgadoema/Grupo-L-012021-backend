@@ -17,9 +17,9 @@ public class Series extends Content {
     }
 
     public Series(Integer    id, String titleType, String seriesPrimaryTitle, String originalTitle,
-                  Integer startYear, List<Genre> genres, List<Actor> actors, List<Review> reviews,
+                  Integer startYear, List<Genre> genres, List<CrewMember> crewMembers, List<Review> reviews,
                   Integer endYear) {
-        super(id, "Series", seriesPrimaryTitle, originalTitle, startYear, genres, actors, reviews);
+        super(id, "Series", seriesPrimaryTitle, originalTitle, startYear, genres, crewMembers, reviews);
 
         this.endYear = endYear;
 

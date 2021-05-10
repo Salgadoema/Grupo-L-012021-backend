@@ -1,7 +1,7 @@
 package ar.edu.unq.desapp.grupoL012021.backenddesappapl.persistence;
 
 
-import ar.edu.unq.desapp.grupoL012021.backenddesappapl.model.Actor;
+import ar.edu.unq.desapp.grupoL012021.backenddesappapl.model.CrewMember;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
@@ -11,10 +11,10 @@ import java.util.Optional;
 
 @Configuration
 @Repository
-public interface ActorPersistence extends CrudRepository<Actor, Integer> {
+public interface CrewMemberPersistence extends CrudRepository<CrewMember, Integer> {
 
-    Optional<Actor> findById(Integer id);
+    Optional<CrewMember> findById(Integer id);
 
-    List<Actor> findAll();
+    List<CrewMember> findAll();
 
 }

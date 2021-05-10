@@ -17,7 +17,7 @@ INSERT INTO review (review_type, preview, full_review, rating, date_of_publish, 
 
 
 
-INSERT INTO actor (name) VALUES
+INSERT INTO crew_member (name) VALUES
     ('El pelado de duro de matar');
 
 INSERT INTO genre (genre) VALUES
@@ -29,7 +29,7 @@ INSERT INTO report (reporter, type, review_id) VALUES
 /* Relacionales */
 
 
-INSERT INTO content_actors (content_id, actors_id) VALUES
+INSERT INTO content_crew_members (content_id, crew_members_id) VALUES
     (1, 1), (2, 1), (3, 1);
 
 INSERT INTO content_genres (content_id, genres_id) VALUES
