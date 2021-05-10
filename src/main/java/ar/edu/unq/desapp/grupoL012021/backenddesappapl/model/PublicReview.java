@@ -23,7 +23,7 @@ public class PublicReview extends Review {
                         Content content) {
 
         super(id, "Public", rating, preview, fullReview, dateOfPublish, platformOrigin,
-                usernameOnPlatform, language, containsSpoilers,0,0, content);
+                usernameOnPlatform, language,0,0, content);
 
         this.geolocation = geolocation;
         this.containsSpoilers = containsSpoilers;

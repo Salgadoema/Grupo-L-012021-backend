@@ -1,7 +1,6 @@
 package ar.edu.unq.desapp.grupoL012021.backenddesappapl.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -44,10 +43,6 @@ public abstract class Review {
     private String language;
 
     @Column
-    @JsonIgnore
-    private Boolean containsSpoiler;
-
-    @Column
     private int likes;
 
     @Column
@@ -66,7 +61,7 @@ public abstract class Review {
     }
 
     public Review(Integer id, String type,Double rating, String preview, String fullReview, Date dateOfPublish,
-                  String platformOrigin, String usernameOnPlatform, String language, Boolean containsSpoiler,
+                  String platformOrigin, String usernameOnPlatform, String language,
                   Integer like, Integer dislike, Content content) {
 
         this.id = id;
@@ -79,7 +74,6 @@ public abstract class Review {
         this.usernameOnPlatform = usernameOnPlatform;
         this.language = language;
         this.reports = new ArrayList<Report>();
-        this.containsSpoiler = containsSpoiler;
         this.likes=0;
         this.dislikes=0;
         this.content = content;
@@ -105,14 +99,6 @@ public abstract class Review {
 
     public  void setPlatform(String platform){
         this.platformOrigin=platform;
-    }
-
-    public  void setContainsSpoiler(Boolean containsSpoiler){
-        this.containsSpoiler=containsSpoiler;
-    }
-
-    public boolean getContainsSpoiler(){
-        return this.containsSpoiler;
     }
 
     public  void setLanguage(String language){

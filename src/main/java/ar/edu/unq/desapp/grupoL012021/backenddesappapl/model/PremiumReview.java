@@ -14,11 +14,11 @@ public class PremiumReview extends Review {
 
     public PremiumReview(Integer id, String type, Double rating, String preview, String fullReview, Date dateOfPublish,
                          String platformOrigin, String usernameOnPlatform, String language,
-                         String geolocation, Boolean containsSpoilers, Integer like, Integer dislike,
+                         String geolocation, Integer like, Integer dislike,
                          Content content) {
 
         super(id, "Premium",rating, preview, fullReview, dateOfPublish,
-                platformOrigin, usernameOnPlatform, language, containsSpoilers,0,0, content);
+                platformOrigin, usernameOnPlatform, language,0,0, content);
     }
 
     @Override

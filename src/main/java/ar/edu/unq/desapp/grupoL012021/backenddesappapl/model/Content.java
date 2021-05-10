@@ -140,13 +140,14 @@ public abstract class Content {
         return aReviews;
     }
 
-
+/*
     public ArrayList<Review> getReviewsByContainSpoiler(boolean containSpoiler) {
         ArrayList<Review> aReviews = reviews.stream()
-                .filter(review -> review.getContainsSpoiler()==containSpoiler)
+                .filter(review -> review.getContainsSpoilers()==containSpoiler)
                 .collect(Collectors.toCollection(ArrayList::new));
         return aReviews;
     }
+    */
 
 
     public ArrayList<Review> getReviewsByLanguage(String language) {
