@@ -6,15 +6,15 @@ import java.util.ArrayList;
 
 @Entity
 @DiscriminatorValue("Movie")
-public class Movie extends Reviewable {
+public class Movie extends Content {
 
     public Movie() {
         super();
     }
 
     public Movie(Integer id, String moviePrimaryTitle, String originalTitle, Integer releaseYear,
-                 ArrayList<Genre> genres, ArrayList<Actor> actors, ArrayList<Review> reviews) {
-        super(id, "Movie", moviePrimaryTitle, originalTitle, releaseYear, genres, actors, reviews);
+                 ArrayList<Genre> genres, ArrayList<CrewMember> crew, ArrayList<Review> reviews) {
+        super(id, "Movie", moviePrimaryTitle, originalTitle, releaseYear, genres, crew, reviews);
     }
 
 

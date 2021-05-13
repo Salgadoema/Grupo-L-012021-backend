@@ -3,7 +3,7 @@ package ar.edu.unq.desapp.grupoL012021.backenddesappapl.model;
 import javax.persistence.*;
 
 @Entity
-public class Actor {
+public class CrewMember {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -13,11 +13,11 @@ public class Actor {
     @Column
     private String name;
 
-    public Actor() {
+    public CrewMember() {
         super();
     }
 
-    public Actor(Integer id, String name) {
+    public CrewMember(Integer id, String name) {
         this.id = id;
         this.name = name;
     }
