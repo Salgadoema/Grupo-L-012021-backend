@@ -1,6 +1,7 @@
 package ar.edu.unq.desapp.grupoL012021.backenddesappapl.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -48,7 +49,8 @@ public abstract class Review {
     @Column
     private int dislikes;
 
-    @OneToMany(mappedBy = "review")
+    @JsonManagedReference
+    @OneToMany(mappedBy = "review", fetch = FetchType.LAZY)
     private List<Report> reports;
 
     @JsonBackReference
@@ -105,7 +107,7 @@ public abstract class Review {
         this.language=language;
     }
 
-    public String getlanguage(){
+    public String getLanguage(){
         return this.language;
     }
 
@@ -187,4 +189,15 @@ public abstract class Review {
         this.dislikes = dislikes;
     }
 
+    public List<Report> getReports() {
+        return reports;
+    }
+
+    public void setReports(List<Report> reports) {
+        this.reports = reports;
+    }
+
+    public void addReport(Report report) {
+        this.reports.add(report);
+    }
 }

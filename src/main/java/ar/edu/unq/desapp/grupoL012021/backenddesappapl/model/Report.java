@@ -1,5 +1,7 @@
 package ar.edu.unq.desapp.grupoL012021.backenddesappapl.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 
 @Entity
@@ -16,8 +18,9 @@ public class Report {
     @Column
     private String reporter;
 
+    @JsonBackReference
     @ManyToOne
-    @JoinColumn(name="review_id")
+    @JoinColumn(name="review_id", nullable = false)
     private Review review;
 
 

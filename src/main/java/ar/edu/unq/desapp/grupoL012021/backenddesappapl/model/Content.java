@@ -152,7 +152,7 @@ public abstract class Content {
 
     public ArrayList<Review> getReviewsByLanguage(String language) {
         ArrayList<Review> aReviews = reviews.stream()
-                .filter(review -> review.getlanguage()==language)
+                .filter(review -> review.getLanguage()==language)
                 .collect(Collectors.toCollection(ArrayList::new));
         return aReviews;
     }

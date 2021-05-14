@@ -20,4 +20,6 @@ public class ReportService {
     public Report findById(String id) { return this.repository.findById(id).get(); }
 
     public List<Report> findAll() { return this.repository.findAll(); }
+
+    public List<Report> fromReview(Integer id) { return this.repository.fromReview(id); }
 }
