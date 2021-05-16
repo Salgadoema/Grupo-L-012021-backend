@@ -24,7 +24,9 @@ public class ReviewDTO {
 
     public String language = "";
 
-    public Boolean containsSpoilers = false;
+    public String geolocation = "";
+
+    public Boolean containsSpoilers = null;
 
     public Integer likes = 0;
 
@@ -37,7 +39,7 @@ public class ReviewDTO {
     public ReviewDTO() { super(); }
 
     public ReviewDTO( Double rating, String preview, String fullReview,
-                      Date date, String username, String platform, String language,
+                      Date date, String username, String platform, String language, String geolocation,
                       Boolean containsSpoilers, Integer contentId) {
 
         this.rating = rating;
@@ -47,6 +49,7 @@ public class ReviewDTO {
         this.username = username;
         this.platform = platform;
         this.language = language;
+        this.geolocation = geolocation;
         this.containsSpoilers = containsSpoilers;
         this.contentId = contentId;
     }
@@ -62,7 +65,9 @@ public class ReviewDTO {
         model.setUsernameOnPlatform(username);
         model.setPlatform(platform);
         model.setLanguage(language);
+        model.setGeolocation(geolocation);
         model.setContainsSpoilers(containsSpoilers);
+        model.setReports(reports);
         model.setContent(movie);
 
         return model;

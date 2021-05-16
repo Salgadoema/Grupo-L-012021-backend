@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -24,7 +25,7 @@ public class ReviewWebService {
     }
 
     @GetMapping("/api/reviews/byId/{id}")
-    public ResponseEntity<Review> reviewById(Integer id) {
+    public ResponseEntity<Review> reviewById(@PathVariable("id") Integer id) {
         Review review = reviewService.findById(id);
 
         if (review == null) {

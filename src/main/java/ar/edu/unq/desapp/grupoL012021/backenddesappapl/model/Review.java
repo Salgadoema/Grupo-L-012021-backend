@@ -1,6 +1,7 @@
 package ar.edu.unq.desapp.grupoL012021.backenddesappapl.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
@@ -31,6 +32,7 @@ public abstract class Review {
     @Column
     private String fullReview;
 
+    @JsonFormat(pattern="yyyyy-MM-dd HH:mm:ss")
     @Column
     private Date dateOfPublish;
 
