@@ -1,6 +1,7 @@
 package ar.edu.unq.desapp.grupoL012021.backenddesappapl.webservices.dto;
 
 import ar.edu.unq.desapp.grupoL012021.backenddesappapl.model.Movie;
+import ar.edu.unq.desapp.grupoL012021.backenddesappapl.model.PremiumReview;
 import ar.edu.unq.desapp.grupoL012021.backenddesappapl.model.PublicReview;
 import ar.edu.unq.desapp.grupoL012021.backenddesappapl.model.Report;
 
@@ -10,31 +11,33 @@ import java.util.List;
 
 public class ReviewDTO {
 
-    public Double rating = null;
+    private String type;
 
-    public String preview = null;
+    private Double rating = null;
 
-    public String fullReview = null;
+    private String preview = null;
 
-    public Date date = null;
+    private String fullReview = null;
 
-    public String username = null;
+    private Date date = null;
 
-    public String platform = null;
+    private String username = null;
 
-    public String language = null;
+    private String platform = null;
 
-    public String geolocation = null;
+    private String language = null;
 
-    public Boolean containsSpoilers = null;
+    private String geolocation = null;
 
-    public Integer likes = null;
+    private Boolean containsSpoilers = null;
 
-    public Integer dislikes = null;
+    private Integer likes = null;
 
-    public List<Report> reports = null;
+    private Integer dislikes = null;
 
-    public Integer contentId = null;
+    private List<Report> reports = null;
+
+    private Integer contentId = null;
 
     public ReviewDTO() { super(); }
 
@@ -63,15 +66,50 @@ public class ReviewDTO {
         model.setFullReview(fullReview);
         model.setDateOfPublish(date);
         model.setUsernameOnPlatform(username);
-        model.setPlatform(platform);
+        model.setPlatformOrigin(platform);
         model.setLanguage(language);
         model.setGeolocation(geolocation);
         model.setContainsSpoilers(containsSpoilers);
-        model.setReports(reports);
         model.setContent(movie);
         model.setReports(new ArrayList<Report>());
         model.setLikes(0);
         model.setDislikes(0);
+
+        return model;
+    }
+
+    public PublicReview modelPublic() {
+        PublicReview model = new PublicReview();
+        model.setType(type);
+        model.setRating(rating);
+        model.setPreview(preview);
+        model.setFullReview(fullReview);
+        model.setDateOfPublish(date);
+        model.setUsernameOnPlatform(username);
+        model.setPlatformOrigin(platform);
+        model.setLanguage(language);
+        model.setGeolocation(geolocation);
+        model.setContainsSpoilers(containsSpoilers);
+        model.setReports(reports);
+        //model.setLikes(likes);
+        //model.setDislikes(dislikes);
+
+        return model;
+    }
+
+    public PremiumReview modelPremium() {
+        PremiumReview model = new PremiumReview();
+        model.setType(type);
+        model.setRating(rating);
+        model.setPreview(preview);
+        model.setFullReview(fullReview);
+        model.setDateOfPublish(date);
+        model.setUsernameOnPlatform(username);
+        model.setPlatformOrigin(platform);
+        model.setLanguage(language);
+        model.setReports(reports);
+        //model.setLikes(likes);
+        //model.setDislikes(dislikes);
 
         return model;
     }
@@ -170,5 +208,21 @@ public class ReviewDTO {
 
     public void setContentId(Integer contentId) {
         this.contentId = contentId;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getGeolocation() {
+        return geolocation;
+    }
+
+    public void setGeolocation(String geolocation) {
+        this.geolocation = geolocation;
     }
 }

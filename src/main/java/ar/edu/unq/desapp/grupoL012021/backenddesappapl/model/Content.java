@@ -125,7 +125,7 @@ public abstract class Content {
 
     public Review getReviewByPlatform(String platform) {
         Review aReview = reviews.stream()
-                .filter(review -> platform.equals(review.getPlatform()))
+                .filter(review -> platform.equals(review.getPlatformOrigin()))
                 .findAny()
                 .orElse(null);
 
@@ -135,7 +135,7 @@ public abstract class Content {
 
     public ArrayList<Review> getReviewsByPlatform(String platform) {
         ArrayList<Review> aReviews = reviews.stream()
-                .filter(review -> review.getPlatform()==platform)
+                .filter(review -> review.getPlatformOrigin()==platform)
                 .collect(Collectors.toCollection(ArrayList::new));
         return aReviews;
     }
@@ -157,15 +157,14 @@ public abstract class Content {
         return aReviews;
     }
 
-
-    public ArrayList<Review> getReviewsByGeoLocation(String location) {
-        ArrayList<Review> aReviews = reviews.stream()
-                .filter(review -> review.getlocation()==location)
+  /*
+    public ArrayList<PublicReview> getReviewsByGeoLocation(String geolocation) {
+        ArrayList<PublicReview> aReviews = reviews.stream()
+                .filter(review -> review.getGeolocation()==geolocation)
                 .collect(Collectors.toCollection(ArrayList::new));
         return aReviews;
     }
-
-
+*/
     public ArrayList<Review> getReviewsByType(String type) {
         ArrayList<Review> aReviews = reviews.stream()
                 .filter(review -> review.getType()==type)

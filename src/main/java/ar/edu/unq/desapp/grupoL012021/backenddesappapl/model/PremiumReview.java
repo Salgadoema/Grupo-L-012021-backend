@@ -20,9 +20,4 @@ public class PremiumReview extends Review {
         super(id, "Premium",rating, preview, fullReview, dateOfPublish,
                 platformOrigin, usernameOnPlatform, language,0,0, content);
     }
-
-    @Override
-    public String getlocation() {
-        return null;
-    }
 }

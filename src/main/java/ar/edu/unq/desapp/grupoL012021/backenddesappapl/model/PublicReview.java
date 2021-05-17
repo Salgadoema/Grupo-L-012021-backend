@@ -36,8 +36,6 @@ public class PublicReview extends Review {
 
     public String getGeolocation() { return this.geolocation; }
 
-    public String getlocation() { return this.getGeolocation(); }
-
     public Boolean getContainsSpoilers() {
         return containsSpoilers;
     }
