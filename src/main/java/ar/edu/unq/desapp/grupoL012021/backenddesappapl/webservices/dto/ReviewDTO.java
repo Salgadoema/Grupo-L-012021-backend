@@ -10,29 +10,29 @@ import java.util.List;
 
 public class ReviewDTO {
 
-    public Double rating = 0.0;
+    public Double rating = null;
 
-    public String preview = "";
+    public String preview = null;
 
-    public String fullReview = "";
+    public String fullReview = null;
 
     public Date date = null;
 
-    public String username = "";
+    public String username = null;
 
-    public String platform = "";
+    public String platform = null;
 
-    public String language = "";
+    public String language = null;
 
-    public String geolocation = "";
+    public String geolocation = null;
 
     public Boolean containsSpoilers = null;
 
-    public Integer likes = 0;
+    public Integer likes = null;
 
-    public Integer dislikes = 0;
+    public Integer dislikes = null;
 
-    public List<Report> reports = new ArrayList<Report>();
+    public List<Report> reports = null;
 
     public Integer contentId = null;
 
@@ -69,6 +69,9 @@ public class ReviewDTO {
         model.setContainsSpoilers(containsSpoilers);
         model.setReports(reports);
         model.setContent(movie);
+        model.setReports(new ArrayList<Report>());
+        model.setLikes(0);
+        model.setDislikes(0);
 
         return model;
     }

@@ -1,6 +1,7 @@
 package ar.edu.unq.desapp.grupoL012021.backenddesappapl.webservices;
 
 import ar.edu.unq.desapp.grupoL012021.backenddesappapl.model.PublicReview;
+import ar.edu.unq.desapp.grupoL012021.backenddesappapl.model.Review;
 import ar.edu.unq.desapp.grupoL012021.backenddesappapl.services.PublicReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -78,5 +79,13 @@ public class PublicReviewWebService {
 
     @PostMapping("/api/publicReviews")
     public PublicReview save(@RequestBody PublicReview review) { return publicReviewService.save(review);}
+
+    @GetMapping("api/publicReviews/filter")
+    public ResponseEntity<List<PublicReview>> reviewFilter(@RequestBody PublicReview review) {
+        List<PublicReview> reviews = publicReviewService.findAll(review);
+
+        return ResponseEntity.ok(reviews);
+    }
+
 
 }
