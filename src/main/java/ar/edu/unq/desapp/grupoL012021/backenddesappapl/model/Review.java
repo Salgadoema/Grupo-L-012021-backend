@@ -32,7 +32,7 @@ public abstract class Review {
     @Column
     private String fullReview;
 
-    @JsonFormat(pattern="yyyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     @Column
     private Date dateOfPublish;
 
