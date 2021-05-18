@@ -17,6 +17,7 @@ import java.util.Map;
 
 @RestController
 @EnableAutoConfiguration
+@RequestMapping("/api")
 public class MovieWebService  {
 
     @Autowired
