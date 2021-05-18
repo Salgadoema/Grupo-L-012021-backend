@@ -89,11 +89,11 @@ public class ReviewTest {
     @Test
     public void add3Review_2ofNefliAnd1OfMamazon_SearchForNefliAndreturnAListwithThisElements(){
         PublicReview publicReview = new PublicReview();
-        publicReview.setPlatform("nefli");
+        publicReview.setPlatformOrigin("nefli");
         PremiumReview premiumReview = new PremiumReview();
-        premiumReview.setPlatform("nefli");
+        premiumReview.setPlatformOrigin("nefli");
         PublicReview publicReview2 = new PublicReview();
-        publicReview2.setPlatform("mamazon");
+        publicReview2.setPlatformOrigin("mamazon");
 
         movie.addReview(publicReview);
         movie.addReview(publicReview2);
@@ -119,6 +119,7 @@ public class ReviewTest {
         assertEquals(1,movie.getReviewsByLanguage("Eng").size());
     }
 
+    /*
     @Test
     public void movieWitAnLocationArgentinaadd3Review_2withLocationArgentina_and1WithLocationUSA_SearchForUSAAndreturnAListwithThisElements1(){
         PublicReview publicReview = new PublicReview();
@@ -133,6 +134,7 @@ public class ReviewTest {
 
         assertEquals(1,movie.getReviewsByGeoLocation("USA").size());
     }
+    */
 
     @Test
     public void movieWith1publicReviewAdd2publicReviewAnd1PremiumReview_SearchforPublicReviewresponse3(){

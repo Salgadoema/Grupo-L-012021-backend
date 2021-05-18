@@ -1,7 +1,9 @@
 package ar.edu.unq.desapp.grupoL012021.backenddesappapl.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -31,6 +33,7 @@ public abstract class Review {
     @Column
     private String fullReview;
 
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     @Column
     private Date dateOfPublish;
 
@@ -95,14 +98,6 @@ public abstract class Review {
 
     public void setId(Integer id) { this.id = id; }
 
-    public  String getPlatform(){
-        return this.platformOrigin;
-    }
-
-    public  void setPlatform(String platform){
-        this.platformOrigin=platform;
-    }
-
     public  void setLanguage(String language){
         this.language=language;
     }
@@ -110,8 +105,6 @@ public abstract class Review {
     public String getLanguage(){
         return this.language;
     }
-
-    public abstract String getlocation();
 
     public String getType(){ return this.type; }
 

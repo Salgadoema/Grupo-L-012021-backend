@@ -2,10 +2,14 @@ package ar.edu.unq.desapp.grupoL012021.backenddesappapl.webservices;
 
 import ar.edu.unq.desapp.grupoL012021.backenddesappapl.model.Review;
 import ar.edu.unq.desapp.grupoL012021.backenddesappapl.services.ReviewService;
+import ar.edu.unq.desapp.grupoL012021.backenddesappapl.webservices.dto.ReviewDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.data.domain.Example;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -24,7 +28,7 @@ public class ReviewWebService {
     }
 
     @GetMapping("/api/reviews/byId/{id}")
-    public ResponseEntity<Review> reviewById(Integer id) {
+    public ResponseEntity<Review> reviewById(@PathVariable("id") Integer id) {
         Review review = reviewService.findById(id);
 
         if (review == null) {
@@ -33,6 +37,13 @@ public class ReviewWebService {
         else {
             return ResponseEntity.ok(review);
         }
+    }
+
+    @GetMapping("api/reviews/filter")
+    public ResponseEntity<List<Review>> reviewFilter(@RequestBody ReviewDTO review) {
+        List<Review> reviews = reviewService.findAll(review);
+
+        return ResponseEntity.ok(reviews);
     }
 
 }

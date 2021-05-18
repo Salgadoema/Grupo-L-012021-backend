@@ -85,5 +85,11 @@ public class PublicReviewWebService {
     public PublicReview save(@RequestBody PublicReview review) { return publicReviewService.save(review);}
 
 
+    @GetMapping("api/publicReviews/filter")
+    public ResponseEntity<List<PublicReview>> reviewFilter(@RequestBody PublicReview review) {
+        List<PublicReview> reviews = publicReviewService.findAll(review);
+
+        return ResponseEntity.ok(reviews);
+    }
 
 }

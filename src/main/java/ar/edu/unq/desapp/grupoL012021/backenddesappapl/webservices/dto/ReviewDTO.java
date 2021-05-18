@@ -1,6 +1,7 @@
 package ar.edu.unq.desapp.grupoL012021.backenddesappapl.webservices.dto;
 
 import ar.edu.unq.desapp.grupoL012021.backenddesappapl.model.Movie;
+import ar.edu.unq.desapp.grupoL012021.backenddesappapl.model.PremiumReview;
 import ar.edu.unq.desapp.grupoL012021.backenddesappapl.model.PublicReview;
 import ar.edu.unq.desapp.grupoL012021.backenddesappapl.model.Report;
 
@@ -10,34 +11,38 @@ import java.util.List;
 
 public class ReviewDTO {
 
-    public Double rating = 0.0;
+    private String type;
 
-    public String preview = "";
+    private Double rating = null;
 
-    public String fullReview = "";
+    private String preview = null;
 
-    public Date date = null;
+    private String fullReview = null;
 
-    public String username = "";
+    private Date date = null;
 
-    public String platform = "";
+    private String username = null;
 
-    public String language = "";
+    private String platform = null;
 
-    public Boolean containsSpoilers = false;
+    private String language = null;
 
-    public Integer likes = 0;
+    private String geolocation = null;
 
-    public Integer dislikes = 0;
+    private Boolean containsSpoilers = null;
 
-    public List<Report> reports = new ArrayList<Report>();
+    private Integer likes = null;
 
-    public Integer contentId = null;
+    private Integer dislikes = null;
+
+    private List<Report> reports = null;
+
+    private Integer contentId = null;
 
     public ReviewDTO() { super(); }
 
     public ReviewDTO( Double rating, String preview, String fullReview,
-                      Date date, String username, String platform, String language,
+                      Date date, String username, String platform, String language, String geolocation,
                       Boolean containsSpoilers, Integer contentId) {
 
         this.rating = rating;
@@ -47,6 +52,7 @@ public class ReviewDTO {
         this.username = username;
         this.platform = platform;
         this.language = language;
+        this.geolocation = geolocation;
         this.containsSpoilers = containsSpoilers;
         this.contentId = contentId;
     }
@@ -60,10 +66,50 @@ public class ReviewDTO {
         model.setFullReview(fullReview);
         model.setDateOfPublish(date);
         model.setUsernameOnPlatform(username);
-        model.setPlatform(platform);
+        model.setPlatformOrigin(platform);
         model.setLanguage(language);
+        model.setGeolocation(geolocation);
         model.setContainsSpoilers(containsSpoilers);
         model.setContent(movie);
+        model.setReports(new ArrayList<Report>());
+        model.setLikes(0);
+        model.setDislikes(0);
+
+        return model;
+    }
+
+    public PublicReview modelPublic() {
+        PublicReview model = new PublicReview();
+        model.setType(type);
+        model.setRating(rating);
+        model.setPreview(preview);
+        model.setFullReview(fullReview);
+        model.setDateOfPublish(date);
+        model.setUsernameOnPlatform(username);
+        model.setPlatformOrigin(platform);
+        model.setLanguage(language);
+        model.setGeolocation(geolocation);
+        model.setContainsSpoilers(containsSpoilers);
+        model.setReports(reports);
+        //model.setLikes(likes);
+        //model.setDislikes(dislikes);
+
+        return model;
+    }
+
+    public PremiumReview modelPremium() {
+        PremiumReview model = new PremiumReview();
+        model.setType(type);
+        model.setRating(rating);
+        model.setPreview(preview);
+        model.setFullReview(fullReview);
+        model.setDateOfPublish(date);
+        model.setUsernameOnPlatform(username);
+        model.setPlatformOrigin(platform);
+        model.setLanguage(language);
+        model.setReports(reports);
+        //model.setLikes(likes);
+        //model.setDislikes(dislikes);
 
         return model;
     }
@@ -162,5 +208,21 @@ public class ReviewDTO {
 
     public void setContentId(Integer contentId) {
         this.contentId = contentId;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getGeolocation() {
+        return geolocation;
+    }
+
+    public void setGeolocation(String geolocation) {
+        this.geolocation = geolocation;
     }
 }
