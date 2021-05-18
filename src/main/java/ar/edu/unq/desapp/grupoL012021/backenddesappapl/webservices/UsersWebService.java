@@ -28,16 +28,7 @@ public class UsersWebService {
         }
     }
 
-    @GetMapping("/byUser/username={username}")
-    public ResponseEntity<Users> UsersByUserrname(@PathVariable("username") String username) {
-        Users foundUsers = usersService.findByUserName(username);
-        if (foundUsers == null) {
-            return ResponseEntity.notFound().build();
-        }
-        else {
-            return ResponseEntity.ok(foundUsers);
-        }
-    }
+
 
     @GetMapping("/byId/{id}")
     public ResponseEntity<Users> UsersById(@PathVariable("id") Integer id) {

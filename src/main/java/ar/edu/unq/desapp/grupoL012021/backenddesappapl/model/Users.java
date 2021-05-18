@@ -9,20 +9,13 @@ public class Users {
     @Column
     private Integer id;
 
-    @Column
-    private String firstname;
 
     @Column
-    private String surname;
-
-    @Column
-    private String username;
+    private String platform;
 
     @Column
     private String password;
 
-    @Column
-    private String platform;
 
 
 
@@ -30,13 +23,11 @@ public class Users {
         super();
     }
 
-    public Users(Integer id, String firstname, String surname, String username, String password, String platform) {
+    public Users(Integer id,  String platform,String password) {
         this.id = id;
-        this.firstname=firstname;
-        this.surname=surname;
-        this.username = username;
-        this.password = password;
         this.platform= platform;
+        this.password = password;
+
     }
 
 
@@ -48,29 +39,7 @@ public class Users {
         this.id = id;
     }
 
-    public String getFirstname() {
-        return firstname;
-    }
 
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
 
     public String getPassword() {
         return password;

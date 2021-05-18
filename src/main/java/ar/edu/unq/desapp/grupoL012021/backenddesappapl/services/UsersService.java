@@ -20,7 +20,5 @@ public class UsersService {
 
     public Users findById(Integer id) { return this.repository.findById(id).get(); }
 
-    public Users findByUserName(String username){return this.repository.findByusername(username).get();}
-
     public List<Users> findAll() { return this.repository.findAll(); }
 }

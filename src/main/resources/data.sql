@@ -20,10 +20,10 @@ INSERT INTO review (review_type, preview, full_review, rating, date_of_publish, 
 INSERT INTO crew_member (name) VALUES
     ('El pelado de duro de matar');
 
-INSERT INTO users (firstname, surname, username, password, platform) VALUES
-('juan','perez', 'popi', '81dc9bdb52d04dc20036dbd8313ed055', 'nefli'),
-('carlos','lopez', 'pepi', '81dc9bdb52d04dc20036dbd8313ed055', 'hvo'),
-('claudia','gomez', 'pupi', '81dc9bdb52d04dc20036dbd8313ed055', 'amazo');
+INSERT INTO users (platform, password ) VALUES
+('hvo','81dc9bdb52d04dc20036dbd8313ed055'),
+('hvo','81dc9bdb52d04dc20036dbd8313ed055' ),
+('amazo','81dc9bdb52d04dc20036dbd8313ed055');
 
 INSERT INTO genre (genre) VALUES
     ('Accion'), ('Navidenia');

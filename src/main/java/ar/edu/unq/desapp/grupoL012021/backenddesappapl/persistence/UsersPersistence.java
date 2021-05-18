@@ -14,7 +14,6 @@ import java.util.Optional;
 public interface UsersPersistence extends CrudRepository<Users, Integer> {
 
     Optional<Users> findById(Integer id);
-    Optional <Users> findByusername (String username);
     List<Users> findAll();
 
 }
