@@ -36,10 +36,16 @@ public class ContentPersistenceCustomImpl implements ContentPersistenceCustom {
         if(contentEndYear != null && !contentEndYear.isEmpty()) {
             filterPredicates.add(cb.equal(cb.treat(contentRoot, Series.class).get("endYear"), contentEndYear));
         }
-        //if(crewMemberName != null && !crewMemberName.isEmpty()) {
-        //    Join<Content, CrewMember> crewMemberJoin = contentRoot.join(Content_.crewMembers);
-        //    filterPredicates.add(cb.equal(crewMemberJoin.get("name"), crewMemberName));
-        //}
+        if(crewMemberName != null && !crewMemberName.isEmpty()) {
+            Join<Content, CrewMember> crewMemberJoin = contentRoot.join("crewMembers");
+            filterPredicates.add(cb.equal(crewMemberJoin.get("name"), crewMemberName));
+        }
+        if(totalScore != null) {
+            //AVG reviews score
+        }
+        if (onlyLikedReviews != null) {
+            //Join where more likes than dislikes
+        }
         cq.distinct(true);
         cq.where(cb.and(filterPredicates.toArray(new Predicate[0])));
 
