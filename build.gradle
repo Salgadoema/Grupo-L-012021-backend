@@ -6,6 +6,8 @@ plugins {
 	id 'jacoco'
 }
 
+apply plugin: 'idea'
+
 group = 'ar.edu.unq.desapp.grupo-L-012021'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
@@ -25,6 +27,7 @@ dependencies {
 	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.security:spring-security-test'
+	compile group: 'org.hibernate', name: 'hibernate-jpamodelgen', version: '5.3.3.Final'
 
 
 

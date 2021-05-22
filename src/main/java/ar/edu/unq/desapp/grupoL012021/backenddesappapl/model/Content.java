@@ -31,6 +31,10 @@ public abstract class Content {
     private Integer startYear;
 
     @ManyToMany
+    @JoinColumns({
+            @JoinColumn(name="content_crew_member", referencedColumnName = "id"),
+            @JoinColumn(name="content_crew_member_name", referencedColumnName = "name")
+    })
     private List<CrewMember> crewMembers;
 
     @JsonManagedReference
