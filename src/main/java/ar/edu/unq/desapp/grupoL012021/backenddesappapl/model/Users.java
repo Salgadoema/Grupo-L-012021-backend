@@ -16,6 +16,9 @@ public class Users {
     @Column
     private String password;
 
+    @Column
+    private String token;
+
 
 
 
@@ -23,10 +26,11 @@ public class Users {
         super();
     }
 
-    public Users(Integer id,  String platform,String password) {
+    public Users(Integer id,  String platform,String password, String token) {
         this.id = id;
         this.platform= platform;
         this.password = password;
+        this.token= token;
 
     }
 
@@ -55,5 +59,10 @@ public class Users {
 
     public void setPlatform(String platform) {
         this.platform = platform;
+    }
+
+    public String getToken(){return this.token;}
+    public void setToken(String token) {
+        this.token=token;
     }
 }
