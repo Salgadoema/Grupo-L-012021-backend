@@ -7,5 +7,5 @@ import java.util.List;
 public interface ContentPersistenceCustom {
 
     List<Content> findAll(String contentType, String contentStartYear, String contentEndYear,
-                          String crewMemberName, Integer totalScore, Boolean onlyLikedReviews);
+                          String crewMemberName, Double rating, Boolean onlyLikedReviews);
 }
