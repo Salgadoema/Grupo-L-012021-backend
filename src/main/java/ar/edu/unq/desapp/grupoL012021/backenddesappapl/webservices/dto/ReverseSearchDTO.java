@@ -14,10 +14,15 @@ public class ReverseSearchDTO {
 
     private Boolean onlyLikedReviews = null;
 
+    private Integer pageNumber = 0;
+
+    private Integer pageSize = 5;
+
     public ReverseSearchDTO() { super(); }
 
     public ReverseSearchDTO( String contentType, String contentStartYear, String contentEndYear,
-                             String crewMemberName, Double rating, Boolean onlyLikedReviews) {
+                             String crewMemberName, Double rating, Boolean onlyLikedReviews,
+                             Integer pageNumber, Integer pageSize) {
 
         this.contentType = contentType;
         this.contentStartYear = contentStartYear;
@@ -25,6 +30,8 @@ public class ReverseSearchDTO {
         this.crewMemberName = crewMemberName;
         this.rating = rating;
         this.onlyLikedReviews = onlyLikedReviews;
+        this.pageNumber = pageNumber;
+        this.pageSize = pageSize;
     }
 
     public String getContentType() {
@@ -73,5 +80,21 @@ public class ReverseSearchDTO {
 
     public void setOnlyLikedReviews(Boolean onlyLikedReviews) {
         this.onlyLikedReviews = onlyLikedReviews;
+    }
+
+    public Integer getPageNumber() {
+        return pageNumber;
+    }
+
+    public void setPageNumber(Integer pageNumber) {
+        this.pageNumber = pageNumber;
+    }
+
+    public Integer getPageSize() {
+        return pageSize;
+    }
+
+    public void setPageSize(Integer pageQuantity) {
+        this.pageSize = pageQuantity;
     }
 }

@@ -4,9 +4,13 @@ import ar.edu.unq.desapp.grupoL012021.backenddesappapl.model.Content;
 import ar.edu.unq.desapp.grupoL012021.backenddesappapl.model.CrewMember;
 import ar.edu.unq.desapp.grupoL012021.backenddesappapl.model.Review;
 import ar.edu.unq.desapp.grupoL012021.backenddesappapl.model.Series;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.Query;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import javax.persistence.criteria.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +23,9 @@ public class ContentPersistenceCustomImpl implements ContentPersistenceCustom {
 
     @Override
     public List<Content> findAll(String contentType, String contentStartYear, String contentEndYear,
-                                    String crewMemberName, Double reviewRating, Boolean onlyLikedReviews) {
+                                 String crewMemberName, Double reviewRating, Boolean onlyLikedReviews,
+                                 Integer pageNumber, Integer pageSize) {
+
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         CriteriaQuery cq = cb.createQuery(Content.class);
         Root contentRoot = cq.from(Content.class);
@@ -68,6 +74,10 @@ public class ContentPersistenceCustomImpl implements ContentPersistenceCustom {
         cq.distinct(true);
         cq.where(cb.and(filterPredicates.toArray(new Predicate[0])));
 
-        return entityManager.createQuery(cq).getResultList();
+        TypedQuery tq = entityManager.createQuery(cq);
+        tq.setFirstResult(pageNumber * pageSize);
+        tq.setMaxResults(pageSize);
+
+        return tq.getResultList();
     }
 }

@@ -5,6 +5,9 @@ import ar.edu.unq.desapp.grupoL012021.backenddesappapl.services.ContentService;
 import ar.edu.unq.desapp.grupoL012021.backenddesappapl.webservices.dto.ReverseSearchDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,8 +23,9 @@ public class ContentWebService {
     public ContentService contentService;
 
     @GetMapping("/api/content")
-    public ResponseEntity<List<Content>> allContent() {
-        List<Content> foundContent = contentService.findAll();
+    public ResponseEntity<Page<Content>> allContent() {
+        Pageable testPage = PageRequest.of(0, 10);
+        Page<Content> foundContent = contentService.findAll(testPage);
         return ResponseEntity.ok(foundContent);
     }
 
