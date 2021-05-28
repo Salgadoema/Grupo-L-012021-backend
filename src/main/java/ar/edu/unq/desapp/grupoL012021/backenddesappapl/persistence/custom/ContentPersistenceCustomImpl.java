@@ -23,7 +23,7 @@ public class ContentPersistenceCustomImpl implements ContentPersistenceCustom {
 
     @Override
     public List<Content> findAll(String contentType, String contentStartYear, String contentEndYear,
-                                 String crewMemberName, Double reviewRating, Boolean onlyLikedReviews,
+                                 String crewMemberName, Double rating, Boolean onlyLikedReviews,
                                  Integer pageNumber, Integer pageSize) {
 
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
@@ -44,34 +44,21 @@ public class ContentPersistenceCustomImpl implements ContentPersistenceCustom {
             Join<Content, CrewMember> crewMemberJoin = contentRoot.join("crewMembers");
             filterPredicates.add(cb.equal(crewMemberJoin.get("name"), crewMemberName));
         }
-        if (onlyLikedReviews != null || reviewRating != null) {
+        if (onlyLikedReviews != null || rating != null) {
             Join<Content, Review> reviewJoin = contentRoot.join("reviews");
-            if(reviewRating != null) {
-                filterPredicates.add(cb.greaterThanOrEqualTo(reviewJoin.get("rating"), reviewRating));
+            if(rating != null) {
+
+                cq.groupBy(contentRoot.get("id"));
+                cq.having(cb.greaterThanOrEqualTo(cb.avg(reviewJoin.get("rating")), rating));
+
             }
-            if(onlyLikedReviews != null) {
+            if(onlyLikedReviews != null && onlyLikedReviews) {
                 filterPredicates.add(cb.greaterThan(reviewJoin.get("likes"), reviewJoin.get("dislikes")));
             }
         }
-        /*
-        if(withRating != null) {
-            //cq.groupBy(contentRoot.get("id"));
 
-            //Join<Content, Review> reviewJoin = contentRoot.join("reviews");
-
-            //cq.multiselect(reviewJoin, cb.avg(reviewJoin.get("rating")));
-
-            //Predicate filterAverageTotalScore = cb.greaterThan(contentRoot.get("averageReviewScore"), withRating);
-            //filterPredicates.add(filterAverageTotalScore);
-
-            //ESTE ANDA SI SE REFIERE A QUE TENGA REVIEWS CON EL VALOR DADO O MAYOR
-            filterPredicates.add(cb.greaterThanOrEqualTo(reviewJoin.get("rating"), withRating));
-        }
-        if (onlyLikedReviews != null) {
-            //Join where more likes than dislikes
-        }
-         */
         cq.distinct(true);
+
         cq.where(cb.and(filterPredicates.toArray(new Predicate[0])));
 
         TypedQuery tq = entityManager.createQuery(cq);
