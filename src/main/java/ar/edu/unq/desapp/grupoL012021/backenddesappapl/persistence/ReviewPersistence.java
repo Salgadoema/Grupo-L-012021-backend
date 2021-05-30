@@ -1,6 +1,7 @@
 package ar.edu.unq.desapp.grupoL012021.backenddesappapl.persistence;
 
 import ar.edu.unq.desapp.grupoL012021.backenddesappapl.model.Review;
+import ar.edu.unq.desapp.grupoL012021.backenddesappapl.persistence.custom.ReviewPersistenceCustom;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -14,7 +15,7 @@ import java.util.Optional;
 
 @Configuration
 @Repository
-public interface ReviewPersistence extends JpaRepository<Review, Integer>{
+public interface ReviewPersistence extends JpaRepository<Review, Integer>, ReviewPersistenceCustom {
 
     Optional<Review> findById(Integer id);
 

@@ -47,10 +47,8 @@ public class ContentPersistenceCustomImpl implements ContentPersistenceCustom {
         if (onlyLikedReviews != null || rating != null) {
             Join<Content, Review> reviewJoin = contentRoot.join("reviews");
             if(rating != null) {
-
                 cq.groupBy(contentRoot.get("id"));
                 cq.having(cb.greaterThanOrEqualTo(cb.avg(reviewJoin.get("rating")), rating));
-
             }
             if(onlyLikedReviews != null && onlyLikedReviews) {
                 filterPredicates.add(cb.greaterThan(reviewJoin.get("likes"), reviewJoin.get("dislikes")));
@@ -58,12 +56,11 @@ public class ContentPersistenceCustomImpl implements ContentPersistenceCustom {
         }
 
         cq.distinct(true);
-
         cq.where(cb.and(filterPredicates.toArray(new Predicate[0])));
 
         TypedQuery tq = entityManager.createQuery(cq);
-        tq.setFirstResult(pageNumber * pageSize);
-        tq.setMaxResults(pageSize);
+        //tq.setFirstResult(pageNumber * pageSize);
+        //tq.setMaxResults(pageSize);
 
         return tq.getResultList();
     }
