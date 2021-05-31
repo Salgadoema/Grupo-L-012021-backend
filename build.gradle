@@ -6,6 +6,8 @@ plugins {
 	id 'jacoco'
 }
 
+apply plugin: 'idea'
+
 group = 'ar.edu.unq.desapp.grupo-L-012021'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'

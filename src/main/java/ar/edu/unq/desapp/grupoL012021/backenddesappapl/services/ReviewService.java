@@ -7,6 +7,7 @@ import ar.edu.unq.desapp.grupoL012021.backenddesappapl.persistence.PremiumReview
 import ar.edu.unq.desapp.grupoL012021.backenddesappapl.persistence.PublicReviewPersistence;
 import ar.edu.unq.desapp.grupoL012021.backenddesappapl.persistence.ReviewPersistence;
 import ar.edu.unq.desapp.grupoL012021.backenddesappapl.webservices.dto.ReviewDTO;
+import ar.edu.unq.desapp.grupoL012021.backenddesappapl.webservices.dto.ReviewFilterDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
@@ -45,4 +46,10 @@ public class ReviewService {
     }
 
     public List<Review> findByContent(Integer id) { return this.repository.findByContent(id); }
+
+    public List<Review> findAll(ReviewFilterDTO dto) {
+        return repository.findAll(dto.getContentName(), dto.getContentId(), dto.getType(), dto.getPlatform(),
+                dto.getContainsSpoilers(), dto.getLanguage(), dto.getCountry(), dto.getOrderBy(),
+                dto.getDescending(), dto.getPageNumber(), dto.getPageSize());
+    }
 }

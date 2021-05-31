@@ -196,6 +196,15 @@ public abstract class Content {
         return aReviews;
     }
 
+    public Double getAverageReviewScore() {
+        Double result = 0.0;
+
+        for (int i = 0; i < this.reviews.size(); i++) {
+            result = this.reviews.get(i).getRating() + result;
+        }
+        return result/this.reviews.size();
+    }
+
 
     public void reportReview(Integer idReview) {
         if( reviews.contains(getReview(idReview))){
