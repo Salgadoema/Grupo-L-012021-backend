@@ -8,11 +8,11 @@ INSERT INTO content (title_type, primary_title, original_title, start_year) VALU
 
 INSERT INTO review (review_type, preview, full_review, rating, date_of_publish, platform_origin, username_on_platform,
                     language, contains_spoilers, likes, dislikes, content_id) VALUES
-    ('Public', 'this is a premium preview', 'this is a full review', 4.5, '2020-5-28', 'netfli', 'juanito22',
+    ('Premium', 'this is a premium preview', 'this is a full review', 4.5, '2020-5-28', 'netfli', 'juanito22',
      'castellano', 0, 0, 0, 1),
     ('Public', 'this is a public preview', 'this is a public review', 5, '2020-6-15', 'amazo', 'juanito22',
      'castellano', 0, 0, 0, 1),
-('Premium', 'this is a public preview', 'this is a public review', 5, '2020-6-15', 'amazo', 'juanito22',
+    ('Premium', 'this is a premium preview', 'this is a public review', 5, '2020-6-15', 'amazo', 'juanito22',
     'castellano', null, 0, 0, 2);
 
 

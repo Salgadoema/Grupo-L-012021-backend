@@ -29,8 +29,6 @@ public class ReviewPersistenceCustomImpl implements ReviewPersistenceCustom {
 
         List<Predicate> filterPredicates = new ArrayList<>();
 
-        cq.distinct(true);
-
         if(contentName != null && !contentName.isEmpty()) {
             filterPredicates.add(cb.equal(join.get("primaryTitle"), contentName));
         } else {
