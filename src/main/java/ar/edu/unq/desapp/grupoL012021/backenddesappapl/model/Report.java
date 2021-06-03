@@ -19,7 +19,7 @@ public class Report {
     private String reporter;
 
     @JsonBackReference
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="review_id", nullable = false)
     private Review review;
 

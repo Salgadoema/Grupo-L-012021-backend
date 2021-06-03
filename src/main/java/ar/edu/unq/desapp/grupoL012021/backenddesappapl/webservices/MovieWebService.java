@@ -56,7 +56,6 @@ public class MovieWebService  {
             PublicReview reviewToAdd = review.modelPublic(movie);
             movie.addReview(reviewToAdd);
             movieService.save(movie);
-            reviewService.save(reviewToAdd);
             return ResponseEntity.ok(movie);
         }
     }

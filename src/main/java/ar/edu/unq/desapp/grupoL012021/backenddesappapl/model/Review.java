@@ -53,7 +53,7 @@ public abstract class Review {
     private int dislikes;
 
     @JsonManagedReference
-    @OneToMany(mappedBy = "review", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "review", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Report> reports;
 
     @JsonBackReference

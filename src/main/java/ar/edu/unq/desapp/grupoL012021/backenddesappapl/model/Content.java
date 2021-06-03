@@ -34,7 +34,7 @@ public abstract class Content {
     private List<CrewMember> crewMembers;
 
     @JsonManagedReference
-    @OneToMany(mappedBy = "content", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "content", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     public List<Review> reviews;
 
     @ManyToMany

@@ -25,12 +25,6 @@ public class ContentWebService {
         return ResponseEntity.ok(foundContent);
     }
 
-    @GetMapping("/api/content/filter")
-    public ResponseEntity<List<Content>> findAll(@RequestBody ReverseSearchDTO reverseSearchDTO) {
-        List<Content> matchingContent = contentService.findAll(reverseSearchDTO);
-        return ResponseEntity.ok(matchingContent);
-    }
-
     @GetMapping("/api/content/byId/{id}")
     public ResponseEntity<Content> byContentId(Integer id) {
         Content foundContent = contentService.findById(id);
@@ -41,4 +35,11 @@ public class ContentWebService {
             return ResponseEntity.ok(foundContent);
         }
     }
+
+    @GetMapping("/api/content/filter")
+    public ResponseEntity<List<Content>> findAll(@RequestBody ReverseSearchDTO reverseSearchDTO) {
+        List<Content> matchingContent = contentService.findAll(reverseSearchDTO);
+        return ResponseEntity.ok(matchingContent);
+    }
+
 }

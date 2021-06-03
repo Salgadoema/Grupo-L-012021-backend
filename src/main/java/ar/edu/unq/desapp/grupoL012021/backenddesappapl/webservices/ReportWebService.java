@@ -32,16 +32,18 @@ public class ReportWebService {
         return ResponseEntity.ok(reports);
     }
 
-    @PostMapping("api/reports/{id}")
-    public ResponseEntity<Report> addReportTo(@PathVariable("id") Integer id, @RequestBody Report report) {
+    @PostMapping("api/reports/add/{id}")
+    public ResponseEntity<Report> addReportTo(@PathVariable("id") Integer id, @RequestBody Report reportDAO) {
         PublicReview review = reviewService.findById(id);
         if(review == null) {
             return ResponseEntity.notFound().build();
         }
         else {
+            Report report = new Report();
+            report.setReporter(reportDAO.getReporter());
+            report.setType(reportDAO.getType());
             report.setReview(review);
             review.addReport(report);
-            reviewService.save(review);
             reportService.save(report);
             return ResponseEntity.ok(report);
         }
