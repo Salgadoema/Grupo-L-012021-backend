@@ -4,8 +4,6 @@ import ar.edu.unq.desapp.grupoL012021.backenddesappapl.model.Content;
 import ar.edu.unq.desapp.grupoL012021.backenddesappapl.persistence.ContentPersistence;
 import ar.edu.unq.desapp.grupoL012021.backenddesappapl.webservices.dto.ReverseSearchDTO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,7 +16,7 @@ public class ContentService {
 
     public Content findById(Integer id) { return repository.findById(id).get(); }
 
-    public Page<Content> findAll(Pageable testPage) { return repository.findAll(testPage); }
+    public List<Content> findAll() { return repository.findAll(); }
 
     public List<Content> findAll(ReverseSearchDTO searchDTO) {
 
