@@ -42,6 +42,13 @@ public class ReviewPersistenceCustomImpl implements ReviewPersistenceCustom {
             filterPredicates.add(cb.equal(reviewRoot.get("platformOrigin"),platform));
         }
         if(containsSpoilers != null) {
+
+            /*
+            Predicate predicateNull = cb.equal(reviewRoot.get("type"), "Premium");
+            Predicate predicateFalse = cb.equal(cb.treat(reviewRoot, PublicReview.class).get("containsSpoilers"),containsSpoilers);
+            Predicate predicateOR = cb.or(predicateFalse, predicateNull);
+            filterPredicates.add(predicateOR);
+            */
             filterPredicates.add(cb.equal(cb.treat(reviewRoot, PublicReview.class).get("containsSpoilers"),containsSpoilers));
         }
         if(language != null && !language.isEmpty()) {
@@ -59,7 +66,10 @@ public class ReviewPersistenceCustomImpl implements ReviewPersistenceCustom {
         }
 
         cq.distinct(true);
-        cq.where(cb.and(filterPredicates.toArray(new Predicate[0])));
+
+        Predicate predicates = cb.and(filterPredicates.toArray(new Predicate[0]));
+
+        cq.where(predicates);
 
         TypedQuery tq = entityManager.createQuery(cq);
         tq.setFirstResult(pageNumber * pageSize);
