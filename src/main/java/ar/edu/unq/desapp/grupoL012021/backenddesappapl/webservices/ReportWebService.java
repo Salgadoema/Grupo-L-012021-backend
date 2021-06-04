@@ -39,13 +39,7 @@ public class ReportWebService {
             return ResponseEntity.notFound().build();
         }
         else {
-            Report report = new Report();
-            report.setReporter(reportDAO.getReporter());
-            report.setType(reportDAO.getType());
-            report.setReview(review);
-            review.addReport(report);
-            reportService.save(report);
-            return ResponseEntity.ok(report);
+            return ResponseEntity.ok(reportService.save(reportDAO, review));
         }
     }
 
