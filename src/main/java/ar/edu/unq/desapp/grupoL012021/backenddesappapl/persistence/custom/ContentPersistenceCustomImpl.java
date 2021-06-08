@@ -1,9 +1,6 @@
 package ar.edu.unq.desapp.grupoL012021.backenddesappapl.persistence.custom;
 
-import ar.edu.unq.desapp.grupoL012021.backenddesappapl.model.Content;
-import ar.edu.unq.desapp.grupoL012021.backenddesappapl.model.CrewMember;
-import ar.edu.unq.desapp.grupoL012021.backenddesappapl.model.Review;
-import ar.edu.unq.desapp.grupoL012021.backenddesappapl.model.Series;
+import ar.edu.unq.desapp.grupoL012021.backenddesappapl.model.*;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
@@ -23,8 +20,8 @@ public class ContentPersistenceCustomImpl implements ContentPersistenceCustom {
 
     @Override
     public List<Content> findAll(String contentType, String contentStartYear, String contentEndYear,
-                                 String crewMemberName, Double rating, Boolean onlyLikedReviews,
-                                 Integer pageNumber, Integer pageSize) {
+                                 String crewMemberName, String genreName, Double rating,
+                                 Boolean onlyLikedReviews, Integer pageNumber, Integer pageSize) {
 
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         CriteriaQuery cq = cb.createQuery(Content.class);
@@ -44,6 +41,10 @@ public class ContentPersistenceCustomImpl implements ContentPersistenceCustom {
             Join<Content, CrewMember> crewMemberJoin = contentRoot.join("crewMembers");
             filterPredicates.add(cb.equal(crewMemberJoin.get("name"), crewMemberName));
         }
+        if(genreName != null && !genreName.isEmpty()) {
+            Join<Content, Genre> genreJoin = contentRoot.join("genres");
+            filterPredicates.add(cb.equal(genreJoin.get("genre"),genreName));
+        }
         if (onlyLikedReviews != null || rating != null) {
             Join<Content, Review> reviewJoin = contentRoot.join("reviews");
             if(rating != null) {
@@ -59,8 +60,6 @@ public class ContentPersistenceCustomImpl implements ContentPersistenceCustom {
         cq.where(cb.and(filterPredicates.toArray(new Predicate[0])));
 
         TypedQuery tq = entityManager.createQuery(cq);
-        //tq.setFirstResult(pageNumber * pageSize);
-        //tq.setMaxResults(pageSize);
 
         return tq.getResultList();
     }

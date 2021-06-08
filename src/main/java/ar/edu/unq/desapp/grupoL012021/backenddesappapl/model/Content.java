@@ -132,14 +132,14 @@ public abstract class Content {
         return aReview;
     }
 
-
+    /*
     public ArrayList<Review> getReviewsByPlatform(String platform) {
         ArrayList<Review> aReviews = reviews.stream()
                 .filter(review -> review.getPlatformOrigin()==platform)
                 .collect(Collectors.toCollection(ArrayList::new));
         return aReviews;
     }
-
+*/
 /*
     public ArrayList<Review> getReviewsByContainSpoiler(boolean containSpoiler) {
         ArrayList<Review> aReviews = reviews.stream()
@@ -149,14 +149,14 @@ public abstract class Content {
     }
     */
 
-
+    /*
     public ArrayList<Review> getReviewsByLanguage(String language) {
         ArrayList<Review> aReviews = reviews.stream()
                 .filter(review -> review.getLanguage()==language)
                 .collect(Collectors.toCollection(ArrayList::new));
         return aReviews;
     }
-
+     */
   /*
     public ArrayList<PublicReview> getReviewsByGeoLocation(String geolocation) {
         ArrayList<PublicReview> aReviews = reviews.stream()
@@ -165,13 +165,14 @@ public abstract class Content {
         return aReviews;
     }
 */
+    /*
     public ArrayList<Review> getReviewsByType(String type) {
         ArrayList<Review> aReviews = reviews.stream()
                 .filter(review -> review.getType()==type)
                 .collect(Collectors.toCollection(ArrayList::new));
         return aReviews;
     }
-
+*/
 
     public ArrayList<Review> getReviewsLikes() {
         ArrayList<Review> aReviews = reviews.stream()
@@ -188,14 +189,16 @@ public abstract class Content {
         return aReviews;
     }
 
-
+    /*
     public ArrayList<Review> getReviewsOrderByLikes() {
         ArrayList<Review> aReviews = reviews.stream()
                 .sorted(Comparator.comparingInt(Review::getLikes).reversed())
                 .collect(Collectors.toCollection(ArrayList::new));
         return aReviews;
     }
+     */
 
+    /*
     public Double getAverageReviewScore() {
         Double result = 0.0;
 
@@ -204,6 +207,7 @@ public abstract class Content {
         }
         return result/this.reviews.size();
     }
+     */
 
 
     public void reportReview(Integer idReview) {

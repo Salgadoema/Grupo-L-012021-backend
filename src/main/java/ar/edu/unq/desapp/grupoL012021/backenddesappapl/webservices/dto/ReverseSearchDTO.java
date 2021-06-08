@@ -10,6 +10,8 @@ public class ReverseSearchDTO {
 
     private String crewMemberName = null;
 
+    private String genre = null;
+
     private Double rating = null;
 
     private Boolean onlyLikedReviews = null;
@@ -21,13 +23,14 @@ public class ReverseSearchDTO {
     public ReverseSearchDTO() { super(); }
 
     public ReverseSearchDTO( String contentType, String contentStartYear, String contentEndYear,
-                             String crewMemberName, Double rating, Boolean onlyLikedReviews,
+                             String crewMemberName, String genreName, Double rating, Boolean onlyLikedReviews,
                              Integer pageNumber, Integer pageSize) {
 
         this.contentType = contentType;
         this.contentStartYear = contentStartYear;
         this.contentEndYear = contentEndYear;
         this.crewMemberName = crewMemberName;
+        this.genre = genreName;
         this.rating = rating;
         this.onlyLikedReviews = onlyLikedReviews;
         this.pageNumber = pageNumber;
@@ -65,6 +68,10 @@ public class ReverseSearchDTO {
     public void setCrewMemberName(String crewMemberName) {
         this.crewMemberName = crewMemberName;
     }
+
+    public String getGenre() { return genre; }
+
+    public void setGenre(String genreName) { this.genre = genreName; }
 
     public Double getRating() {
         return rating;

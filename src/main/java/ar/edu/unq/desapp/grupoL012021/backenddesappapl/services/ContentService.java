@@ -21,6 +21,7 @@ public class ContentService {
     public List<Content> findAll(ReverseSearchDTO searchDTO) {
 
         return repository.findAll(searchDTO.getContentType(), searchDTO.getContentStartYear(),
-                searchDTO.getContentEndYear(), searchDTO.getCrewMemberName(), searchDTO.getRating(),
-                searchDTO.getOnlyLikedReviews(), searchDTO.getPageNumber(), searchDTO.getPageSize()); }
+                searchDTO.getContentEndYear(), searchDTO.getCrewMemberName(), searchDTO.getGenre(),
+                searchDTO.getRating(), searchDTO.getOnlyLikedReviews(), searchDTO.getPageNumber(),
+                searchDTO.getPageSize()); }
 }
