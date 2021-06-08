@@ -2,20 +2,24 @@
 Re-Seña!
 
 ---------------------------------------------------------------------
-TAG Entrega 1.1.0
+TAG Entrega 2.0
 ---------------------------------------------------------------------
 ====================================================
 NEW FEATURES :
-* Add a review
-* Like to a Review
-* Dislike to a Review
-* Search Review from a Movie
+* Report a Review.
+* Filter Reviews from Content.
+* Reverse search of Content.
+* Get a JWT for Authorization purposes.
 ---------------------------------------------------------------------
 NOTES:
-* You can only like / dislike a public review, not a premium review
+* You can only report Public reviews
+* Content reverse searching MUST have either the id of the content, or it's title.
+* Pagination and sorting included for reviews filtering.
+* If not specified, reviews will be sorted by id.
 ---------------------------------------------------------------------
 KNOWN ISSUES:
 * You can only add/search a review to/from a Movie, not to/from Serie or Episode.
+* Premium reviews aren't included when filtering by 'spoilers'.
 
 ================================================================================
 
