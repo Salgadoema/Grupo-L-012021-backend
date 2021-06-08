@@ -44,7 +44,7 @@ public class ReviewPersistenceCustomImpl implements ReviewPersistenceCustom {
         if(containsSpoilers != null) {
 
             /*
-            Predicate predicateNull = cb.equal(reviewRoot.get("type"), "Premium");
+            Predicate predicateNull = cb.isNull(cb.treat(reviewRoot, PublicReview.class).get("containsSpoilers"));
             Predicate predicateFalse = cb.equal(cb.treat(reviewRoot, PublicReview.class).get("containsSpoilers"),containsSpoilers);
             Predicate predicateOR = cb.or(predicateFalse, predicateNull);
             filterPredicates.add(predicateOR);
