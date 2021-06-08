@@ -18,8 +18,9 @@ NOTES:
 * If not specified, reviews will be sorted by id.
 ---------------------------------------------------------------------
 KNOWN ISSUES:
-* You can only add/search a review to/from a Movie, not to/from Serie or Episode.
 * Premium reviews aren't included when filtering by 'spoilers'.
+* Can't search content by decade.
+* Swagger currently not working.
 
 ================================================================================
 

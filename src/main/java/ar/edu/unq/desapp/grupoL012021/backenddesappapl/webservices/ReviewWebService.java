@@ -39,11 +39,13 @@ public class ReviewWebService {
         }
     }
 
+    /*
     @GetMapping("api/reviews/filter")
     public ResponseEntity<List<Review>> reviewFilter(@RequestBody ReviewDTO review) {
         List<Review> reviews = reviewService.findAll(review);
         return ResponseEntity.ok(reviews);
     }
+    */
 
     @GetMapping("api/reviews/filters")
     public ResponseEntity<List<Review>> reviewFilters(@RequestBody ReviewFilterDTO review) {

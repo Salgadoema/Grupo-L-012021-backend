@@ -45,7 +45,7 @@ public class ContentPersistenceCustomImpl implements ContentPersistenceCustom {
             Join<Content, Genre> genreJoin = contentRoot.join("genres");
             filterPredicates.add(cb.equal(genreJoin.get("genre"),genreName));
         }
-        if (onlyLikedReviews != null || rating != null) {
+        if (onlyLikedReviews != null && rating != null) {
             Join<Content, Review> reviewJoin = contentRoot.join("reviews");
             if(rating != null) {
                 cq.groupBy(contentRoot.get("id"));
