@@ -2,7 +2,7 @@
 Re-Seña!
 
 ---------------------------------------------------------------------
-TAG Entrega 2.0
+TAG Entrega 2.1.0
 ---------------------------------------------------------------------
 ====================================================
 NEW FEATURES :
@@ -15,12 +15,10 @@ NOTES:
 * You can only report Public reviews
 * Content reverse searching MUST have either the id of the content, or it's title.
 * Pagination and sorting included for reviews filtering.
-* If not specified, reviews will be sorted by id.
+* If not specified, reviews will be ordered by id.
 ---------------------------------------------------------------------
 KNOWN ISSUES:
 * Premium reviews aren't included when filtering by 'spoilers'.
-* Can't search content by decade.
-* Swagger currently not working.
 
 ================================================================================
 
