@@ -3,7 +3,7 @@ package ar.edu.unq.desapp.grupoL012021.backenddesappapl;
 
 import org.springframework.web.bind.annotation.*;
 
-
+/*
 @RestController
 @RequestMapping("/")
 public class HelloWorldTest {
@@ -24,3 +24,4 @@ public class HelloWorldTest {
         return "Hola Mundo!";
     }
 }
+*/
