@@ -1,4 +1,4 @@
-package ar.edu.unq.desapp.grupoL012021.backenddesappapl.webservices.dto;
+package ar.edu.unq.desapp.grupoL012021.backenddesappapl.services.dto;
 
 import ar.edu.unq.desapp.grupoL012021.backenddesappapl.model.Movie;
 import ar.edu.unq.desapp.grupoL012021.backenddesappapl.model.PremiumReview;
