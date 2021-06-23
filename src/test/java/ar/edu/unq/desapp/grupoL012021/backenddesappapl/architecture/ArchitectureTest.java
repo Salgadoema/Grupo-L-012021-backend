@@ -22,6 +22,8 @@ public class ArchitectureTest {
         rule.check(projectClasses);
     }
 
+
+
     @Test
     public void restControllerInWebServicePackageTest() {
         ArchRule rule = classes().that().areAnnotatedWith(Repository.class).should().resideInAPackage("..persistence..");

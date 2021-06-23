@@ -2,7 +2,7 @@ package ar.edu.unq.desapp.grupoL012021.backenddesappapl.services;
 
 import ar.edu.unq.desapp.grupoL012021.backenddesappapl.model.Content;
 import ar.edu.unq.desapp.grupoL012021.backenddesappapl.persistence.ContentPersistence;
-import ar.edu.unq.desapp.grupoL012021.backenddesappapl.services.dto.ReverseSearchDTO;
+import ar.edu.unq.desapp.grupoL012021.backenddesappapl.dto.ReverseSearchDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
