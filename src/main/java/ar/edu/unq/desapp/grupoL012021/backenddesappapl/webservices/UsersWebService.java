@@ -1,5 +1,6 @@
 package ar.edu.unq.desapp.grupoL012021.backenddesappapl.webservices;
 
+import ar.edu.unq.desapp.grupoL012021.backenddesappapl.webservices.SeriesWebService;
 import ar.edu.unq.desapp.grupoL012021.backenddesappapl.model.Users;
 import ar.edu.unq.desapp.grupoL012021.backenddesappapl.services.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,9 +21,11 @@ import java.util.stream.Collectors;
 @RequestMapping("/api/users")
 @EnableAutoConfiguration
 public class UsersWebService {
+int var=0;
 
     @Autowired
     private UsersService usersService;
+    private SeriesWebService seriesWebService;
 
     @GetMapping
     public ResponseEntity<List<Users>> allUsers() {
@@ -35,7 +38,12 @@ public class UsersWebService {
         }
     }
 
+    @GetMapping("/endpoints")
+    public Integer endpoints() {
 
+
+        return var;
+    }
 
     @GetMapping("/byId/{id}")
     public ResponseEntity<Users> UsersById(@PathVariable("id") Integer id) {
@@ -54,6 +62,7 @@ public class UsersWebService {
         Users user1 = new Users();
         user1.setPlatform (user.getPlatform());
         user1.setToken(token);
+        var+=1;
         return usersService.save(user1);
     }
 

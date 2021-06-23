@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
@@ -21,6 +22,18 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
 
         @Override
+        public void configure(WebSecurity web) throws Exception {
+            web.ignoring().antMatchers("/v2/api-docs",
+                    "/configuration/ui",
+                    "/swagger-resources/**",
+                    "/configuration/security",
+                    "/swagger-ui.html",
+                    "/api/users/endponints",
+                    "/webjars/**",
+                    "/actuator/**");
+        }
+
+        @Override
         protected void configure(HttpSecurity http) throws Exception {
             http.cors(withDefaults());
             http.csrf().disable()
@@ -30,18 +43,9 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                     .anyRequest().authenticated();
         }
 
-    @Override
-    public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/v2/api-docs",
-                "/configuration/ui",
-                "/swagger-resources/**",
-                "/configuration/security",
-                "/swagger-ui.html",
-                "/webjars/**");
-    }
-
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
+
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.addAllowedOrigin("*");
         configuration.addAllowedMethod("*");
@@ -51,4 +55,4 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
         return source;
 
     }
-    }   
+    }

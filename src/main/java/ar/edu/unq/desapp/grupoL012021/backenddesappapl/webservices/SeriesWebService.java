@@ -12,13 +12,18 @@ import java.util.List;
 @RestController
 @EnableAutoConfiguration
 public class SeriesWebService {
-
+Integer apiseries=0;
     @Autowired
     private SeriesService seriesService;
 
     @GetMapping("/api/series")
     public List<Series> allSeries() {
         List<Series> series = seriesService.findAll();
+        apiseries+=1;
         return series;
+    }
+
+    public Integer getApiseries(){
+        return apiseries;
     }
 }
