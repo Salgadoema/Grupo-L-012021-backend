@@ -45,9 +45,8 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                     .anyRequest().authenticated();
         }
 
+    @Bean
 
-
-        @Bean
     CorsConfigurationSource corsConfigurationSource() {
 
         CorsConfiguration configuration = new CorsConfiguration();
@@ -62,39 +61,9 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
 
-   /*
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication().withUser("usuario").password("pass").roles("ADMIN");
-    }
 
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.cors(withDefaults());
-        http.csrf().disable();
-        http.authorizeRequests().anyRequest().anonymous();
-        http.headers().frameOptions().disable();
-        // en futuro permitir solo loggeados
-        //http.authorizeRequests().anyRequest().fullyAuthenticated().and().httpBasic();
-    }
-
-    @Bean
-    public static NoOpPasswordEncoder passwordEncoder() {
-        return (NoOpPasswordEncoder) NoOpPasswordEncoder.getInstance();
-    }
 
 
-    @Bean
-    CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration configuration = new CorsConfiguration();
-        configuration.addAllowedOrigin("*");
-        configuration.addAllowedMethod("*");
-        configuration.addAllowedHeader("*");
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", configuration);
-        return source;
 
-    }
-*/
 

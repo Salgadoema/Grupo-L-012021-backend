@@ -25,6 +25,7 @@ public class BackendDesappAplApplication {
 	}
 
 	@Configuration
+	@EnableSwagger2
 	public class SpringFoxConfig {
 		@Bean
 		public Docket swaggerConfiguration() {
