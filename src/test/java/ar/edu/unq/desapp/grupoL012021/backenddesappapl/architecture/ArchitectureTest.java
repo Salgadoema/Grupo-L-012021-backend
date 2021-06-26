@@ -25,14 +25,14 @@ public class ArchitectureTest {
 
 
     @Test
-    public void restControllerInWebServicePackageTest() {
+    public void repositoryInPersistencePackageTest() {
         ArchRule rule = classes().that().areAnnotatedWith(Repository.class).should().resideInAPackage("..persistence..");
 
         rule.check(projectClasses);
     }
 
     @Test
-    public void persistenceInPersistencePackageTest() {
+    public void restControllerInWebServicePackageTest() {
         ArchRule rule = classes().that().areAnnotatedWith(RestController.class).should().resideInAPackage("..webservices..");
 
         rule.check(projectClasses);
