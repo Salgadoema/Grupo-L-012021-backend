@@ -2,7 +2,7 @@ package ar.edu.unq.desapp.grupoL012021.backenddesappapl.webservices;
 
 import ar.edu.unq.desapp.grupoL012021.backenddesappapl.model.Content;
 import ar.edu.unq.desapp.grupoL012021.backenddesappapl.services.ContentService;
-import ar.edu.unq.desapp.grupoL012021.backenddesappapl.services.dto.ReverseSearchDTO;
+import ar.edu.unq.desapp.grupoL012021.backenddesappapl.dto.ReverseSearchDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.http.ResponseEntity;

@@ -2,7 +2,7 @@ package ar.edu.unq.desapp.grupoL012021.backenddesappapl.webservices;
 
 import ar.edu.unq.desapp.grupoL012021.backenddesappapl.model.Review;
 import ar.edu.unq.desapp.grupoL012021.backenddesappapl.services.ReviewService;
-import ar.edu.unq.desapp.grupoL012021.backenddesappapl.services.dto.ReviewFilterDTO;
+import ar.edu.unq.desapp.grupoL012021.backenddesappapl.dto.ReviewFilterDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.http.ResponseEntity;

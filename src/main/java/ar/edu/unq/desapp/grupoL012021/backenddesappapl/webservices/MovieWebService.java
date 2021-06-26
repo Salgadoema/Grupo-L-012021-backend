@@ -5,7 +5,7 @@ import ar.edu.unq.desapp.grupoL012021.backenddesappapl.model.Movie;
 import ar.edu.unq.desapp.grupoL012021.backenddesappapl.model.PublicReview;
 import ar.edu.unq.desapp.grupoL012021.backenddesappapl.services.MovieService;
 import ar.edu.unq.desapp.grupoL012021.backenddesappapl.services.PublicReviewService;
-import ar.edu.unq.desapp.grupoL012021.backenddesappapl.services.dto.ReviewDTO;
+import ar.edu.unq.desapp.grupoL012021.backenddesappapl.dto.ReviewDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.http.ResponseEntity;

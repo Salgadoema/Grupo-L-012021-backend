@@ -33,8 +33,6 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                     "/actuator/**");
         }
 
-
-
         @Override
         protected void configure(HttpSecurity http) throws Exception {
             http.cors(withDefaults());
@@ -46,7 +44,6 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
         }
 
     @Bean
-
     CorsConfigurationSource corsConfigurationSource() {
 
         CorsConfiguration configuration = new CorsConfiguration();
@@ -59,11 +56,3 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
     }
     }
-
-
-
-
-
-
-
-
