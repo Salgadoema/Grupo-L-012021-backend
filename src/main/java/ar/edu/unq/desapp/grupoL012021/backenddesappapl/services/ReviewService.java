@@ -11,6 +11,7 @@ import ar.edu.unq.desapp.grupoL012021.backenddesappapl.dto.ReviewFilterDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
+import springfox.documentation.annotations.Cacheable;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -18,7 +19,14 @@ import java.util.stream.Stream;
 
 @Service
 public class ReviewService {
-
+    private void SlowService() {
+        try {
+            long time = 4000L;
+            Thread.sleep(time);
+        } catch (InterruptedException e) {
+            throw new IllegalStateException(e);
+        }
+    }
     @Autowired
     private ReviewPersistence repository;
 
@@ -28,11 +36,20 @@ public class ReviewService {
     @Autowired
     private PremiumReviewPersistence premiumRepository;
 
-    public Review findById(Integer id) { return this.repository.findById(id).get(); }
+    @Cacheable("reviews_id")
+    public Review findById(Integer id) {
+        SlowService();
+        return this.repository.findById(id).get(); }
 
-    public List<Review> findAll() { return this.repository.findAll(); }
+        @Cacheable("reviews_all")
+    public List<Review> findAll() {
+            SlowService();
+            return this.repository.findAll(); }
 
+
+    @Cacheable("reviews_dto")
     public List<Review> findAll(ReviewDTO review) {
+        SlowService();
         PublicReview publicExample = review.modelPublic();
         List<PublicReview> publicReviews = this.publicRepository.findAll(Example.of(publicExample));
         PremiumReview premiumExample = review.modelPremium();
