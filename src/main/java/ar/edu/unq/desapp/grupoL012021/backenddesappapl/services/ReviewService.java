@@ -44,7 +44,7 @@ public class ReviewService {
         SlowService();
         return this.repository.findById(id).get(); }
 
-        @Cacheable("reviews_all")
+    @Cacheable("reviews_all")
     public List<Review> findAll() {
             SlowService();
             return this.repository.findAll(); }
