@@ -1,5 +1,6 @@
 package ar.edu.unq.desapp.grupoL012021.backenddesappapl.webservices;
 
+import ar.edu.unq.desapp.grupoL012021.backenddesappapl.dto.ContentDTO;
 import ar.edu.unq.desapp.grupoL012021.backenddesappapl.model.Content;
 import ar.edu.unq.desapp.grupoL012021.backenddesappapl.services.ContentService;
 import ar.edu.unq.desapp.grupoL012021.backenddesappapl.dto.ReverseSearchDTO;
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,8 +28,19 @@ public class ContentWebService {
     }
 
     @GetMapping("/api/content/byId/{id}")
-    public ResponseEntity<Content> byContentId(Integer id) {
+    public ResponseEntity<Content> byContentId(@PathVariable Integer id) {
         Content foundContent = contentService.findById(id);
+        if (foundContent == null) {
+            return ResponseEntity.notFound().build();
+        }
+        else {
+            return ResponseEntity.ok(foundContent);
+        }
+    }
+
+    @GetMapping("/api/content/byContentTitle/{title}")
+    public ResponseEntity<ContentDTO> byContentTitle(@PathVariable  String title) {
+        ContentDTO foundContent = contentService.findByContentTitle(title);
         if (foundContent == null) {
             return ResponseEntity.notFound().build();
         }

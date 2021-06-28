@@ -198,7 +198,7 @@ public abstract class Content {
     }
      */
 
-    /*
+
     public Double getAverageReviewScore() {
         Double result = 0.0;
 
@@ -207,7 +207,7 @@ public abstract class Content {
         }
         return result/this.reviews.size();
     }
-     */
+
 
 
     public void reportReview(Integer idReview) {

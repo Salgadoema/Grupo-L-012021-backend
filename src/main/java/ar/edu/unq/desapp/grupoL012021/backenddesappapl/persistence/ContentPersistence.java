@@ -17,4 +17,5 @@ public interface ContentPersistence extends JpaRepository<Content, Integer>, Con
 
     List<Content> findAll();
 
+    Optional<Content> findByPrimaryTitle(String title);
 }
