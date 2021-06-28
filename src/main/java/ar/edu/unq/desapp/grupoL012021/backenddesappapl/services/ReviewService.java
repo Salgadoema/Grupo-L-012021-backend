@@ -11,7 +11,7 @@ import ar.edu.unq.desapp.grupoL012021.backenddesappapl.dto.ReviewFilterDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
-import springfox.documentation.annotations.Cacheable;
+import org.springframework.cache.annotation.Cacheable;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -41,7 +41,7 @@ public class ReviewService {
         SlowService();
         return this.repository.findById(id).get(); }
 
-        @Cacheable("reviews_all")
+    @Cacheable("reviews_all")
     public List<Review> findAll() {
             SlowService();
             return this.repository.findAll(); }
