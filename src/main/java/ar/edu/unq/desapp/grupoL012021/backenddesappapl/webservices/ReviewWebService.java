@@ -29,7 +29,7 @@ public class ReviewWebService {
     @GetMapping("/api/reviews/byId/{id}")
     public ResponseEntity<Review> reviewById(@PathVariable("id") Integer id) {
         Review review = reviewService.findById(id);
-
+        reviewService.clearCache();
         if (review == null) {
             return ResponseEntity.notFound().build();
         }

@@ -31,7 +31,8 @@ dependencies {
 	compile group: 'io.jsonwebtoken', name: 'jjwt', version: '0.2'
 	compile group: 'io.jsonwebtoken', name: 'jjwt-api', version: '0.10.1'
 	testImplementation 'com.tngtech.archunit:archunit:0.19.0'
-
+	//compile("org.springframework.boot:spring-boot-starter-cache")
+	implementation 'org.springframework.boot:spring-boot-starter-cache'
 }
 jacoco {
 	toolVersion = "0.8.5"
