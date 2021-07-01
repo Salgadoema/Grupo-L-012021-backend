@@ -21,14 +21,7 @@ import java.util.stream.Stream;
 
 @Service
 public class ReviewService {
-    private void SlowService() {
-        try {
-            long time = 4000L;
-            Thread.sleep(time);
-        } catch (InterruptedException e) {
-            throw new IllegalStateException(e);
-        }
-    }
+
     @Autowired
     private ReviewPersistence repository;
 
@@ -40,19 +33,15 @@ public class ReviewService {
 
 
     public Review findById(Integer id) {
-        clearCache();
-        SlowService();
         return this.repository.findById(id).get(); }
 
     @Cacheable("reviews_all")
     public List<Review> findAll() {
-            SlowService();
             return this.repository.findAll(); }
 
 
     @Cacheable("reviews_dto")
     public List<Review> findAll(ReviewDTO review) {
-        SlowService();
         PublicReview publicExample = review.modelPublic();
         List<PublicReview> publicReviews = this.publicRepository.findAll(Example.of(publicExample));
         PremiumReview premiumExample = review.modelPremium();

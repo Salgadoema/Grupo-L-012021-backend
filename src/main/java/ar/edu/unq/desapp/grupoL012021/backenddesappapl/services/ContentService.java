@@ -45,7 +45,10 @@ public class ContentService {
 
 
 
-    public List<Content> findAll() { return repository.findAll(); }
+    public List<Content> findAll() {
+        return repository.findAll(); }
+
+
 
     public List<Content> findAll(ReverseSearchDTO searchDTO) {
 
