@@ -6,6 +6,7 @@ import ar.edu.unq.desapp.grupoL012021.backenddesappapl.model.PublicReview;
 import ar.edu.unq.desapp.grupoL012021.backenddesappapl.services.MovieService;
 import ar.edu.unq.desapp.grupoL012021.backenddesappapl.services.PublicReviewService;
 import ar.edu.unq.desapp.grupoL012021.backenddesappapl.dto.ReviewDTO;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.http.ResponseEntity;
@@ -55,7 +56,7 @@ public class MovieWebService  {
         else {
             PublicReview reviewToAdd = review.modelPublic(movie);
             movie.addReview(reviewToAdd);
-            movieService.save(movie);
+            movieService.saveAndNotify(movie);
             return ResponseEntity.ok(movie);
         }
     }
