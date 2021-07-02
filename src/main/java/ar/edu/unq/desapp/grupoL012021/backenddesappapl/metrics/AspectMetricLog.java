@@ -1,4 +1,4 @@
-package ar.edu.unq.desapp.grupoL012021.backenddesappapl.config;
+package ar.edu.unq.desapp.grupoL012021.backenddesappapl.metrics;
 
 import ar.edu.unq.desapp.grupoL012021.backenddesappapl.model.Users;
 import ar.edu.unq.desapp.grupoL012021.backenddesappapl.persistence.ContentPersistence;
@@ -10,7 +10,10 @@ import com.codahale.metrics.Timer;
 import org.apache.catalina.connector.Request;
 import org.apache.catalina.connector.Response;
 import org.aspectj.lang.annotation.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import springfox.documentation.RequestHandler;
 
@@ -24,8 +27,10 @@ import java.util.concurrent.TimeUnit;
 import static com.codahale.metrics.MetricRegistry.name;
 
 @Aspect
-    @Component
-    public class AspectMetricLog {
+@Component
+@Order(2)
+public class AspectMetricLog {
+    static Logger logger = LoggerFactory.getLogger(WebServicesExecutionLog.class);
     private final MetricRegistry metrics = new MetricRegistry();
     private final Meter requests = metrics.meter("requests");
          Integer qtyLog=0;
@@ -50,28 +55,23 @@ import static com.codahale.metrics.MetricRegistry.name;
 
             timeStart = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS").format(new Date());
 
-            System.out.println("*************************************************************************");
-            System.out.println(timeStart);
-            System.out.println("Request for endpoint " + request.getMethod() + " - " + request.getRequestURL().toString() + " started.");
+            logger.info("========================================");
+            logger.info(timeStart);
+            logger.info("Request for endpoint " + request.getMethod() + " - " + request.getRequestURL().toString() + " started.");
         }
 
         @After("endpointMapping()")
         public void loggerAfter() {
            timeEnd = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS").format(new Date());
-            System.out.println("*************************************************************************");
-            System.out.println(timeEnd);
-            System.out.println("Request for endpoint " + request.getMethod() + " - " + request.getRequestURL().toString() + " finished.");
-            System.out.println(timeEnd);
+            logger.info("========================================");
+            logger.info(timeEnd);
+            logger.info("Request for endpoint " + request.getMethod() + " - " + request.getRequestURL().toString() + " finished.");
+            logger.info(timeEnd);
             qtyLog++;
 
-            System.out.println(qtyLog);
+            logger.info("Qty of Methods " + String.valueOf(qtyLog));
 
 
-            ConsoleReporter reporter = ConsoleReporter.forRegistry(metrics)
-                    .convertRatesTo(TimeUnit.SECONDS)
-                    .convertDurationsTo(TimeUnit.MILLISECONDS)
-                    .build();
-            reporter.start(10, TimeUnit.SECONDS);
 
         }
     }
