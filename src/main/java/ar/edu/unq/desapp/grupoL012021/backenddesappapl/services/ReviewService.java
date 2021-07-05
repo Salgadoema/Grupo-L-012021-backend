@@ -9,8 +9,11 @@ import ar.edu.unq.desapp.grupoL012021.backenddesappapl.persistence.ReviewPersist
 import ar.edu.unq.desapp.grupoL012021.backenddesappapl.dto.ReviewDTO;
 import ar.edu.unq.desapp.grupoL012021.backenddesappapl.dto.ReviewFilterDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.data.domain.Example;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+import org.springframework.cache.annotation.Cacheable;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -28,10 +31,16 @@ public class ReviewService {
     @Autowired
     private PremiumReviewPersistence premiumRepository;
 
-    public Review findById(Integer id) { return this.repository.findById(id).get(); }
 
-    public List<Review> findAll() { return this.repository.findAll(); }
+    public Review findById(Integer id) {
+        return this.repository.findById(id).get(); }
 
+    @Cacheable("reviews_all")
+    public List<Review> findAll() {
+            return this.repository.findAll(); }
+
+
+    @Cacheable("reviews_dto")
     public List<Review> findAll(ReviewDTO review) {
         PublicReview publicExample = review.modelPublic();
         List<PublicReview> publicReviews = this.publicRepository.findAll(Example.of(publicExample));
@@ -52,4 +61,11 @@ public class ReviewService {
                 dto.getContainsSpoilers(), dto.getLanguage(), dto.getCountry(), dto.getOrderBy(),
                 dto.getDescending(), dto.getPageNumber(), dto.getPageSize());
     }
+
+    @Scheduled(fixedRate = 30000)
+    @CacheEvict(value="ContentByTitle",allEntries=true)
+    public void clearCache() {
+        System.out.println("delete cache ContentByTitle" );
+    }
+
 }

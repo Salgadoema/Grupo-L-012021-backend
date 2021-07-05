@@ -29,8 +29,8 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                     "/configuration/security",
                     "/swagger-ui.html",
                     "/api/users/endponints",
-                    "/webjars/**",
-                    "/actuator/**");
+                    "/webjars/**");
+                    //"/actuator/**");
         }
 
         @Override
