@@ -2,7 +2,9 @@ package ar.edu.unq.desapp.grupoL012021.backenddesappapl.model;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class NotificationSubscription {
@@ -20,14 +22,14 @@ public class NotificationSubscription {
             name="CONTENT_ID_TABLE",
             joinColumns = @JoinColumn(name="content_id")
     )
-    private List<Integer> contentIds;
+    private Set<Integer> contentIds;
 
     public NotificationSubscription() { super(); }
 
     public NotificationSubscription(Integer id, String listeningUrl) {
         this.id = id;
         this.listeningUrl = listeningUrl;
-        this.contentIds = new ArrayList<Integer>();
+        this.contentIds = new HashSet<Integer>();
     }
 
     public Integer getId() {
@@ -46,11 +48,11 @@ public class NotificationSubscription {
         this.listeningUrl = listeningUrl;
     }
 
-    public List<Integer> getContentIds() {
+    public Set<Integer> getContentIds() {
         return contentIds;
     }
 
-    public void setContentIds(List<Integer> contentIds) {
+    public void setContentIds(Set<Integer> contentIds) {
         this.contentIds = contentIds;
     }
 

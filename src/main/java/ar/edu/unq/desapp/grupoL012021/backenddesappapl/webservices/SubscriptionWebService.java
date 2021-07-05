@@ -1,5 +1,7 @@
 package ar.edu.unq.desapp.grupoL012021.backenddesappapl.webservices;
 
+import ar.edu.unq.desapp.grupoL012021.backenddesappapl.dto.SubscriptionToContentDTO;
+import ar.edu.unq.desapp.grupoL012021.backenddesappapl.dto.SubscriptionUrlDTO;
 import ar.edu.unq.desapp.grupoL012021.backenddesappapl.model.NotificationSubscription;
 import ar.edu.unq.desapp.grupoL012021.backenddesappapl.services.SubscriptionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +19,8 @@ public class SubscriptionWebService {
     public SubscriptionService subscriptionService;
 
     @PostMapping("/api/subscription/new")
-    public ResponseEntity<NotificationSubscription> addNotificationSubscription(@RequestBody String url) {
-        NotificationSubscription subscription = subscriptionService.save(url);
+    public ResponseEntity<NotificationSubscription> addNotificationSubscription(@RequestBody SubscriptionUrlDTO subscriptionUrlDTO) {
+        NotificationSubscription subscription = subscriptionService.save(subscriptionUrlDTO);
         if (subscription == null) {
             return ResponseEntity.notFound().build();
         } else {
@@ -26,14 +28,13 @@ public class SubscriptionWebService {
         }
     }
 
-    @PostMapping("/api/subscription/{idSubscription}")
-    public ResponseEntity<NotificationSubscription> addNotificationFromContent(@PathVariable Integer idSubscription, @RequestParam Integer contentId) {
-        NotificationSubscription subscription = subscriptionService.find(idSubscription);
+    @PostMapping("/api/subscription")
+    public ResponseEntity<NotificationSubscription> addNotificationFromContent(@RequestBody SubscriptionToContentDTO subscriptionToContentDTO) {
+        NotificationSubscription subscription = subscriptionService.add(subscriptionToContentDTO);
         if (subscription == null) {
             return ResponseEntity.notFound().build();
         } else {
-            subscription.addContentId(contentId);
-            return ResponseEntity.ok(subscriptionService.save(subscription));
+            return ResponseEntity.ok(subscription);
         }
     }
 
