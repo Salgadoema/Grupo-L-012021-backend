@@ -3,6 +3,7 @@ package ar.edu.unq.desapp.grupoL012021.backenddesappapl.webservices;
 import ar.edu.unq.desapp.grupoL012021.backenddesappapl.model.PublicReview;
 import ar.edu.unq.desapp.grupoL012021.backenddesappapl.services.PublicReviewService;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.http.ResponseEntity;
@@ -82,7 +83,10 @@ public class PublicReviewWebService {
     }
 
     @PostMapping("/api/publicReviews")
-    public PublicReview save(@RequestBody PublicReview review) { return publicReviewService.save(review);}
+    public PublicReview save(@RequestBody PublicReview review) {
+        PublicReview savedReview = publicReviewService.save(review);
+        return savedReview;
+    }
 
 
     @GetMapping("api/publicReviews/filter")
