@@ -16,7 +16,7 @@ public class WebConfig implements WebMvcConfigurer {
     public SecurityWebFilterChain securityWebFilterChain(
             ServerHttpSecurity http) {
         return http.authorizeExchange()
-                .pathMatchers("/actuator/**").permitAll()
+                //.pathMatchers("/actuator/**").permitAll()
                 .anyExchange().authenticated()
                 .and().build();
     }
