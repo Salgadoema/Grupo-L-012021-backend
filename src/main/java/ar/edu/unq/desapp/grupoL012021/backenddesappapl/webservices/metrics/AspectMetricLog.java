@@ -1,4 +1,4 @@
-package ar.edu.unq.desapp.grupoL012021.backenddesappapl.metrics;
+package ar.edu.unq.desapp.grupoL012021.backenddesappapl.webservices.metrics;
 
 import ar.edu.unq.desapp.grupoL012021.backenddesappapl.services.UsersService;
 import com.codahale.metrics.Meter;
@@ -47,6 +47,7 @@ public class AspectMetricLog {
             logger.info("Start Request at: " +timeStart);
             logger.info("Request Method: " + request.getMethod() );
             logger.info("Request URL: "  + request.getRequestURL().toString());
+
         }
 
         @After("endpointMapping()")

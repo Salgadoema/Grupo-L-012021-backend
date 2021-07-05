@@ -1,8 +1,7 @@
-package ar.edu.unq.desapp.grupoL012021.backenddesappapl.metrics;
+package ar.edu.unq.desapp.grupoL012021.backenddesappapl.webservices.metrics;
 
 import java.util.HashMap;
 import java.util.Map;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -70,7 +69,9 @@ public class ControllerInterceptorLog {
             int argsSize = args.length;
             String argsTypes = "";
             String typeStr = joinPoint.getSignature().getDeclaringType().toString().split(" ")[0];
+
             String returnType = joinPoint.getSignature().toString().split(" ")[0];
+
             logger.info("Class/Interface:" + tragetClassName + "(" + typeStr + ")");
             logger.info("Method:" + MethodName);
             logger.info("Number of parameters:" + argsSize);
@@ -98,6 +99,7 @@ public class ControllerInterceptorLog {
                 numberOfTimes.get().put(MethodName, 1L);
                 totalTimeConsuming.get().put(MethodName, total);
             }
+
             Authentication auth = SecurityContextHolder.getContext().getAuthentication();
             String platform=mapper.writeValueAsString(auth.getPrincipal());
 
