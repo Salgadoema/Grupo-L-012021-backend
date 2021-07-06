@@ -1,6 +1,5 @@
 package ar.edu.unq.desapp.grupoL012021.backenddesappapl.webservices;
 
-import ar.edu.unq.desapp.grupoL012021.backenddesappapl.webservices.SeriesWebService;
 import ar.edu.unq.desapp.grupoL012021.backenddesappapl.model.Users;
 import ar.edu.unq.desapp.grupoL012021.backenddesappapl.services.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
