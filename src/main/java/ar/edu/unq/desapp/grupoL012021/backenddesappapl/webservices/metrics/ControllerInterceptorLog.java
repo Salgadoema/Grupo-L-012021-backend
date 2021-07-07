@@ -104,7 +104,7 @@ public class ControllerInterceptorLog {
             String platform=mapper.writeValueAsString(auth.getPrincipal());
 
 
-            Object proceed = joinPoint.proceed();
+            //Object proceed = joinPoint.proceed();
 
 
 
