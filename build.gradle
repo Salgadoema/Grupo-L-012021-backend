@@ -31,9 +31,10 @@ dependencies {
 	compile group: 'io.jsonwebtoken', name: 'jjwt', version: '0.2'
 	compile group: 'io.jsonwebtoken', name: 'jjwt-api', version: '0.10.1'
 	testImplementation 'com.tngtech.archunit:archunit:0.19.0'
-	//compile("org.springframework.boot:spring-boot-starter-cache")
+	implementation 'org.springframework.boot:spring-boot-starter-amqp'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.amqp:spring-rabbit-test'
 	implementation 'org.springframework.boot:spring-boot-starter-cache'
-	// https://mvnrepository.com/artifact/io.dropwizard.metrics/metrics-core
 	implementation group: 'io.dropwizard.metrics', name: 'metrics-core', version: '4.1.14'
 	implementation 'io.dropwizard.metrics:metrics-jvm:4.1.12.1'
 	implementation 'io.dropwizard.metrics:metrics-graphite:4.2.2'
