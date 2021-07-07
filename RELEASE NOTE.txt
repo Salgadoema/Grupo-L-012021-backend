@@ -2,23 +2,23 @@
 Re-Seña!
 
 ---------------------------------------------------------------------
-TAG Entrega 2.1.0
+TAG Entrega 3.1.0
 ---------------------------------------------------------------------
 ====================================================
 NEW FEATURES :
-* Report a Review.
-* Filter Reviews from Content.
-* Reverse search of Content.
-* Get a JWT for Authorization purposes.
+* Subscribe to receive notifications for new reviews on content.
+* Cache added for viewing data about content for faster data reading.
 ---------------------------------------------------------------------
 NOTES:
 * You can only report Public reviews
 * Content reverse searching MUST have either the id of the content, or it's title.
 * Pagination and sorting included for reviews filtering.
 * If not specified, reviews will be ordered by id.
+* Cache clears every 30 seconds.
+* Architecture Test.
 ---------------------------------------------------------------------
 KNOWN ISSUES:
-* Premium reviews aren't included when filtering by 'spoilers'.
+* 
 
 ================================================================================
 
