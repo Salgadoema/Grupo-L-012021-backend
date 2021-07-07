@@ -9,9 +9,7 @@ import ar.edu.unq.desapp.grupoL012021.backenddesappapl.persistence.ReviewPersist
 import ar.edu.unq.desapp.grupoL012021.backenddesappapl.dto.ReviewDTO;
 import ar.edu.unq.desapp.grupoL012021.backenddesappapl.dto.ReviewFilterDTO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.data.domain.Example;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.cache.annotation.Cacheable;
 
@@ -60,12 +58,6 @@ public class ReviewService {
         return repository.findAll(dto.getContentName(), dto.getContentId(), dto.getType(), dto.getPlatform(),
                 dto.getContainsSpoilers(), dto.getLanguage(), dto.getCountry(), dto.getOrderBy(),
                 dto.getDescending(), dto.getPageNumber(), dto.getPageSize());
-    }
-
-    @Scheduled(fixedRate = 30000)
-    @CacheEvict(value="ContentByTitle",allEntries=true)
-    public void clearCache() {
-        System.out.println("delete cache ContentByTitle" );
     }
 
 }

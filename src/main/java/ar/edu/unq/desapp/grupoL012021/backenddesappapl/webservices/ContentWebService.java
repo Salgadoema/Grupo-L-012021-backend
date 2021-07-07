@@ -27,7 +27,7 @@ public class ContentWebService {
         return ResponseEntity.ok(foundContent);
     }
 
-    @GetMapping("/api/content/byId/{id}")
+        @GetMapping("/api/content/byId/{id}")
     public ResponseEntity<Content> byContentId(@PathVariable Integer id) {
         Content foundContent = contentService.findById(id);
         if (foundContent == null) {

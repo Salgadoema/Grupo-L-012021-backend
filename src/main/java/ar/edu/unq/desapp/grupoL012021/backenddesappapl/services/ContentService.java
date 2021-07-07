@@ -29,7 +29,10 @@ public class ContentService {
     public ContentPersistence repository;
 
     @Cacheable("ContentById")
-    public Content findById(Integer id) { return repository.findById(id).get(); }
+    public Content findById(Integer id) {
+        SlowService();
+        return repository.findById(id).get();
+    }
 
     @Cacheable("ContentByTitle")
     public ContentDTO findByContentTitle(String title) {
@@ -56,4 +59,19 @@ public class ContentService {
                 searchDTO.getContentEndYear(), searchDTO.getCrewMemberName(), searchDTO.getGenre(),
                 searchDTO.getRating(), searchDTO.getOnlyLikedReviews(), searchDTO.getPageNumber(),
                 searchDTO.getPageSize()); }
+
+
+    @Scheduled(fixedRate = 30000)
+    @CacheEvict(value="ContentByTitle",allEntries=true)
+    public void clearCache() {
+        System.out.println("delete cache ContentByTitle" );
+    }
+
+    @Scheduled(fixedRate = 30000)
+    @CacheEvict(value="ContentById",allEntries=true)
+    public void clearCacheId() {
+        System.out.println("delete cache ContentById" );
+    }
+
 }
+
