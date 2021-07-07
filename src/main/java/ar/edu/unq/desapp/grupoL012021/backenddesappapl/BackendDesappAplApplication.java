@@ -26,31 +26,5 @@ public class BackendDesappAplApplication {
 
 		SpringApplication.run(BackendDesappAplApplication.class, args);
 	}
-/*
-	@Configuration
-	public class SpringFoxConfig {
-		@Bean
-		public Docket swaggerConfiguration() {
-			return new Docket(DocumentationType.SWAGGER_2)
-					.select()
-					.apis(RequestHandlerSelectors.withClassAnnotation(RestController.class))
-					.paths(PathSelectors.any())
-					.build().apiInfo(apiDetails());
-		}
-
-		private ApiInfo apiDetails() {
-			return new ApiInfo(
-					"Re-Seña book API",
-					"Proyecto Backend del Grupo L de la materia Desarrollo de Aplicaciones",
-					"1.0",
-					"Free to use",
-					new springfox.documentation.service.Contact("Emanuel Salgado", "https://github.com/salgadoema", "a@b.com"),
-					"API License",
-					"https://github.com/Salgadoema",
-					Collections.emptyList());
-		}
-
-
-	}*/
 }
 
