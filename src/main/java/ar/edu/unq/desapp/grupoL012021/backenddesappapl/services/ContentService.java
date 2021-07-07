@@ -28,7 +28,7 @@ public class ContentService {
     @Autowired
     public ContentPersistence repository;
 
-
+    @Cacheable("ContentById")
     public Content findById(Integer id) { return repository.findById(id).get(); }
 
     @Cacheable("ContentByTitle")

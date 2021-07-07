@@ -26,9 +26,9 @@ public class BackendDesappAplApplication {
 
 		SpringApplication.run(BackendDesappAplApplication.class, args);
 	}
-
+/*
 	@Configuration
-	@EnableSwagger2
+	//@EnableSwagger2
 
 	public class SpringFoxConfig {
 		@Bean
@@ -51,6 +51,8 @@ public class BackendDesappAplApplication {
 					"https://github.com/Salgadoema",
 					Collections.emptyList());
 		}
-	}
+
+
+	}*/
 }
 
